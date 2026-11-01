@@ -1,0 +1,2401 @@
+
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Homestay kita | Tempahan Terus Homestay Taiping, Kamunting & Batu Kurau</title>
+  
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#0f766e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Homestay kita">
+  <meta name="application-name" content="Homestay kita">
+  <meta name="description" content="Platform Tempahan & Pengurusan Homestay kita Terus Kepada Pengusaha Tanpa Caj Komisen Perantara">
+
+  <!-- PWA App Icon & Favicon (Direct High-Res Vector House SVG) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='bgGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%230f766e'/%3E%3Cstop offset='50%25' stop-color='%230d9488'/%3E%3Cstop offset='100%25' stop-color='%23f59e0b'/%3E%3C/linearGradient%3E%3Cfilter id='drop' x='-10%25' y='-10%25' width='130%25' height='130%25'%3E%3CfeDropShadow dx='0' dy='8' stdDeviation='10' flood-color='%23042f2e' flood-opacity='0.4'/%3E%3C/filter%3E%3C/defs%3E%3Crect width='512' height='512' rx='128' fill='url(%23bgGrad)'/%3E%3Cpath d='M256 96 L96 232 H144 V392 C144 405.2 154.8 416 168 416 H344 C357.2 416 368 405.2 368 392 V232 H416 Z' fill='%23ffffff' filter='url(%23drop)'/%3E%3Cpath d='M256 68 L72 224 L92 248 L256 108 L420 248 L440 224 Z' fill='%23fbbf24'/%3E%3Crect x='220' y='288' width='72' height='128' rx='8' fill='%230f766e'/%3E%3Ccircle cx='276' cy='352' r='6' fill='%23fbbf24'/%3E%3Crect x='170' y='250' width='50' height='50' rx='8' fill='%2399f6e4'/%3E%3Crect x='292' y='250' width='50' height='50' rx='8' fill='%2399f6e4'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='bgGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%230f766e'/%3E%3Cstop offset='50%25' stop-color='%230d9488'/%3E%3Cstop offset='100%25' stop-color='%23f59e0b'/%3E%3C/linearGradient%3E%3Cfilter id='drop' x='-10%25' y='-10%25' width='130%25' height='130%25'%3E%3CfeDropShadow dx='0' dy='8' stdDeviation='10' flood-color='%23042f2e' flood-opacity='0.4'/%3E%3C/filter%3E%3C/defs%3E%3Crect width='512' height='512' rx='128' fill='url(%23bgGrad)'/%3E%3Cpath d='M256 96 L96 232 H144 V392 C144 405.2 154.8 416 168 416 H344 C357.2 416 368 405.2 368 392 V232 H416 Z' fill='%23ffffff' filter='url(%23drop)'/%3E%3Cpath d='M256 68 L72 224 L92 248 L256 108 L420 248 L440 224 Z' fill='%23fbbf24'/%3E%3Crect x='220' y='288' width='72' height='128' rx='8' fill='%230f766e'/%3E%3Ccircle cx='276' cy='352' r='6' fill='%23fbbf24'/%3E%3Crect x='170' y='250' width='50' height='50' rx='8' fill='%2399f6e4'/%3E%3Crect x='292' y='250' width='50' height='50' rx='8' fill='%2399f6e4'/%3E%3C/svg%3E">
+
+  <!-- Embedded Web App Manifest for PWA installation -->
+  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Homestay%20kita%22%2C%22short_name%22%3A%22Homestay%20kita%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230f172a%22%2C%22theme_color%22%3A%22%230f766e%22%2C%22description%22%3A%22Platform%20Tempahan%20%26%20Pengurusan%20Homestay%20kita%20Terus%20Kepada%20Pengusaha%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20512%20512%27%253E%253Cdefs%253E%253ClinearGradient%20id%3D%27bgGrad%27%20x1%3D%270%25%25%27%20y1%3D%270%25%25%27%20x2%3D%27100%25%25%27%20y2%3D%27100%25%25%27%253E%253Cstop%20offset%3D%270%25%25%27%20stop-color%3D%27%25230f766e%27%2F%253E%253Cstop%20offset%3D%2750%25%25%27%20stop-color%3D%27%25230d9488%27%2F%253E%253Cstop%20offset%3D%27100%25%25%27%20stop-color%3D%27%2523f59e0b%27%2F%253E%253C%2FlinearGradient%253E%253Cfilter%20id%3D%27drop%27%20x%3D%27-10%25%25%27%20y%3D%27-10%25%25%27%20width%3D%27130%25%25%27%20height%3D%27130%25%25%27%253E%253CfeDropShadow%20dx%3D%270%27%20dy%3D%278%27%20stdDeviation%3D%2710%27%20flood-color%3D%27%2523042f2e%27%20flood-opacity%3D%270.4%27%2F%253E%253C%2Ffilter%253E%253C%2Fdefs%253E%253Crect%20width%3D%27512%27%20height%3D%27512%27%20rx%3D%27128%27%20fill%3D%27url(%2523bgGrad)%27%2F%253E%253Cpath%20d%3D%27M256%2096%20L96%20232%20H144%20V392%20C144%20405.2%20154.8%20416%20168%20416%20H344%20C357.2%20416%20368%20405.2%20368%20392%20V232%20H416%20Z%27%20fill%3D%27%2523ffffff%27%20filter%3D%27url(%2523drop)%27%2F%253E%253Cpath%20d%3D%27M256%2068%20L72%20224%20L92%20248%20L256%20108%20L420%20248%20L440%20224%20Z%27%20fill%3D%27%2523fbbf24%27%2F%253E%253Crect%20x%3D%27220%27%20y%3D%27288%27%20width%3D%2772%27%20height%3D%27128%27%20rx%3D%278%27%20fill%3D%27%25230f766e%27%2F%253E%253Ccircle%20cx%3D%27276%27%20cy%3D%27352%27%20r%3D%276%27%20fill%3D%27%2523fbbf24%27%2F%253E%253Crect%20x%3D%27170%27%20y%3D%27250%27%20width%3D%2750%27%20height%3D%2750%27%20rx%3D%278%27%20fill%3D%27%252399f6e4%27%2F%253E%253Crect%20x%3D%27292%27%20y%3D%27250%27%20width%3D%2750%27%20height%3D%2750%27%20rx%3D%278%27%20fill%3D%27%252399f6e4%27%2F%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
+
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            amberGold: {
+              50: '#fffbeb',
+              100: '#fef3c7',
+              200: '#fde68a',
+              300: '#fcd34d',
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706',
+              700: '#b45309',
+              800: '#92400e',
+              900: '#78350f'
+            },
+            tealOcean: {
+              50: '#f0fdfa',
+              100: '#ccfbf1',
+              200: '#99f6e4',
+              300: '#5eead4',
+              400: '#2dd4bf',
+              500: '#14b8a6',
+              600: '#0d9488',
+              700: '#0f766e',
+              800: '#115e59',
+              900: '#134e4a',
+              950: '#042f2e'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom Scrollbar & Utils */
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    
+    .glass-nav { 
+      background: rgba(255, 255, 255, 0.95); 
+      backdrop-filter: blur(18px) saturate(180%); 
+      -webkit-backdrop-filter: blur(18px) saturate(180%); 
+    }
+    
+    .glass-header-teal {
+      background: rgba(15, 118, 110, 0.96);
+      backdrop-filter: blur(16px) saturate(190%);
+      -webkit-backdrop-filter: blur(16px) saturate(190%);
+      border-bottom: 1px solid rgba(94, 234, 212, 0.25);
+      box-shadow: 0 4px 22px -3px rgba(15, 118, 110, 0.35);
+    }
+
+    :root { 
+      --spring-easing: cubic-bezier(0.16, 1, 0.3, 1); 
+      --bounce-easing: cubic-bezier(0.34, 1.56, 0.64, 1); 
+      --smooth-out: cubic-bezier(0.4, 0, 0.2, 1); 
+    }
+    
+    /* Tactile interactions */
+    .btn-tactile { 
+      transition: transform 0.2s var(--bounce-easing), box-shadow 0.2s var(--smooth-out), background-color 0.18s ease; 
+      will-change: transform; 
+      touch-action: manipulation;
+    }
+    .btn-tactile:active { transform: scale(0.93) !important; }
+    
+    .soft-card { 
+      transition: transform 0.3s var(--spring-easing), box-shadow 0.3s var(--spring-easing), border-color 0.2s ease; 
+      will-change: transform; 
+    }
+    @media (hover: hover) {
+      .soft-card:hover { 
+        transform: translateY(-3px); 
+        box-shadow: 0 16px 30px -8px rgba(15, 118, 110, 0.16), 0 4px 12px -2px rgba(245, 158, 11, 0.08); 
+      }
+    }
+    .soft-card:active { transform: scale(0.985); }
+    
+    @keyframes cardFadeSlideUp { 
+      0% { opacity: 0; transform: translate3d(0, 14px, 0) scale(0.985); }
+      100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); } 
+    }
+    .animate-grid-item { 
+      opacity: 0;
+      animation: cardFadeSlideUp 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
+      will-change: transform, opacity;
+    }
+    
+    .modal-backdrop { 
+      opacity: 0; 
+      pointer-events: none; 
+      transition: opacity 0.25s var(--smooth-out); 
+    }
+    .modal-backdrop.active { opacity: 1; pointer-events: auto; }
+    .modal-sheet { 
+      opacity: 0; 
+      transform: translateY(24px) scale(0.96); 
+      transition: transform 0.35s var(--spring-easing), opacity 0.25s var(--smooth-out); 
+      will-change: transform, opacity; 
+    }
+    .modal-backdrop.active .modal-sheet { opacity: 1; transform: translateY(0) scale(1); }
+    
+    /* NAV BUTTONS */
+    .nav-btn {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0px;
+      padding: 0.5rem 0.75rem;
+      border-radius: 9999px;
+      transition: all 0.35s var(--spring-easing);
+      color: #64748b;
+      overflow: hidden;
+      white-space: nowrap;
+      border: 1px solid transparent;
+      touch-action: manipulation;
+    }
+    .nav-btn i {
+      font-size: 1.15rem;
+      transition: transform 0.3s var(--spring-easing), color 0.25s ease;
+      flex-shrink: 0;
+    }
+    .nav-btn .nav-text {
+      max-width: 0px;
+      opacity: 0;
+      transform: translateX(-4px);
+      margin-left: 0px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      transition: max-width 0.35s var(--spring-easing), opacity 0.25s ease, transform 0.35s var(--spring-easing), margin-left 0.35s var(--spring-easing);
+      overflow: hidden;
+      display: inline-block;
+    }
+    .nav-btn.active {
+      background: rgba(204, 251, 241, 0.92);
+      backdrop-filter: blur(14px);
+      color: #0f766e;
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(45, 212, 191, 0.5);
+      box-shadow: 0 4px 16px -2px rgba(15, 118, 110, 0.2);
+    }
+    .nav-btn.active i {
+      transform: scale(1.1);
+      color: #0f766e;
+    }
+    .nav-btn.active .nav-text {
+      max-width: 95px;
+      opacity: 1;
+      transform: translateX(0);
+      margin-left: 6px;
+    }
+    
+    .filter-pill { 
+      transition: transform 0.2s var(--bounce-easing), background-color 0.2s ease, color 0.18s ease; 
+      touch-action: manipulation;
+    }
+    .filter-pill:active { transform: scale(0.92); }
+    .filter-pill.active { transform: scale(1.02); }
+    
+    #splashScreen { 
+      transition: opacity 0.35s var(--smooth-out), transform 0.35s var(--spring-easing), visibility 0.35s ease; 
+    }
+    #splashScreen.fade-out { opacity: 0; transform: scale(1.03); visibility: hidden; pointer-events: none; }
+    
+    @keyframes pulse-subtle { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.12); } }
+    .pulse-badge { animation: pulse-subtle 2s infinite ease-in-out; }
+
+    /* SAFE AREA UTILITIES */
+    body { 
+      padding-top: env(safe-area-inset-top); 
+      padding-bottom: calc(max(5.8rem, env(safe-area-inset-bottom) + 4.8rem)); 
+    }
+    .safe-pt { padding-top: max(0.5rem, env(safe-area-inset-top)); }
+    .safe-pb { padding-bottom: max(0.5rem, env(safe-area-inset-bottom)); }
+    .modal-scroll-area { 
+      max-height: calc(88vh - 4.5rem);
+      padding-bottom: max(1.25rem, env(safe-area-inset-bottom)); 
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .custom-page-bg {
+      background-color: #f8fafc;
+      background-image: 
+        radial-gradient(circle at 100% 0%, rgba(253, 230, 138, 0.2) 0%, transparent 40%),
+        radial-gradient(circle at 0% 100%, rgba(153, 246, 228, 0.25) 0%, transparent 45%);
+      background-size: auto, auto;
+      background-attachment: fixed;
+    }
+  </style>
+</head>
+<body class="custom-page-bg text-slate-800 font-sans antialiased selection:bg-tealOcean-600 selection:text-white min-h-screen">
+
+  <!-- ================= SPLASH SCREEN ================= -->
+  <div id="splashScreen" class="fixed inset-0 z-[100] bg-slate-900 flex flex-col items-center justify-center p-6 text-white select-none">
+    <div class="flex flex-col items-center max-w-xs w-full text-center">
+      <!-- House Logo SVG on Splash Screen -->
+      <div class="w-28 h-28 rounded-3xl bg-gradient-to-tr from-tealOcean-800 via-tealOcean-600 to-amberGold-400 p-3 shadow-2xl shadow-tealOcean-700/50 border border-tealOcean-400/30 mb-5 relative flex items-center justify-center">
+        <svg class="w-full h-full drop-shadow-lg" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- House Roof Silhouette & Structure -->
+          <path d="M256 72 L72 232 H128 V424 C128 437.25 138.75 448 152 448 H360 C373.25 448 384 437.25 384 424 V232 H440 L256 72 Z" fill="#ffffff"/>
+          <!-- Chimney -->
+          <rect x="330" y="110" width="36" height="70" rx="4" fill="#fbbf24"/>
+          <!-- Roof Ridge -->
+          <path d="M256 46 L48 228 L72 254 L256 94 L440 254 L464 228 Z" fill="#fbbf24"/>
+          <!-- Door -->
+          <rect x="220" y="300" width="72" height="148" rx="10" fill="#0f766e"/>
+          <!-- Doorknob -->
+          <circle cx="278" cy="370" r="7" fill="#fbbf24"/>
+          <!-- Windows -->
+          <rect x="162" y="260" width="48" height="48" rx="8" fill="#99f6e4"/>
+          <rect x="302" y="260" width="48" height="48" rx="8" fill="#99f6e4"/>
+          <line x1="186" y1="260" x2="186" y2="308" stroke="#0f766e" stroke-width="4"/>
+          <line x1="162" y1="284" x2="210" y2="284" stroke="#0f766e" stroke-width="4"/>
+          <line x1="326" y1="260" x2="326" y2="308" stroke="#0f766e" stroke-width="4"/>
+          <line x1="302" y1="284" x2="350" y2="284" stroke="#0f766e" stroke-width="4"/>
+        </svg>
+        <div class="absolute -inset-1 rounded-3xl bg-tealOcean-500/25 blur-lg -z-10 animate-pulse"></div>
+      </div>
+
+      <h1 class="text-2xl font-black tracking-tight text-white flex items-center justify-center gap-2">
+        <span>Homestay kita</span>
+        <span class="text-xs bg-tealOcean-500/20 text-amberGold-300 border border-amberGold-400/30 px-2.5 py-0.5 rounded-full font-bold">Direct Host</span>
+      </h1>
+      <p class="text-xs text-tealOcean-100/80 font-medium mt-1 mb-8">Tempahan Terus Pengusaha Homestay Taiping & Sekitar</p>
+      <div class="w-full bg-slate-800 rounded-full h-2 p-0.5 border border-slate-700 overflow-hidden shadow-inner mb-2.5">
+        <div id="splashProgressBar" class="h-full bg-gradient-to-r from-amberGold-400 via-tealOcean-400 to-tealOcean-600 rounded-full transition-all duration-150 ease-out" style="width: 0%;"></div>
+      </div>
+      <div class="w-full flex items-center justify-between text-[11px] text-slate-400 font-medium">
+        <span id="splashStatusText" class="truncate">Menyediakan senarai homestay...</span>
+        <span id="splashPercentText" class="font-bold text-amberGold-300">0%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= TOP HEADER ================= -->
+  <header class="glass-header-teal sticky top-0 z-40 px-3.5 sm:px-4 safe-pt pb-2.5 transition-all duration-300">
+    <div class="max-w-4xl mx-auto flex items-center justify-between gap-2">
+      
+      <!-- Brand & Kawasan -->
+      <div class="flex items-center gap-2.5 min-w-0">
+        <!-- Brand Logo Icon Rumah PNG/SVG -->
+        <div onclick="switchMainTab('catalog'); resetFilters();" class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-tr from-slate-900 via-tealOcean-800 to-amberGold-500 p-1.5 flex items-center justify-center shadow-md shadow-slate-950/40 transform transition active:scale-95 duration-200 border border-amberGold-300/30 flex-shrink-0 cursor-pointer">
+          <svg class="w-full h-full drop-shadow-sm" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M256 72 L72 232 H128 V424 C128 437.25 138.75 448 152 448 H360 C373.25 448 384 437.25 384 424 V232 H440 L256 72 Z" fill="#ffffff"/>
+            <rect x="330" y="110" width="36" height="70" rx="4" fill="#fbbf24"/>
+            <path d="M256 46 L48 228 L72 254 L256 94 L440 254 L464 228 Z" fill="#fbbf24"/>
+            <rect x="220" y="300" width="72" height="148" rx="10" fill="#0f766e"/>
+            <circle cx="278" cy="370" r="7" fill="#fbbf24"/>
+            <rect x="162" y="260" width="48" height="48" rx="8" fill="#99f6e4"/>
+            <rect x="302" y="260" width="48" height="48" rx="8" fill="#99f6e4"/>
+          </svg>
+        </div>
+        <div class="min-w-0">
+          <div class="flex items-center gap-1.5 flex-wrap">
+            <h1 onclick="switchMainTab('catalog'); resetFilters();" class="text-base sm:text-lg font-black tracking-tight text-white leading-tight cursor-pointer truncate">Homestay kita</h1>
+            
+            <!-- Pilih Kawasan Liputan -->
+            <button onclick="openRegionModal()" id="headerRegionBtn" class="btn-tactile inline-flex items-center gap-1 text-[10px] sm:text-[11px] font-bold bg-tealOcean-950/80 hover:bg-tealOcean-900 text-tealOcean-100 hover:text-white px-2 py-0.5 rounded-full border border-tealOcean-400/30 shadow-sm backdrop-blur-sm cursor-pointer transition">
+              <i class="fa-solid fa-location-dot text-amberGold-400 text-[10px]"></i>
+              <span id="currentHeaderRegionText" class="truncate max-w-[120px] sm:max-w-none">Taiping & Kamunting</span>
+              <i class="fa-solid fa-chevron-down text-[8px] text-tealOcean-300 ml-0.5"></i>
+            </button>
+          </div>
+          <p class="text-[11px] text-tealOcean-100/80 font-medium truncate hidden sm:block">Tempah Terus Pengusaha • Bebas Komisen Orang Tengah</p>
+        </div>
+      </div>
+
+      <!-- Action Buttons Header -->
+      <div class="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
+        <button onclick="openQuickCheckModal()" class="btn-tactile flex items-center gap-1 px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-xl sm:rounded-2xl bg-amberGold-400 hover:bg-amberGold-300 text-slate-950 font-extrabold text-[11px] sm:text-xs shadow-md border border-amberGold-300">
+          <i class="fa-solid fa-calendar-check text-tealOcean-900"></i>
+          <span>Semak Tarikh</span>
+        </button>
+
+        <button onclick="openRegisterModal()" class="btn-tactile inline-flex items-center gap-1.5 bg-gradient-to-r from-tealOcean-600 to-tealOcean-800 hover:from-tealOcean-500 hover:to-tealOcean-700 text-white text-xs font-black px-3 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl shadow-sm border border-tealOcean-400/30">
+          <i class="fa-solid fa-plus-circle text-amberGold-300"></i>
+          <span class="hidden sm:inline">Daftar Homestay</span>
+          <span class="sm:hidden">Daftar</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= TAB SWITCHER ================= -->
+  <section class="max-w-4xl mx-auto px-4 pt-3 pb-1">
+    <div class="bg-slate-200/80 border border-slate-300/80 p-1 rounded-2xl flex items-center text-xs font-bold shadow-inner relative">
+      <button id="tabBtnCatalog" onclick="switchMainTab('catalog')" class="btn-tactile flex-1 py-2.5 rounded-xl flex items-center justify-center gap-2 bg-white text-tealOcean-900 shadow-sm font-extrabold z-10 border border-slate-200">
+        <i class="fa-solid fa-house-chimney text-tealOcean-700"></i>
+        <span>Katalog Homestay</span>
+      </button>
+      <button id="tabBtnHostHub" onclick="switchMainTab('hosthub')" class="btn-tactile flex-1 py-2.5 rounded-xl flex items-center justify-center gap-2 text-slate-600 hover:text-tealOcean-900 font-bold z-10 relative">
+        <i class="fa-solid fa-calendar-days text-tealOcean-600"></i>
+        <span>Pengurusan Pengusaha & Slot</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ================= DATE CHECKER QUICK BAR ================= -->
+  <section class="max-w-4xl mx-auto px-4 pt-2">
+    <div class="bg-white rounded-2xl p-3 shadow-sm border border-tealOcean-100 flex flex-col md:flex-row md:items-center justify-between gap-3">
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 flex-1">
+        <div>
+          <label class="block text-[10px] font-black uppercase text-slate-500 mb-0.5">Check-In</label>
+          <input type="date" id="filterCheckIn" onchange="handleFilterDatesChange()" class="w-full text-xs font-bold p-1.5 rounded-lg border border-slate-200 bg-slate-50 focus:bg-white focus:ring-1 focus:ring-tealOcean-500 outline-none">
+        </div>
+        <div>
+          <label class="block text-[10px] font-black uppercase text-slate-500 mb-0.5">Check-Out</label>
+          <input type="date" id="filterCheckOut" onchange="handleFilterDatesChange()" class="w-full text-xs font-bold p-1.5 rounded-lg border border-slate-200 bg-slate-50 focus:bg-white focus:ring-1 focus:ring-tealOcean-500 outline-none">
+        </div>
+        <div class="col-span-2 sm:col-span-1">
+          <label class="block text-[10px] font-black uppercase text-slate-500 mb-0.5">Bilangan Tetamu</label>
+          <select id="filterGuests" onchange="renderHomestays()" class="w-full text-xs font-bold p-1.5 rounded-lg border border-slate-200 bg-slate-50 focus:bg-white outline-none">
+            <option value="0">Semua Kapasiti</option>
+            <option value="4">4+ Tetamu</option>
+            <option value="8">8+ Tetamu</option>
+            <option value="12">12+ Tetamu (Keluarga Besar)</option>
+          </select>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <button onclick="resetDateFilter()" class="btn-tactile text-xs font-bold px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 flex items-center gap-1">
+          <i class="fa-solid fa-rotate-left text-[11px]"></i>
+          <span>Reset Tarikh</span>
+        </button>
+        <button onclick="renderHomestays()" class="btn-tactile bg-tealOcean-700 hover:bg-tealOcean-800 text-white text-xs font-black px-4 py-2 rounded-xl shadow-sm flex items-center gap-1.5">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <span>Semak Available</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CATALOG VIEW ================= -->
+  <div id="catalogView" class="transition-opacity duration-300">
+    <section class="max-w-4xl mx-auto px-4 pt-3 pb-3">
+      <!-- Search Box -->
+      <div class="relative mb-3">
+        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+        <input type="text" id="searchInput" oninput="handleSearchDebounced(event)" placeholder="Cari nama homestay, kolam renang, bilik tidur, atau kawasan..." class="w-full pl-10 pr-10 py-3 rounded-2xl bg-white border border-slate-200 focus:border-tealOcean-600 focus:ring-4 focus:ring-tealOcean-100 outline-none text-xs font-medium transition shadow-sm">
+        <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1">
+          <i class="fa-solid fa-circle-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Quick Category / Feature Chips -->
+      <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar pb-1 mb-3 text-xs">
+        <button onclick="setCategoryFilter('all', this)" class="cat-btn filter-pill active px-3.5 py-2 rounded-xl bg-tealOcean-800 text-amberGold-100 font-bold whitespace-nowrap shadow-sm">Semua Jenis</button>
+        <button onclick="setCategoryFilter('Kolam Renang', this)" class="cat-btn filter-pill px-3 py-2 rounded-xl bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 font-bold whitespace-nowrap flex items-center gap-1.5">
+          <i class="fa-solid fa-water-ladder text-tealOcean-600"></i> Ada Private Pool
+        </button>
+        <button onclick="setCategoryFilter('Banglo', this)" class="cat-btn filter-pill px-3 py-2 rounded-xl bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 font-bold whitespace-nowrap flex items-center gap-1.5">
+          <i class="fa-solid fa-house-chimney text-amberGold-600"></i> Banglo / Villa
+        </button>
+        <button onclick="setCategoryFilter('Teres', this)" class="cat-btn filter-pill px-3 py-2 rounded-xl bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 font-medium whitespace-nowrap">🏡 Rumah Teres</button>
+        <button onclick="setCategoryFilter('Kampung', this)" class="cat-btn filter-pill px-3 py-2 rounded-xl bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 font-medium whitespace-nowrap">🌴 Suasana Kampung / Dusun</button>
+        <button onclick="setCategoryFilter('BBQ', this)" class="cat-btn filter-pill px-3 py-2 rounded-xl bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 font-medium whitespace-nowrap">🍖 Kawasan BBQ</button>
+      </div>
+
+      <!-- Zon / Kawasan Selection -->
+      <div class="bg-white/90 border border-slate-200 rounded-3xl p-3.5 shadow-sm mb-3">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-[11px] font-extrabold text-tealOcean-900 uppercase tracking-wider flex items-center gap-1.5">
+            <i class="fa-solid fa-location-dot text-amberGold-500"></i> Zon Kawasan Homestay
+          </span>
+          <button onclick="setZoneFilter('all', this)" class="zone-btn filter-pill text-[11px] font-bold text-tealOcean-700 hover:underline">Tunjuk Semua</button>
+        </div>
+
+        <!-- Zon Batu Kurau -->
+        <div id="filterBatuKurauGroup" class="mb-2.5 hidden">
+          <span class="text-[10px] font-bold text-emerald-900 uppercase bg-emerald-100 px-2 py-0.5 rounded-md border border-emerald-300 flex items-center gap-1 w-max">
+            <i class="fa-solid fa-mountain-sun text-[10px] text-emerald-700"></i> Homestay Dusun & Kampung Batu Kurau
+          </span>
+          <div class="flex gap-1.5 overflow-x-auto hide-scrollbar pt-1.5 text-xs">
+            <button onclick="setZoneFilter('Pekan Batu Kurau', this)" class="zone-btn filter-pill px-2.5 py-1 rounded-xl bg-emerald-50/70 border border-emerald-200 text-emerald-900 whitespace-nowrap font-medium">Pekan Batu Kurau</button>
+            <button onclick="setZoneFilter('Kampung Perak', this)" class="zone-btn filter-pill px-2.5 py-1 rounded-xl bg-emerald-50/70 border border-emerald-200 text-emerald-900 whitespace-nowrap font-medium">Kg Perak</button>
+            <button onclick="setZoneFilter('Pantai Besar', this)" class="zone-btn filter-pill px-2.5 py-1 rounded-xl bg-emerald-50/70 border border-emerald-200 text-emerald-900 whitespace-nowrap font-medium">Pantai Besar</button>
+            <button onclick="setZoneFilter('Kampung Anak Kurau', this)" class="zone-btn filter-pill px-2.5 py-1 rounded-xl bg-emerald-50/70 border border-emerald-200 text-emerald-900 whitespace-nowrap font-medium">Kg Anak Kurau</button>
+            <button onclick="setZoneFilter('Kampung Repoh', this)" class="zone-btn filter-pill px-2.5 py-1 rounded-xl bg-emerald-50/70 border border-emerald-200 text-emerald-900 whitespace-nowrap font-medium">Kg Repoh</button>
+            <button onclick="setZoneFilter('Kampung Jelai', this)" class="zone-btn filter-pill px-2.5 py-1 rounded-xl bg-emerald-50/70 border border-emerald-200 text-emerald-900 whitespace-nowrap font-medium">Kg Jelai</button>
+          </div>
+        </div>
+
+        <!-- Zon Kamunting -->
+        <div id="filterKamuntingGroup" class="mb-2.5">
+          <span class="text-[10px] font-bold text-tealOcean-800 uppercase bg-tealOcean-100/90 px-2 py-0.5 rounded-md border border-tealOcean-200">Zon Kamunting & Bukit Jana</span>
+          <div class="flex gap-1.5 overflow-x-auto hide-scrollbar pt-1.5 text-xs">
+            <button onclick="setZoneFilter('Bukit Jana / Golf Resort', this)" class="zone-btn filter-pill px-2.5 py-1 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 whitespace-nowrap">Bukit Jana / Golf Resort</button>
+            <button onclick="setZoneFilter('Taman Jana Utama', this)" class="zone-btn filter-pill px-2.5 py-1 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 whitespace-nowrap">Taman Jana Utama</button>
+            <button onclick="setZoneFilter('Taman Kamunting Mutiara', this)" class="zone-btn filter-pill px-2.5 py-1 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 whitespace-nowrap">Kamunting Mutiara</button>
+            <button onclick="setZoneFilter('Taman Saujana', this)" class="zone-btn filter-pill px-2.5 py-1 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 whitespace-nowrap">Taman Saujana</button>
+            <button onclick="setZoneFilter('Medan Kamunting', this)" class="zone-btn filter-pill px-2.5 py-1 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 whitespace-nowrap">Medan Kamunting</button>
+          </div>
+        </div>
+
+        <!-- Zon Taiping -->
+        <div id="filterTaipingGroup">
+          <span class="text-[10px] font-bold text-amberGold-800 uppercase bg-amberGold-100 px-2 py-0.5 rounded-md border border-amberGold-200">Zon Taiping & Lake Gardens</span>
+          <div class="flex gap-1.5 overflow-x-auto hide-scrollbar pt-1.5 text-xs">
+            <button onclick="setZoneFilter('Bandar Taiping / Lake Gardens', this)" class="zone-btn filter-pill px-2.5 py-1 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 whitespace-nowrap">Bandar Taiping / Lake Gardens</button>
+            <button onclick="setZoneFilter('Taman Lake View', this)" class="zone-btn filter-pill px-2.5 py-1 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 whitespace-nowrap">Taman Lake View</button>
+            <button onclick="setZoneFilter('Aulong Lama & Baru', this)" class="zone-btn filter-pill px-2.5 py-1 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 whitespace-nowrap">Aulong</button>
+            <button onclick="setZoneFilter('Simpang Taiping', this)" class="zone-btn filter-pill px-2.5 py-1 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 whitespace-nowrap">Simpang</button>
+            <button onclick="setZoneFilter('Pokok Assam', this)" class="zone-btn filter-pill px-2.5 py-1 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 whitespace-nowrap">Pokok Assam</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between text-xs text-slate-500 font-semibold px-1">
+        <div class="flex items-center gap-2">
+          <span id="homestayCountBadge" class="text-tealOcean-950 font-bold">0 Homestay Tersedia</span>
+          <span class="text-slate-300">|</span>
+          <button onclick="resetFilters()" class="text-tealOcean-700 hover:underline text-[11px] btn-tactile">Set Semula</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Grid -->
+    <main class="max-w-4xl mx-auto px-4">
+      <div id="homestayGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 transition-all duration-300"></div>
+
+      <div id="emptyState" class="hidden text-center py-16 px-4 animate-grid-item">
+        <div class="w-16 h-16 mx-auto mb-3 rounded-3xl bg-amberGold-100 flex items-center justify-center text-tealOcean-800 text-2xl shadow-sm border border-amberGold-200">
+          <i class="fa-solid fa-house-circle-xmark"></i>
+        </div>
+        <h3 class="text-base font-bold text-slate-800">Tiada homestay dijumpai</h3>
+        <p id="emptyStateMessage" class="text-xs text-slate-500 max-w-xs mx-auto mt-1">Cuba tukar tarikh, kurangkan bilangan tetamu atau pilih zon lain.</p>
+        <button onclick="resetFilters()" class="btn-tactile mt-4 px-4 py-2 bg-tealOcean-700 text-white rounded-xl text-xs font-bold hover:bg-tealOcean-800 shadow">
+          Tunjuk Semua Homestay
+        </button>
+      </div>
+    </main>
+  </div>
+
+  <!-- ================= HOST MANAGEMENT HUB ================= -->
+  <div id="hostHubView" class="hidden transition-opacity duration-300">
+    <section class="max-w-4xl mx-auto px-4 pt-3 pb-4">
+      <!-- Pengusaha Hero Banner -->
+      <div class="bg-gradient-to-r from-tealOcean-900 via-tealOcean-800 to-slate-900 text-white rounded-3xl p-5 shadow-sm mb-4 relative overflow-hidden border border-tealOcean-700/50">
+        <div class="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <span class="bg-tealOcean-700/70 text-amberGold-300 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full border border-amberGold-400/30">Portal Pengusaha Homestay kita</span>
+            <h2 class="text-lg font-black tracking-tight text-white mt-1">Urus Tempahan & Sekat Tarikh Penuh</h2>
+            <p class="text-xs text-tealOcean-100/90 mt-0.5 max-w-md">
+              Kemas kini ketersediaan tarikh bilik supaya tetamu tahu tarikh mana yang masih kosong atau telah penuh.
+            </p>
+          </div>
+          <button onclick="openRegisterModal()" class="btn-tactile inline-flex items-center justify-center gap-2 bg-amberGold-400 text-slate-950 hover:bg-amberGold-300 font-black text-xs px-4 py-2.5 rounded-2xl shadow whitespace-nowrap">
+            <i class="fa-solid fa-plus-circle"></i>
+            <span>Daftar Homestay Baharu</span>
+          </button>
+        </div>
+        <div class="absolute -right-6 -bottom-8 text-tealOcean-700/20 text-9xl pointer-events-none">
+          <i class="fa-solid fa-calendar-check"></i>
+        </div>
+      </div>
+
+      <!-- Senarai Homestay Pengusaha yang Boleh Diurus -->
+      <div class="mb-3 flex items-center justify-between">
+        <h3 class="text-xs font-extrabold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
+          <i class="fa-solid fa-sliders text-tealOcean-700"></i> Homestay Anda Untuk Urus Kalendar
+        </h3>
+        <span class="text-[11px] text-tealOcean-800 bg-tealOcean-100 font-bold px-2 py-0.5 rounded-full" id="hostListingBadge">0 Homestay Anda</span>
+      </div>
+
+      <div id="hostHomestayList" class="space-y-3"></div>
+
+      <div id="hostEmptyState" class="hidden text-center py-12 px-4 bg-white rounded-3xl border border-slate-200">
+        <div class="w-14 h-14 mx-auto mb-2 rounded-2xl bg-tealOcean-50 flex items-center justify-center text-tealOcean-700 text-xl">
+          <i class="fa-solid fa-house-chimney"></i>
+        </div>
+        <h4 class="font-extrabold text-slate-800 text-sm">Anda belum mendaftarkan homestay</h4>
+        <p class="text-xs text-slate-500 mt-0.5">Daftarkan homestay anda untuk urus slot penuh & terima tempahan terus melalui WhatsApp.</p>
+        <button onclick="openRegisterModal()" class="btn-tactile mt-3 px-4 py-2 bg-tealOcean-700 text-white rounded-xl text-xs font-bold shadow">
+          Daftar Homestay Sekarang
+        </button>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= BOTTOM NAVIGATION ================= -->
+  <nav class="fixed bottom-0 inset-x-0 glass-nav border-t border-slate-200/90 px-4 pt-2 z-40 safe-pb shadow-2xl">
+    <div class="max-w-md mx-auto flex items-center justify-between relative px-2">
+      
+      <!-- Nav Katalog -->
+      <button onclick="switchMainTab('catalog'); resetFilters(); window.scrollTo({top: 0, behavior: 'smooth'});" id="navCatalogBtn" class="nav-btn active focus:outline-none">
+        <i class="fa-solid fa-house-chimney"></i>
+        <span class="nav-text">Katalog</span>
+      </button>
+
+      <!-- Nav Pengurusan Host -->
+      <button onclick="switchMainTab('hosthub'); window.scrollTo({top: 0, behavior: 'smooth'});" id="navHostBtn" class="nav-btn focus:outline-none relative">
+        <i class="fa-solid fa-calendar-days"></i>
+        <span class="nav-text">Kalendar Host</span>
+      </button>
+
+      <!-- Central Add Homestay Button -->
+      <button onclick="openRegisterModal()" class="btn-tactile flex flex-col items-center justify-center text-slate-900 focus:outline-none -mt-5 mx-0.5 group" title="Daftar Homestay">
+        <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-tealOcean-700 via-tealOcean-600 to-amberGold-400 text-white flex items-center justify-center shadow-lg shadow-tealOcean-800/30 border-2 border-white group-hover:scale-105 transition-transform">
+          <i class="fa-solid fa-plus text-lg"></i>
+        </div>
+      </button>
+
+      <!-- Nav Disimpan (Bookmarks) -->
+      <button onclick="switchMainTab('catalog'); toggleBookmarkView();" id="bookmarkNavBtn" class="nav-btn focus:outline-none">
+        <i class="fa-regular fa-bookmark" id="bookmarkNavIcon"></i>
+        <span class="nav-text">Disimpan</span>
+      </button>
+
+      <!-- Nav Info & Bantuan -->
+      <button onclick="openInfoModal()" id="navHelpBtn" class="nav-btn focus:outline-none">
+        <i class="fa-solid fa-circle-question"></i>
+        <span class="nav-text">Info</span>
+      </button>
+      
+    </div>
+  </nav>
+
+  <!-- ================= MODAL SEMAK TARIKH CEPAT ================= -->
+  <div id="quickCheckModal" class="modal-backdrop fixed inset-0 bg-slate-900/60 z-50 flex items-center justify-center p-4">
+    <div class="modal-sheet bg-white rounded-3xl max-w-sm w-full p-5 shadow-2xl relative border border-slate-100">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-3">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-xl bg-tealOcean-100 text-tealOcean-800 flex items-center justify-center text-sm font-bold">
+            <i class="fa-solid fa-calendar-check"></i>
+          </div>
+          <div>
+            <h3 class="font-extrabold text-slate-900 text-sm">Semak Ketersediaan Tarikh</h3>
+            <p class="text-[10px] text-slate-500">Pilih tarikh menginap untuk semak slot</p>
+          </div>
+        </div>
+        <button onclick="closeQuickCheckModal()" class="btn-tactile w-7 h-7 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center">
+          <i class="fa-solid fa-xmark text-xs"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Tarikh Masuk (Check-in)</label>
+          <input type="date" id="modalQuickCheckIn" class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none">
+        </div>
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Tarikh Keluar (Check-out)</label>
+          <input type="date" id="modalQuickCheckOut" class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none">
+        </div>
+        <button onclick="applyQuickDateFilter()" class="btn-tactile w-full py-3 bg-tealOcean-700 hover:bg-tealOcean-800 text-white font-extrabold rounded-2xl shadow-md flex items-center justify-center gap-1.5 mt-2">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <span>Cari Homestay Masih Kosong</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL DETAIL HOMESTAY ================= -->
+  <div id="detailModal" class="modal-backdrop fixed inset-0 bg-slate-900/60 z-50 flex items-center justify-center p-4">
+    <div class="modal-sheet bg-white rounded-3xl max-w-sm w-full overflow-hidden shadow-2xl relative max-h-[92vh] flex flex-col border border-slate-100">
+      <div class="relative h-48 w-full bg-slate-100 flex-shrink-0">
+        <img id="modalImg" src="" alt="Homestay" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?w=700&auto=format&fit=crop&q=80'">
+        <div class="absolute top-3 right-3 flex items-center gap-1.5">
+          <button id="modalShareBtn" onclick="shareHomestayDirect(window.__currentDetailId)" class="btn-tactile w-8 h-8 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/70 shadow" title="Kongsi Homestay">
+            <i class="fa-solid fa-share-nodes text-xs"></i>
+          </button>
+          <button onclick="closeDetailModal()" class="btn-tactile w-8 h-8 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/70 shadow">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <span id="modalCategoryBadge" class="absolute bottom-3 left-3 px-2.5 py-1 rounded-full text-xs font-bold text-white shadow-sm bg-tealOcean-700"></span>
+      </div>
+      <div class="p-5 overflow-y-auto modal-scroll-area">
+        <div class="flex items-start justify-between gap-2">
+          <div>
+            <h3 id="modalTitle" class="text-lg font-black text-slate-900 leading-snug"></h3>
+            <p id="modalHost" class="text-xs font-bold text-tealOcean-800 mt-0.5"></p>
+          </div>
+          <div class="text-right flex-shrink-0">
+            <span id="modalPrice" class="text-base font-black text-tealOcean-900 block"></span>
+            <span class="text-[10px] text-slate-500 font-semibold">/ malam</span>
+          </div>
+        </div>
+
+        <!-- Spesifikasi Bilik & Kemudahan -->
+        <div class="my-3 py-2.5 border-y border-slate-100 grid grid-cols-3 gap-2 text-center text-xs text-slate-700">
+          <div class="bg-slate-50 p-2 rounded-xl border border-slate-100">
+            <i class="fa-solid fa-bed text-tealOcean-600 block mb-0.5 text-sm"></i>
+            <span id="modalBedrooms" class="font-bold">3 Bilik</span>
+          </div>
+          <div class="bg-slate-50 p-2 rounded-xl border border-slate-100">
+            <i class="fa-solid fa-bath text-tealOcean-600 block mb-0.5 text-sm"></i>
+            <span id="modalBathrooms" class="font-bold">2 Bilik Air</span>
+          </div>
+          <div class="bg-slate-50 p-2 rounded-xl border border-slate-100">
+            <i class="fa-solid fa-users text-tealOcean-600 block mb-0.5 text-sm"></i>
+            <span id="modalMaxGuests" class="font-bold">10 Tetamu</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-1.5 text-xs text-slate-600 mb-3">
+          <i class="fa-solid fa-map-location-dot text-amberGold-600"></i>
+          <span id="modalZone" class="font-medium"></span>
+        </div>
+
+        <div class="mb-3">
+          <h4 class="font-extrabold text-xs text-slate-800 mb-1">Kemudahan & Fasiliti:</h4>
+          <div id="modalAmenitiesList" class="flex flex-wrap gap-1 text-[11px]"></div>
+        </div>
+
+        <p id="modalDesc" class="text-xs text-slate-600 leading-relaxed mb-4 whitespace-pre-line"></p>
+
+        <!-- Kotak Maklumat Direct Host -->
+        <div class="bg-tealOcean-50 border border-tealOcean-200 rounded-2xl p-3 text-xs text-tealOcean-950 mb-4">
+          <div class="font-bold mb-0.5 flex items-center gap-1 text-tealOcean-900">
+            <i class="fa-brands fa-whatsapp text-tealOcean-600 text-sm"></i> Tempahan Terus Kepada Pengusaha
+          </div>
+          Borang tempahan ini akan memeriksa tarikh kosong secara automatik dan menyambung terus ke WhatsApp pengusaha homestay tanpa sebarang orang tengah.
+        </div>
+        
+        <div class="flex gap-2">
+          <button onclick="shareHomestayDirect(window.__currentDetailId)" class="btn-tactile py-3 px-3.5 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-extrabold text-xs flex items-center justify-center gap-1.5 border border-slate-200 shadow-sm" title="Kongsi Homestay">
+            <i class="fa-solid fa-share-nodes text-slate-600"></i>
+            <span>Kongsi</span>
+          </button>
+          <button id="modalBookBtn" onclick="openBookingFormModal(window.__currentDetailId)" class="btn-tactile flex-1 py-3 px-4 rounded-2xl bg-tealOcean-700 hover:bg-tealOcean-800 text-white font-black text-sm flex items-center justify-center gap-2 shadow-md shadow-tealOcean-700/25">
+            <i class="fa-solid fa-calendar-check text-amberGold-300"></i>
+            <span>Borang Tempahan & Cek Tarikh</span>
+          </button>
+        </div>
+
+        <div id="ownerActions" class="hidden mt-2 grid grid-cols-2 gap-2">
+          <button id="editHomestayBtn" class="btn-tactile py-2.5 rounded-2xl bg-amberGold-400 hover:bg-amberGold-500 text-slate-950 font-bold text-xs flex items-center justify-center gap-1.5 shadow">
+            <i class="fa-solid fa-pen"></i><span>Edit Butiran</span>
+          </button>
+          <button id="deleteHomestayBtn" class="btn-tactile py-2.5 rounded-2xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow">
+            <i class="fa-solid fa-trash"></i><span>Padam Homestay</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL BORANG BOOKING & CHECK TARIKH ================= -->
+  <div id="bookingModal" class="modal-backdrop fixed inset-0 bg-slate-900/60 z-50 flex items-center justify-center p-4">
+    <div class="modal-sheet bg-white rounded-3xl max-w-sm w-full overflow-hidden shadow-2xl relative max-h-[92vh] flex flex-col border border-slate-100">
+      <div class="px-5 py-4 border-b border-tealOcean-100 flex items-center justify-between bg-tealOcean-50 flex-shrink-0">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-tealOcean-700 text-amberGold-300 flex items-center justify-center text-sm font-bold shadow-sm">
+            <i class="fa-solid fa-calendar-check"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-black text-slate-900">Borang Tempahan Homestay kita</h3>
+            <p class="text-[10px] text-slate-500" id="bookingModalSubtitle">Semak tarikh & hubungi pengusaha</p>
+          </div>
+        </div>
+        <button onclick="closeBookingModal()" class="btn-tactile w-8 h-8 rounded-full bg-slate-200/70 text-slate-600 flex items-center justify-center hover:bg-slate-300">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="bookingForm" onsubmit="handleSendWhatsAppBooking(event)" class="p-5 overflow-y-auto space-y-3.5 text-xs modal-scroll-area">
+        <!-- Info Ringkas Homestay Pilihan -->
+        <div class="bg-slate-50 border border-slate-200 p-3 rounded-2xl flex items-start gap-3">
+          <img id="bookMenuImg" src="" alt="Homestay" class="w-14 h-14 rounded-xl object-cover border border-slate-200 flex-shrink-0" onerror="this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?w=700&auto=format&fit=crop&q=80'">
+          <div class="min-w-0 flex-1">
+            <span class="text-[10px] font-bold text-tealOcean-800 uppercase tracking-wide truncate block" id="bookHostName"></span>
+            <h4 class="font-black text-xs text-slate-900 leading-snug truncate" id="bookHomestayTitle"></h4>
+            <div class="flex items-center justify-between mt-1">
+              <span class="text-xs font-black text-tealOcean-900" id="bookPriceRate"></span>
+              <span class="text-[9px] font-bold bg-white text-slate-700 px-2 py-0.5 rounded-full border border-slate-200" id="bookGuestLimit"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarikh Check-in & Check-out -->
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Tarikh Masuk (Check-In) *</label>
+            <input type="date" id="bookCheckInDate" required onchange="calculateBookingDurationAndCheck()" class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none transition">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Tarikh Keluar (Check-Out) *</label>
+            <input type="date" id="bookCheckOutDate" required onchange="calculateBookingDurationAndCheck()" class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none transition">
+          </div>
+        </div>
+
+        <!-- Status Ketersediaan Tarikh Live Banner -->
+        <div id="availabilityIndicatorBox" class="p-3 rounded-2xl border transition-all duration-200 flex items-center gap-2.5 bg-slate-100 border-slate-200 text-slate-600">
+          <i class="fa-solid fa-circle-info text-slate-500 text-base" id="availIcon"></i>
+          <div>
+            <div class="font-extrabold text-xs" id="availStatusTitle">Pilih Tarikh Check-in & Check-out</div>
+            <div class="text-[10px]" id="availStatusDesc">Sistem akan memeriksa sama ada tarikh pilihan masih kosong atau sudah ditempah.</div>
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Nama Penuh Tempahan *</label>
+          <input type="text" id="bookCustomerName" required placeholder="Cth: Encik Faizal / Puan Nurul" class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none transition">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">No. Telefon WhatsApp *</label>
+            <div class="flex shadow-sm rounded-xl">
+              <span class="inline-flex items-center justify-center px-2.5 bg-slate-100 border border-r-0 border-slate-200 text-slate-700 font-bold rounded-l-xl text-xs">+60</span>
+              <input type="tel" id="bookCustomerPhone" required placeholder="123456789" class="w-full p-2.5 border border-slate-200 rounded-r-xl focus:ring-2 focus:ring-tealOcean-600 outline-none transition">
+            </div>
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Jumlah Tetamu *</label>
+            <input type="number" id="bookGuestsCount" min="1" max="50" value="4" required class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none transition">
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Tujuan Penginapan / Permintaan Khas</label>
+          <textarea id="bookRemarks" rows="2" placeholder="Cth: Percutian keluarga / rombongan kenduri / minta extra toto dan tilam..." class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none transition"></textarea>
+        </div>
+
+        <!-- Ringkasan Anggaran Penginapan -->
+        <div class="bg-tealOcean-50 border border-tealOcean-200 rounded-2xl p-3 flex items-center justify-between">
+          <div>
+            <span class="text-[10px] text-slate-500 font-bold uppercase block" id="bookNightsCount">0 Malam Penginapan</span>
+            <span class="text-[10px] text-tealOcean-800 font-medium">Bayaran terus kepada pengusaha</span>
+          </div>
+          <span class="text-base font-black text-tealOcean-950" id="bookTotalRate">RM 0.00</span>
+        </div>
+
+        <button type="submit" id="bookSubmitBtn" class="btn-tactile w-full py-3 bg-gradient-to-r from-tealOcean-700 via-tealOcean-800 to-tealOcean-900 hover:from-tealOcean-800 hover:to-tealOcean-950 text-white font-extrabold rounded-2xl shadow-md flex items-center justify-center gap-2 border border-tealOcean-600">
+          <i class="fa-brands fa-whatsapp text-lg text-amberGold-300"></i>
+          <span>Hantar Tempahan Terus ke WhatsApp Tuan Rumah</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MODAL DAFTAR HOMESTAY (PENGUSAHA) ================= -->
+  <div id="registerModal" class="modal-backdrop fixed inset-0 bg-slate-900/60 z-50 flex items-center justify-center p-4">
+    <div class="modal-sheet bg-white rounded-3xl max-w-md w-full overflow-hidden shadow-2xl relative max-h-[92vh] flex flex-col border border-slate-100">
+      <div class="px-5 py-4 border-b border-tealOcean-100 flex items-center justify-between bg-tealOcean-50 flex-shrink-0">
+        <div>
+          <h3 id="registerModalTitle" class="text-base font-black text-slate-900">Daftar Homestay Anda (Bebas Komisen)</h3>
+          <p class="text-[11px] text-slate-500">Iklan terus untuk pengusaha Homestay kita (Taiping, Kamunting & Batu Kurau)</p>
+        </div>
+        <button onclick="closeRegisterModal()" class="btn-tactile w-8 h-8 rounded-full bg-slate-200/70 text-slate-600 flex items-center justify-center hover:bg-slate-300">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="homestayForm" onsubmit="handleHomestaySubmit(event)" class="p-5 overflow-y-auto space-y-3.5 text-xs modal-scroll-area">
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Nama Homestay *</label>
+          <input type="text" id="regTitle" required placeholder="Cth: Homestay Seri Saujana Taiping with Private Pool" class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none transition">
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Nama Pengusaha / Syarikat Homestay *</label>
+          <input type="text" id="regHostName" required placeholder="Cth: Tuan Haji Osman / Homestay Taiping Heritage" class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none transition">
+        </div>
+
+        <!-- Gambar Homestay (Sehingga 5 Gambar dengan Slide Mode) -->
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <label class="block font-bold text-slate-700">Gambar Homestay (Hingga 5 Gambar) *</label>
+            <span id="imageCountText" class="text-[10px] text-tealOcean-700 font-extrabold bg-tealOcean-50 border border-tealOcean-200 px-2 py-0.5 rounded-full">0 / 5 Gambar</span>
+          </div>
+          <input type="file" id="regImageInput" accept="image/*" multiple class="hidden" onchange="handleImageUpload(event)">
+          <div id="imageDropzone" onclick="document.getElementById('regImageInput').click()" class="relative border-2 border-dashed border-tealOcean-300 hover:border-tealOcean-600 bg-tealOcean-50/50 hover:bg-tealOcean-50 rounded-2xl p-3 text-center cursor-pointer transition-all flex flex-col items-center justify-center min-h-[140px]">
+            <div id="uploadPrompt" class="flex flex-col items-center gap-1.5 py-2">
+              <div class="w-10 h-10 rounded-full bg-tealOcean-200 text-tealOcean-800 flex items-center justify-center text-lg shadow-sm">
+                <i class="fa-solid fa-images"></i>
+              </div>
+              <div class="font-bold text-slate-700">Sentuh untuk pilih gambar dari galeri</div>
+              <p class="text-[10px] text-slate-500">Boleh pilih sehingga 5 gambar (Auto-compress)</p>
+            </div>
+            
+            <!-- Slide Mode Preview Container -->
+            <div id="imagePreviewContainer" class="hidden w-full relative" onclick="event.stopPropagation()">
+              <div class="relative w-full h-44 rounded-2xl overflow-hidden bg-black/90 shadow-sm border border-slate-200 flex items-center justify-center">
+                <img id="imagePreview" src="" alt="Pratonton" class="w-full h-full object-cover transition-opacity duration-200">
+                
+                <!-- Slide Controls -->
+                <button type="button" onclick="prevSlideImage()" class="btn-tactile absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/80 shadow">
+                  <i class="fa-solid fa-chevron-left text-xs"></i>
+                </button>
+                <button type="button" onclick="nextSlideImage()" class="btn-tactile absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/80 shadow">
+                  <i class="fa-solid fa-chevron-right text-xs"></i>
+                </button>
+
+                <!-- Indicator Slide Badge -->
+                <div class="absolute bottom-2 left-2 bg-black/60 text-white text-[10px] px-2.5 py-0.5 rounded-full backdrop-blur-sm font-bold flex items-center gap-1">
+                  <i class="fa-solid fa-image text-amberGold-300"></i>
+                  <span id="slideIndicator">1 / 1</span>
+                </div>
+
+                <!-- Delete Current Slide Button -->
+                <button type="button" onclick="removeCurrentSlideImage()" class="btn-tactile absolute top-2 right-2 w-7 h-7 rounded-full bg-rose-600 text-white flex items-center justify-center shadow-md hover:bg-rose-700" title="Padam Gambar Ini">
+                  <i class="fa-solid fa-trash-can text-xs"></i>
+                </button>
+              </div>
+
+              <!-- Thumbnail Bar Bawah Slide -->
+              <div id="slideThumbnailStrip" class="flex items-center gap-1.5 overflow-x-auto hide-scrollbar pt-2"></div>
+
+              <div class="flex items-center justify-between pt-2">
+                <button type="button" onclick="document.getElementById('regImageInput').click()" class="btn-tactile text-[11px] font-bold text-tealOcean-700 hover:underline flex items-center gap-1">
+                  <i class="fa-solid fa-plus-circle"></i> Tambah / Ganti Gambar
+                </button>
+                <button type="button" onclick="removeAllUploadedImages()" class="btn-tactile text-[11px] font-bold text-rose-600 hover:underline flex items-center gap-1">
+                  <i class="fa-solid fa-trash"></i> Kosongkan Semua
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Kadar Semalam (RM) *</label>
+            <input type="number" step="10" id="regPrice" required placeholder="Cth: 250" class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none transition">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">No. WhatsApp Pengusaha *</label>
+            <div class="flex shadow-sm rounded-xl">
+              <span class="inline-flex items-center justify-center px-2.5 bg-slate-100 border border-r-0 border-slate-200 text-slate-700 font-bold rounded-l-xl text-xs">+60</span>
+              <input type="tel" id="regPhone" required placeholder="123456789" class="w-full p-2.5 border border-slate-200 rounded-r-xl focus:ring-2 focus:ring-tealOcean-600 outline-none transition">
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-2">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Bilik Tidur *</label>
+            <input type="number" id="regBedrooms" min="1" max="20" value="3" required class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Bilik Air *</label>
+            <input type="number" id="regBathrooms" min="1" max="20" value="2" required class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Max Tetamu *</label>
+            <input type="number" id="regMaxGuests" min="1" max="50" value="8" required class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Zon Kawasan *</label>
+            <select id="regZone" required class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none bg-white">
+              <optgroup id="regOptKamunting" label="Zon Kamunting">
+                <option value="Bukit Jana / Golf Resort">Bukit Jana / Golf Resort</option>
+                <option value="Taman Jana Utama">Taman Jana Utama</option>
+                <option value="Taman Kamunting Mutiara">Taman Kamunting Mutiara</option>
+                <option value="Taman Saujana">Taman Saujana</option>
+                <option value="Medan Kamunting">Medan Kamunting</option>
+              </optgroup>
+              <optgroup id="regOptTaiping" label="Zon Taiping">
+                <option value="Bandar Taiping / Lake Gardens">Bandar Taiping / Lake Gardens</option>
+                <option value="Taman Lake View">Taman Lake View</option>
+                <option value="Aulong Lama & Baru">Aulong Lama & Baru</option>
+                <option value="Simpang Taiping">Simpang Taiping</option>
+                <option value="Pokok Assam">Pokok Assam</option>
+              </optgroup>
+              <optgroup id="regOptBatuKurau" label="Zon Batu Kurau" class="hidden">
+                <option value="Pekan Batu Kurau">Pekan Batu Kurau</option>
+                <option value="Kampung Perak">Kampung Perak</option>
+                <option value="Pantai Besar">Pantai Besar</option>
+                <option value="Kampung Anak Kurau">Kampung Anak Kurau</option>
+                <option value="Kampung Repoh">Kampung Repoh</option>
+                <option value="Kampung Jelai">Kampung Jelai</option>
+              </optgroup>
+            </select>
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Kategori Jenis Rumah (Boleh pilih lebih dari satu) *</label>
+            <div class="p-2.5 border border-slate-200 rounded-xl bg-slate-50 space-y-1.5 max-h-32 overflow-y-auto">
+              <label class="flex items-center gap-2 cursor-pointer font-medium text-slate-700 hover:text-tealOcean-700">
+                <input type="checkbox" name="regCategoryCheck" value="Kolam Renang" class="rounded text-tealOcean-600 focus:ring-tealOcean-500">
+                <span>🏊 Ada Kolam Renang (Pool)</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer font-medium text-slate-700 hover:text-tealOcean-700">
+                <input type="checkbox" name="regCategoryCheck" value="Banglo" class="rounded text-tealOcean-600 focus:ring-tealOcean-500">
+                <span>🏰 Banglo / Villa Mewah</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer font-medium text-slate-700 hover:text-tealOcean-700">
+                <input type="checkbox" name="regCategoryCheck" value="Teres" class="rounded text-tealOcean-600 focus:ring-tealOcean-500" checked>
+                <span>🏡 Rumah Teres Selesa</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer font-medium text-slate-700 hover:text-tealOcean-700">
+                <input type="checkbox" name="regCategoryCheck" value="Kampung" class="rounded text-tealOcean-600 focus:ring-tealOcean-500">
+                <span>🌴 Rumah Kampung / Dusun</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer font-medium text-slate-700 hover:text-tealOcean-700">
+                <input type="checkbox" name="regCategoryCheck" value="Apartment" class="rounded text-tealOcean-600 focus:ring-tealOcean-500">
+                <span>🏢 Apartment / Kondominium</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Kemudahan Disediakan (Pilih mana yang ada):</label>
+          <div class="grid grid-cols-2 gap-2 p-2.5 border border-slate-200 rounded-xl bg-slate-50">
+            <label class="flex items-center gap-2 cursor-pointer font-medium text-slate-700 hover:text-tealOcean-700">
+              <input type="checkbox" name="regAmenityCheck" value="Aircond" class="rounded text-tealOcean-600 focus:ring-tealOcean-500" checked>
+              <span>❄️ Ada Aircond</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer font-medium text-slate-700 hover:text-tealOcean-700">
+              <input type="checkbox" name="regAmenityCheck" value="Peti Ais" class="rounded text-tealOcean-600 focus:ring-tealOcean-500" checked>
+              <span>🧊 Ada Peti Ais</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer font-medium text-slate-700 hover:text-tealOcean-700">
+              <input type="checkbox" name="regAmenityCheck" value="Dapur Memasak" class="rounded text-tealOcean-600 focus:ring-tealOcean-500" checked>
+              <span>🍳 Ada Dapur Memasak</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer font-medium text-slate-700 hover:text-tealOcean-700">
+              <input type="checkbox" name="regAmenityCheck" value="Wifi Percuma" class="rounded text-tealOcean-600 focus:ring-tealOcean-500">
+              <span>📶 Ada Wifi Percuma</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer font-medium text-slate-700 hover:text-tealOcean-700">
+              <input type="checkbox" name="regAmenityCheck" value="Kawasan BBQ" class="rounded text-tealOcean-600 focus:ring-tealOcean-500">
+              <span>🍖 Ada BBQ Pit</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer font-medium text-slate-700 hover:text-tealOcean-700">
+              <input type="checkbox" name="regAmenityCheck" value="Mesin Basuh" class="rounded text-tealOcean-600 focus:ring-tealOcean-500">
+              <span>🧺 Ada Mesin Basuh</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer font-medium text-slate-700 hover:text-tealOcean-700">
+              <input type="checkbox" name="regAmenityCheck" value="Penapis Air (Coway/Cuckoo)" class="rounded text-tealOcean-600 focus:ring-tealOcean-500">
+              <span>💧 Penapis Air Minum</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer font-medium text-slate-700 hover:text-tealOcean-700">
+              <input type="checkbox" name="regAmenityCheck" value="Pemanas Air Mandi (Water Heater)" class="rounded text-tealOcean-600 focus:ring-tealOcean-500">
+              <span>🚿 Water Heater</span>
+            </label>
+          </div>
+          <input type="text" id="regAmenitiesExtra" placeholder="Kemudahan tambahan lain (cth: Iron, sejadah, Netflix dsb)" class="w-full p-2 mt-1.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none transition text-xs">
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Keterangan / Peraturan Homestay</label>
+          <textarea id="regDesc" rows="3" placeholder="Penerangan lengkap mengenai homestay, jarak ke tempat tarikan, kelengkapan memasak dan waktu check-in/out." class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none transition"></textarea>
+        </div>
+
+        <button type="submit" id="registerSubmitBtn" class="btn-tactile w-full py-3 bg-gradient-to-r from-tealOcean-700 to-tealOcean-900 hover:from-tealOcean-800 hover:to-tealOcean-950 text-white font-extrabold rounded-2xl shadow-md border border-tealOcean-600">
+          Terbitkan Homestay Ke Direktori
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MODAL URUS TARIKH PENUH (HOST SLOT) ================= -->
+  <div id="blockDatesModal" class="modal-backdrop fixed inset-0 bg-slate-900/60 z-50 flex items-center justify-center p-4">
+    <div class="modal-sheet bg-white rounded-3xl max-w-sm w-full p-5 shadow-2xl relative border border-slate-100">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-3">
+        <div>
+          <h3 class="font-extrabold text-slate-900 text-sm">Urus Tarikh Penuh (Booked)</h3>
+          <p class="text-[10px] text-slate-500" id="blockModalHomestayTitle"></p>
+        </div>
+        <button onclick="closeBlockDatesModal()" class="btn-tactile w-7 h-7 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center">
+          <i class="fa-solid fa-xmark text-xs"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Tambah Tarikh Telah Penuh / Diambil</label>
+          <div class="flex gap-2">
+            <input type="date" id="newBlockedDateInput" class="flex-1 p-2 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-tealOcean-600">
+            <button onclick="addBlockedDate()" class="btn-tactile px-3 py-2 bg-rose-600 text-white rounded-xl font-bold flex items-center gap-1 shadow-sm">
+              <i class="fa-solid fa-lock"></i>
+              <span>Kunci</span>
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Senarai Tarikh Telah Penuh:</label>
+          <div id="blockedDatesChips" class="min-h-[70px] max-h-40 overflow-y-auto p-2 bg-slate-50 rounded-xl border border-slate-200 flex flex-wrap gap-1.5"></div>
+        </div>
+
+        <button onclick="saveBlockedDatesToDatabase()" class="btn-tactile w-full py-2.5 bg-tealOcean-700 hover:bg-tealOcean-800 text-white font-extrabold rounded-xl shadow mt-2">
+          Simpan Kemas Kini Tarikh
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL PILIH KAWASAN ================= -->
+  <div id="regionModal" class="modal-backdrop fixed inset-0 bg-slate-900/60 z-50 flex items-center justify-center p-4">
+    <div class="modal-sheet bg-white rounded-3xl max-w-sm w-full p-5 shadow-2xl relative border border-slate-100">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-3">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-xl bg-tealOcean-100 text-tealOcean-800 flex items-center justify-center text-sm font-bold">
+            <i class="fa-solid fa-map-location-dot"></i>
+          </div>
+          <div>
+            <h3 class="font-extrabold text-slate-900 text-sm">Pilih Kawasan Homestay</h3>
+            <p class="text-[10px] text-slate-500">Pilih kawasan percutian atau urusan anda</p>
+          </div>
+        </div>
+        <button onclick="closeRegionModal()" class="btn-tactile w-7 h-7 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center">
+          <i class="fa-solid fa-xmark text-xs"></i>
+        </button>
+      </div>
+
+      <div class="space-y-2.5">
+        <button id="regionBtnTaiping" onclick="selectRegion('Taiping & Kamunting')" class="btn-tactile w-full p-3 rounded-2xl bg-tealOcean-50 hover:bg-tealOcean-100/80 border-2 border-tealOcean-600 text-left flex items-center justify-between shadow-sm">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-tealOcean-700 text-amberGold-200 flex items-center justify-center text-sm font-bold">
+              <i class="fa-solid fa-city"></i>
+            </div>
+            <div>
+              <div class="text-xs font-black text-tealOcean-950">Taiping & Kamunting</div>
+              <div class="text-[10px] text-tealOcean-700 font-medium">Lake Gardens, Zoo Taiping & Bukit Jana</div>
+            </div>
+          </div>
+          <span id="regionBadgeTaiping" class="text-[10px] font-black bg-tealOcean-600 text-white px-2 py-0.5 rounded-full shadow-sm">DIPILIH</span>
+        </button>
+
+        <button id="regionBtnBatuKurau" onclick="selectRegion('Batu Kurau')" class="btn-tactile w-full p-3 rounded-2xl bg-slate-50 hover:bg-emerald-50 border border-slate-200 text-left flex items-center justify-between shadow-sm">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-slate-200 text-slate-600 flex items-center justify-center text-sm font-bold">
+              <i class="fa-solid fa-mountain-sun"></i>
+            </div>
+            <div>
+              <div class="text-xs font-bold text-slate-800">Batu Kurau</div>
+              <div class="text-[10px] text-slate-500 font-medium">Homestay suasana dusun, sungai & bukit</div>
+            </div>
+          </div>
+          <span id="regionBadgeBatuKurau" class="hidden text-[10px] font-black bg-emerald-600 text-white px-2 py-0.5 rounded-full shadow-sm">DIPILIH</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL INFO & BANTUAN ================= -->
+  <div id="infoModal" class="modal-backdrop fixed inset-0 bg-slate-900/60 z-50 flex items-center justify-center p-4">
+    <div class="modal-sheet bg-white rounded-3xl max-w-sm w-full p-5 shadow-2xl relative border border-slate-100 modal-scroll-area">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <h3 class="font-extrabold text-slate-900 text-sm">Tentang Homestay kita</h3>
+        <button onclick="closeInfoModal()" class="btn-tactile w-7 h-7 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center">
+          <i class="fa-solid fa-xmark text-xs"></i>
+        </button>
+      </div>
+      <div class="py-3 text-xs text-slate-600 space-y-2.5">
+        <p><strong>Homestay kita</strong> menghubungkan pelancong dan pengunjung terus kepada pengusaha homestay tempatan tanpa sebarang potongan komisen platform luar.</p>
+        
+        <div class="bg-tealOcean-50 p-3 rounded-2xl border border-tealOcean-200">
+          <strong class="text-tealOcean-900">Kelebihan Homestay kita:</strong>
+          <ul class="list-disc list-inside mt-1 space-y-0.5 text-slate-700">
+            <li>Semakan tarikh kosong secara masa nyata.</li>
+            <li>Borang tempahan WhatsApp automatik dengan kiraan malam dan harga.</li>
+            <li>Pengusaha boleh mengunci tarikh penuh melalui tab Kalendar Host.</li>
+            <li>Hubungan terus 100% tanpa bayaran komisen perantara.</li>
+          </ul>
+        </div>
+      </div>
+      <button onclick="closeInfoModal()" class="btn-tactile w-full py-2.5 bg-tealOcean-800 text-white font-bold rounded-2xl text-xs mt-2 shadow">
+        Tutup
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= TOAST ================= -->
+  <div id="toast" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-slate-900/95 backdrop-blur-md text-white text-xs font-semibold px-4 py-3 rounded-2xl shadow-2xl transition-all duration-300 opacity-0 pointer-events-none -translate-y-4 flex items-center gap-2.5 border border-slate-700 max-w-xs safe-pt mt-2">
+    <i class="fa-solid fa-circle-check text-amberGold-400 text-sm flex-shrink-0" id="toastIcon"></i>
+    <span id="toastMessage" class="truncate">Tindakan berjaya</span>
+  </div>
+
+  <!-- ================= SCRIPT LOGIK & FIREBASE ================= -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
+    import { 
+      getDatabase, 
+      ref, 
+      push, 
+      update, 
+      onValue,
+      remove
+    } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
+    import { getAuth, signInAnonymously, onAuthStateChanged } 
+      from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+
+    // Konfigurasi Firebase Homestay kita
+    const firebaseConfig = {
+      apiKey: "AIzaSyCE5EzPWa7m-M7thhXwl9V5E59BvVGA7v8",
+      authDomain: "dapurkita-6190b.firebaseapp.com",
+      databaseURL: "https://dapurkita-6190b-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "dapurkita-6190b",
+      storageBucket: "dapurkita-6190b.firebasestorage.app",
+      messagingSenderId: "687897962006",
+      appId: "1:687897962006:web:10cad42e684f6c70cef737",
+      measurementId: "G-VVMYF252F9"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    try { getAnalytics(app); } catch (err) { /* Analytics optional */ }
+    const db = getDatabase(app);
+    const auth = getAuth(app);
+
+    // ==========================================
+    // STATE
+    // ==========================================
+    let currentUid = null;
+    let homestays = [];
+    let currentMainTab = 'catalog';
+    let currentRegion = localStorage.getItem('homestaykita_region') || 'Taiping & Kamunting';
+    let selectedCategory = 'all';
+    let selectedZone = 'all';
+    let searchQuery = '';
+    let filterCheckInDate = '';
+    let filterCheckOutDate = '';
+    let filterGuestCount = 0;
+    let bookmarks = [];
+    let showBookmarksOnly = false;
+    let uploadedImageBase64 = '';
+    let uploadedImagesList = [];
+    let currentSlideIndex = 0;
+    let editingHomestayId = null;
+    let activeBookingHomestay = null;
+    let activeManagingHomestay = null;
+    let tempBlockedDates = [];
+    let searchDebounceTimeout = null;
+
+    // Helper Escape HTML
+    function escapeHTML(str) {
+      if (str === null || str === undefined) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function triggerHaptic() {
+      if ('vibrate' in navigator) { 
+        try { navigator.vibrate(35); } catch (e) {} 
+      }
+    }
+
+    // ==========================================
+    // AUTHENTICATION
+    // ==========================================
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        currentUid = user.uid;
+        finishSplash();
+        renderHomestays();
+        renderHostHub();
+      } else {
+        signInAnonymously(auth).then(() => {
+          finishSplash();
+        }).catch((err) => {
+          console.error("Auth:", err);
+          finishSplash();
+        });
+      }
+    });
+
+    // ==========================================
+    // REALTIME DATABASE SYNC
+    // ==========================================
+    function initRealtimeSync() {
+      const homestaysRef = ref(db, 'homestays');
+      onValue(homestaysRef, (snapshot) => {
+        const data = snapshot.val();
+        let loaded = [];
+        if (data) {
+          Object.keys(data).forEach(key => {
+            const item = data[key];
+            if (item && typeof item === 'object') {
+              loaded.push({ id: key, ...item });
+            }
+          });
+          homestays = loaded.reverse();
+        } else {
+          homestays = [];
+        }
+        renderHomestays();
+        renderHostHub();
+      }, (error) => {
+        console.warn("Database sync error:", error);
+        homestays = [];
+        renderHomestays();
+        renderHostHub();
+      });
+    }
+
+    // ==========================================
+    // SPLASH SCREEN LOGIC
+    // ==========================================
+    let splashCompleted = false;
+    function finishSplash() {
+      if (splashCompleted) return;
+      splashCompleted = true;
+      const splash = document.getElementById('splashScreen');
+      const bar = document.getElementById('splashProgressBar');
+      const percentEl = document.getElementById('splashPercentText');
+      if (bar) bar.style.width = '100%';
+      if (percentEl) percentEl.innerText = '100%';
+
+      if (splash) {
+        splash.classList.add('fade-out');
+        setTimeout(() => {
+          if (splash && splash.parentNode) splash.remove();
+        }, 320);
+      }
+    }
+
+    setTimeout(() => {
+      const bar = document.getElementById('splashProgressBar');
+      if (bar) bar.style.width = '70%';
+    }, 300);
+
+    setTimeout(() => { finishSplash(); }, 1200);
+
+    // ==========================================
+    // NAVIGATION & TAB SWITCHING
+    // ==========================================
+    function switchMainTab(tab) {
+      if (currentMainTab === tab && !showBookmarksOnly) return;
+      triggerHaptic();
+      currentMainTab = tab;
+      showBookmarksOnly = false;
+      const catalogView = document.getElementById('catalogView');
+      const hostHubView = document.getElementById('hostHubView');
+      const tabBtnCatalog = document.getElementById('tabBtnCatalog');
+      const tabBtnHostHub = document.getElementById('tabBtnHostHub');
+
+      if (tab === 'hosthub') {
+        catalogView.classList.add('hidden');
+        hostHubView.classList.remove('hidden');
+        tabBtnHostHub.className = 'btn-tactile flex-1 py-2.5 rounded-xl flex items-center justify-center gap-2 bg-white text-tealOcean-900 font-extrabold shadow-sm z-10 border border-slate-200';
+        tabBtnCatalog.className = 'btn-tactile flex-1 py-2.5 rounded-xl flex items-center justify-center gap-2 text-slate-600 hover:text-tealOcean-900 font-bold z-10';
+        updateActiveNavText('host');
+        renderHostHub();
+      } else {
+        hostHubView.classList.add('hidden');
+        catalogView.classList.remove('hidden');
+        tabBtnCatalog.className = 'btn-tactile flex-1 py-2.5 rounded-xl flex items-center justify-center gap-2 bg-white text-tealOcean-900 font-extrabold shadow-sm z-10 border border-slate-200';
+        tabBtnHostHub.className = 'btn-tactile flex-1 py-2.5 rounded-xl flex items-center justify-center gap-2 text-slate-600 hover:text-tealOcean-900 font-bold z-10';
+        updateActiveNavText('catalog');
+        renderHomestays();
+      }
+    }
+
+    function updateActiveNavText(activeId) {
+      const navButtons = [
+        { id: 'catalog', el: document.getElementById('navCatalogBtn') },
+        { id: 'host', el: document.getElementById('navHostBtn') },
+        { id: 'bookmark', el: document.getElementById('bookmarkNavBtn') },
+        { id: 'help', el: document.getElementById('navHelpBtn') }
+      ];
+
+      navButtons.forEach(btn => {
+        if (!btn.el) return;
+        btn.el.classList.toggle('active', btn.id === activeId);
+      });
+    }
+
+    // ==========================================
+    // LOGIK TARIKH & AVAILABILITY CHECKER
+    // ==========================================
+    function isDateRangeAvailable(homestay, checkInStr, checkOutStr) {
+      if (!checkInStr || !checkOutStr) return true;
+      const blocked = homestay.blockedDates || [];
+      if (!Array.isArray(blocked) || blocked.length === 0) return true;
+
+      const startDate = new Date(checkInStr);
+      const endDate = new Date(checkOutStr);
+
+      if (endDate <= startDate) return false;
+
+      // Semak setiap hari dalam tempoh menginap
+      let cur = new Date(startDate);
+      while (cur < endDate) {
+        const y = cur.getFullYear();
+        const m = String(cur.getMonth() + 1).padStart(2, '0');
+        const d = String(cur.getDate()).padStart(2, '0');
+        const dateKey = `${y}-${m}-${d}`;
+
+        if (blocked.includes(dateKey)) {
+          return false; // Ada tarikh bertembung yang telah penuh
+        }
+        cur.setDate(cur.getDate() + 1);
+      }
+      return true;
+    }
+
+    function handleFilterDatesChange() {
+      filterCheckInDate = document.getElementById('filterCheckIn').value;
+      filterCheckOutDate = document.getElementById('filterCheckOut').value;
+      renderHomestays();
+    }
+
+    function resetDateFilter() {
+      filterCheckInDate = '';
+      filterCheckOutDate = '';
+      document.getElementById('filterCheckIn').value = '';
+      document.getElementById('filterCheckOut').value = '';
+      document.getElementById('filterGuests').value = '0';
+      renderHomestays();
+      showToast('Penapis tarikh diset semula');
+    }
+
+    function openQuickCheckModal() {
+      triggerHaptic();
+      const inEl = document.getElementById('modalQuickCheckIn');
+      const outEl = document.getElementById('modalQuickCheckOut');
+      if (inEl && outEl) {
+        inEl.value = filterCheckInDate || '';
+        outEl.value = filterCheckOutDate || '';
+      }
+      openModalWithAnimation('quickCheckModal');
+    }
+
+    function closeQuickCheckModal() {
+      closeModalWithAnimation('quickCheckModal');
+    }
+
+    function applyQuickDateFilter() {
+      const inVal = document.getElementById('modalQuickCheckIn').value;
+      const outVal = document.getElementById('modalQuickCheckOut').value;
+
+      if (inVal && outVal && inVal >= outVal) {
+        showToast('⚠️ Tarikh check-out mesti selepas check-in.');
+        return;
+      }
+
+      filterCheckInDate = inVal;
+      filterCheckOutDate = outVal;
+      document.getElementById('filterCheckIn').value = inVal;
+      document.getElementById('filterCheckOut').value = outVal;
+
+      closeQuickCheckModal();
+      renderHomestays();
+      showToast('Tarikh dipilih digunakan pada carian.');
+    }
+
+    // ==========================================
+    // KATALOG HOMESTAY RENDERING
+    // ==========================================
+    const batuKurauZones = [
+      'Pekan Batu Kurau',
+      'Kampung Perak',
+      'Pantai Besar',
+      'Kampung Anak Kurau',
+      'Kampung Repoh',
+      'Kampung Jelai'
+    ];
+
+    function isZoneInRegion(zone) {
+      if (!zone) return false;
+      const isBK = (currentRegion === 'Batu Kurau');
+      const isFoundInBK = batuKurauZones.includes(zone);
+      return isBK ? isFoundInBK : !isFoundInBK;
+    }
+
+    function renderHomestays() {
+      const grid = document.getElementById('homestayGrid');
+      const emptyState = document.getElementById('emptyState');
+      const badge = document.getElementById('homestayCountBadge');
+
+      const guestFilterVal = parseInt(document.getElementById('filterGuests')?.value || '0', 10);
+
+      const filtered = homestays.filter(item => {
+        if (!isZoneInRegion(item.zone)) return false;
+        if (selectedZone !== 'all' && item.zone !== selectedZone) return false;
+        
+        // Category Filter
+        if (selectedCategory !== 'all') {
+          if (selectedCategory === 'Kolam Renang') {
+            const hasPool = (item.category === 'Kolam Renang') || 
+                            (item.title && item.title.toLowerCase().includes('pool')) ||
+                            (item.amenities && item.amenities.toLowerCase().includes('pool'));
+            if (!hasPool) return false;
+          } else if (selectedCategory === 'BBQ') {
+            const hasBBQ = item.amenities && item.amenities.toLowerCase().includes('bbq');
+            if (!hasBBQ) return false;
+          } else if (!item.category || !item.category.includes(selectedCategory)) {
+            return false;
+          }
+        }
+
+        // Search Query
+        const q = searchQuery.toLowerCase().trim();
+        if (q) {
+          const matchTitle = (item.title || '').toLowerCase().includes(q);
+          const matchHost = (item.hostName || '').toLowerCase().includes(q);
+          const matchZone = (item.zone || '').toLowerCase().includes(q);
+          const matchAmenity = (item.amenities || '').toLowerCase().includes(q);
+          if (!matchTitle && !matchHost && !matchZone && !matchAmenity) return false;
+        }
+
+        // Kapasiti tetamu
+        if (guestFilterVal > 0 && (Number(item.maxGuests) || 0) < guestFilterVal) {
+          return false;
+        }
+
+        // Semakan Tarikh Kosong
+        if (filterCheckInDate && filterCheckOutDate) {
+          if (!isDateRangeAvailable(item, filterCheckInDate, filterCheckOutDate)) {
+            return false; // Penuh untuk tarikh dipilih
+          }
+        }
+
+        // Bookmarks
+        if (showBookmarksOnly && !bookmarks.includes(item.id)) return false;
+
+        return true;
+      });
+
+      if (badge) badge.innerText = `${filtered.length} Homestay Tersedia`;
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      }
+      emptyState.classList.add('hidden');
+
+      grid.innerHTML = filtered.map((item, index) => {
+        const isBookmarked = bookmarks.includes(item.id);
+        const delay = (index * 0.04).toFixed(2);
+        const img = item.image || 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=700&auto=format&fit=crop&q=80';
+        
+        // Status Tarikh Badge jika filter dipilih
+        let dateStatusBadge = '';
+        if (filterCheckInDate && filterCheckOutDate) {
+          dateStatusBadge = `<span class="bg-emerald-600 text-white text-[10px] font-black px-2 py-0.5 rounded-full shadow-sm flex items-center gap-1"><i class="fa-solid fa-check"></i> Kosong Pada Tarikh Anda</span>`;
+        } else {
+          dateStatusBadge = `<span class="bg-tealOcean-900/85 text-tealOcean-100 text-[10px] font-bold px-2 py-0.5 rounded-full backdrop-blur-sm shadow-sm">${escapeHTML(item.category || 'Homestay')}</span>`;
+        }
+
+        return `
+          <div class="soft-card animate-grid-item bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm flex flex-col justify-between hover:border-tealOcean-500" style="animation-delay: ${delay}s">
+            <div>
+              <div class="relative h-48 w-full bg-slate-100 cursor-pointer overflow-hidden group" onclick="window.openDetailModal('${item.id}')">
+                <img src="${img}" alt="${escapeHTML(item.title)}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300 ease-out" onerror="this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?w=700&auto=format&fit=crop&q=80'">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                <div class="absolute top-3 left-3">${dateStatusBadge}</div>
+                <div class="absolute top-3 right-3 flex items-center gap-1.5">
+                  <button onclick="event.stopPropagation(); window.shareHomestayDirect('${item.id}')" class="btn-tactile w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm text-slate-700 flex items-center justify-center hover:bg-white shadow" title="Kongsi"><i class="fa-solid fa-share-nodes text-xs"></i></button>
+                  <button onclick="event.stopPropagation(); window.toggleBookmark('${item.id}')" class="btn-tactile w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm text-slate-700 flex items-center justify-center hover:bg-white shadow"><i class="${isBookmarked ? 'fa-solid text-amberGold-500' : 'fa-regular'} fa-bookmark"></i></button>
+                </div>
+                <div class="absolute bottom-2.5 left-3 text-white text-[11px] font-semibold flex items-center gap-1 drop-shadow-md">
+                  <i class="fa-solid fa-location-dot text-amberGold-400"></i> ${escapeHTML(item.zone || 'Taiping')}
+                </div>
+              </div>
+              <div class="p-4 cursor-pointer" onclick="window.openDetailModal('${item.id}')">
+                <div class="text-[11px] font-bold text-tealOcean-800 uppercase tracking-wide truncate">${escapeHTML(item.hostName || 'Pengusaha')}</div>
+                <h3 class="text-sm font-extrabold text-slate-900 line-clamp-1 mt-0.5 leading-snug">${escapeHTML(item.title)}</h3>
+                
+                <!-- Room info icons -->
+                <div class="flex items-center gap-3 my-2 text-[11px] text-slate-600">
+                  <span class="flex items-center gap-1"><i class="fa-solid fa-bed text-tealOcean-600"></i> ${item.bedrooms || 3} Bilik</span>
+                  <span class="flex items-center gap-1"><i class="fa-solid fa-bath text-tealOcean-600"></i> ${item.bathrooms || 2} Air</span>
+                  <span class="flex items-center gap-1"><i class="fa-solid fa-users text-tealOcean-600"></i> Max ${item.maxGuests || 8}</span>
+                </div>
+
+                <div class="mt-2.5 flex items-baseline justify-between">
+                  <div>
+                    <span class="text-base font-black text-tealOcean-900">RM ${Number(item.price || 0).toFixed(0)}</span>
+                    <span class="text-[11px] text-slate-500 font-semibold"> / malam</span>
+                  </div>
+                  <span class="text-[10px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">Bebas Komisen</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="px-4 pb-4 pt-1 flex gap-2">
+              <button onclick="window.openBookingFormModal('${item.id}')" class="btn-tactile flex-1 py-2.5 rounded-2xl bg-tealOcean-700 hover:bg-tealOcean-800 text-white font-extrabold text-xs flex items-center justify-center gap-1.5 shadow-sm">
+                <i class="fa-solid fa-calendar-check text-amberGold-300"></i>
+                <span>Semak Tarikh & Tempah</span>
+              </button>
+            </div>
+          </div>`;
+      }).join('');
+    }
+
+    // ==========================================
+    // PENGURUSAN HOST & KALENDAR SLOT
+    // ==========================================
+    function renderHostHub() {
+      const container = document.getElementById('hostHomestayList');
+      const emptyBox = document.getElementById('hostEmptyState');
+      const badge = document.getElementById('hostListingBadge');
+
+      const myHomestays = homestays.filter(h => h.ownerUid === currentUid);
+
+      if (badge) badge.innerText = `${myHomestays.length} Homestay`;
+
+      if (myHomestays.length === 0) {
+        container.innerHTML = '';
+        emptyBox.classList.remove('hidden');
+        return;
+      }
+      emptyBox.classList.add('hidden');
+
+      container.innerHTML = myHomestays.map(item => {
+        const blocked = item.blockedDates || [];
+        return `
+          <div class="bg-white rounded-3xl p-4 border border-slate-200 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+              <img src="${item.image || 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=700&auto=format&fit=crop&q=80'}" class="w-16 h-16 rounded-2xl object-cover border border-slate-200 flex-shrink-0">
+              <div>
+                <h4 class="font-black text-xs sm:text-sm text-slate-900">${escapeHTML(item.title)}</h4>
+                <div class="text-[11px] text-tealOcean-800 font-bold">${escapeHTML(item.zone)} • RM${item.price}/malam</div>
+                <div class="text-[10px] text-slate-500 mt-0.5">
+                  <i class="fa-solid fa-calendar-xmark text-rose-500 mr-1"></i>
+                  ${blocked.length} tarikh telah disekat penuh
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 self-end sm:self-center">
+              <button onclick="window.openBlockDatesModal('${item.id}')" class="btn-tactile px-3 py-2 rounded-xl bg-tealOcean-50 hover:bg-tealOcean-100 text-tealOcean-900 border border-tealOcean-200 font-bold text-xs flex items-center gap-1.5">
+                <i class="fa-solid fa-calendar-days text-tealOcean-700"></i>
+                <span>Urus Tarikh Penuh</span>
+              </button>
+              <button onclick="window.openEditModal('${item.id}')" class="btn-tactile px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs" title="Edit Maklumat">
+                <i class="fa-solid fa-pen"></i>
+              </button>
+            </div>
+          </div>`;
+      }).join('');
+    }
+
+    function openBlockDatesModal(id) {
+      triggerHaptic();
+      const item = homestays.find(h => h.id === id);
+      if (!item) return;
+
+      activeManagingHomestay = item;
+      tempBlockedDates = Array.isArray(item.blockedDates) ? [...item.blockedDates] : [];
+
+      document.getElementById('blockModalHomestayTitle').innerText = item.title;
+      renderBlockedDatesChips();
+      openModalWithAnimation('blockDatesModal');
+    }
+
+    function closeBlockDatesModal() {
+      closeModalWithAnimation('blockDatesModal');
+    }
+
+    function renderBlockedDatesChips() {
+      const box = document.getElementById('blockedDatesChips');
+      if (!box) return;
+      if (tempBlockedDates.length === 0) {
+        box.innerHTML = '<span class="text-[11px] text-slate-400 p-1">Tiada tarikh disekat. Semua tarikh masih terbuka.</span>';
+        return;
+      }
+      box.innerHTML = tempBlockedDates.map(d => `
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-rose-100 text-rose-800 font-bold text-[10px] border border-rose-200">
+          <i class="fa-regular fa-calendar-xmark"></i>
+          <span>${d}</span>
+          <button type="button" onclick="removeBlockedDate('${d}')" class="text-rose-600 hover:text-rose-900 ml-1">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </span>
+      `).join('');
+    }
+
+    function addBlockedDate() {
+      const input = document.getElementById('newBlockedDateInput');
+      const val = input.value;
+      if (!val) {
+        showToast('Pilih tarikh terlebih dahulu.');
+        return;
+      }
+      if (tempBlockedDates.includes(val)) {
+        showToast('Tarikh ini sudah pun disekat.');
+        return;
+      }
+      tempBlockedDates.push(val);
+      tempBlockedDates.sort();
+      input.value = '';
+      renderBlockedDatesChips();
+      triggerHaptic();
+    }
+
+    function removeBlockedDate(dateVal) {
+      tempBlockedDates = tempBlockedDates.filter(d => d !== dateVal);
+      renderBlockedDatesChips();
+      triggerHaptic();
+    }
+
+    async function saveBlockedDatesToDatabase() {
+      if (!activeManagingHomestay) return;
+      triggerHaptic();
+      try {
+        await update(ref(db, `homestays/${activeManagingHomestay.id}`), {
+          blockedDates: tempBlockedDates
+        });
+        showToast('✅ Tarikh penuh berjaya dikemas kini!');
+        closeBlockDatesModal();
+        renderHostHub();
+        renderHomestays();
+      } catch (err) {
+        showToast('Ralat mengemas kini tarikh.');
+      }
+    }
+
+    // ==========================================
+    // DETAIL MODAL & BOOKING MODAL
+    // ==========================================
+    function openDetailModal(id) {
+      const item = homestays.find(h => h.id === id);
+      if (!item) return;
+      window.__currentDetailId = id;
+      
+      document.getElementById('modalImg').src = item.image || 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=700&auto=format&fit=crop&q=80';
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalHost').innerText = `Oleh: ${item.hostName || 'Pengusaha Tempatan'}`;
+      document.getElementById('modalPrice').innerText = `RM ${Number(item.price || 0).toFixed(0)}`;
+      document.getElementById('modalCategoryBadge').innerText = item.category || 'Homestay';
+      document.getElementById('modalBedrooms').innerText = `${item.bedrooms || 3} Bilik Tidur`;
+      document.getElementById('modalBathrooms').innerText = `${item.bathrooms || 2} Bilik Air`;
+      document.getElementById('modalMaxGuests').innerText = `Max ${item.maxGuests || 8} Tetamu`;
+      document.getElementById('modalZone').innerText = item.zone || 'Taiping';
+      document.getElementById('modalDesc').innerText = item.desc || 'Homestay bersih dan selesa untuk percutian anda sekeluarga.';
+
+      const amenitiesBox = document.getElementById('modalAmenitiesList');
+      if (amenitiesBox) {
+        const list = (item.amenities || '').split(',').map(s => s.trim()).filter(Boolean);
+        amenitiesBox.innerHTML = list.map(a => `
+          <span class="bg-tealOcean-50 text-tealOcean-900 border border-tealOcean-200/80 px-2.5 py-0.5 rounded-lg font-bold">${escapeHTML(a)}</span>
+        `).join('') || '<span class="text-slate-400">Peralatan asas lengkap</span>';
+      }
+
+      const ownerActions = document.getElementById('ownerActions');
+      const isOwner = (item.ownerUid === currentUid);
+      if (isOwner) {
+        ownerActions.classList.remove('hidden');
+        document.getElementById('editHomestayBtn').onclick = () => { closeDetailModal(); openEditModal(id); };
+        document.getElementById('deleteHomestayBtn').onclick = () => deleteHomestay(id);
+      } else {
+        ownerActions.classList.add('hidden');
+      }
+
+      openModalWithAnimation('detailModal');
+    }
+
+    function closeDetailModal() {
+      closeModalWithAnimation('detailModal');
+    }
+
+    // Buka Borang Tempahan & Semakan Tarikh
+    function openBookingFormModal(id) {
+      triggerHaptic();
+      const item = homestays.find(h => h.id === id);
+      if (!item) return;
+
+      activeBookingHomestay = item;
+
+      document.getElementById('bookMenuImg').src = item.image || 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=700&auto=format&fit=crop&q=80';
+      document.getElementById('bookHomestayTitle').innerText = item.title;
+      document.getElementById('bookHostName').innerText = item.hostName || 'Pengusaha Homestay kita';
+      document.getElementById('bookPriceRate').innerText = `RM ${item.price} / malam`;
+      document.getElementById('bookGuestLimit').innerText = `Max ${item.maxGuests} org`;
+
+      // Prefill saved user info
+      const savedName = localStorage.getItem('homestaykita_cust_name') || '';
+      const savedPhone = localStorage.getItem('homestaykita_cust_phone') || '';
+      if (savedName) document.getElementById('bookCustomerName').value = savedName;
+      if (savedPhone) document.getElementById('bookCustomerPhone').value = savedPhone;
+
+      // Prefill dates jika sudah ditapis
+      document.getElementById('bookCheckInDate').value = filterCheckInDate || '';
+      document.getElementById('bookCheckOutDate').value = filterCheckOutDate || '';
+      document.getElementById('bookRemarks').value = '';
+
+      calculateBookingDurationAndCheck();
+
+      closeDetailModal();
+      openModalWithAnimation('bookingModal');
+    }
+
+    function closeBookingModal() {
+      closeModalWithAnimation('bookingModal');
+    }
+
+    // Kira Tempoh Malam & Semak Status Tarikh (Available atau Penuh)
+    function calculateBookingDurationAndCheck() {
+      if (!activeBookingHomestay) return;
+      const inVal = document.getElementById('bookCheckInDate').value;
+      const outVal = document.getElementById('bookCheckOutDate').value;
+
+      const indBox = document.getElementById('availabilityIndicatorBox');
+      const indIcon = document.getElementById('availIcon');
+      const indTitle = document.getElementById('availStatusTitle');
+      const indDesc = document.getElementById('availStatusDesc');
+      const nightsLabel = document.getElementById('bookNightsCount');
+      const totalLabel = document.getElementById('bookTotalRate');
+      const submitBtn = document.getElementById('bookSubmitBtn');
+
+      if (!inVal || !outVal) {
+        indBox.className = 'p-3 rounded-2xl border transition-all duration-200 flex items-center gap-2.5 bg-slate-100 border-slate-200 text-slate-600';
+        indIcon.className = 'fa-solid fa-calendar-day text-slate-500 text-base';
+        indTitle.innerText = 'Pilih Tarikh Check-in & Check-out';
+        indDesc.innerText = 'Sistem akan memeriksa ketersediaan tarikh secara terus.';
+        nightsLabel.innerText = '0 Malam Penginapan';
+        totalLabel.innerText = 'RM 0.00';
+        submitBtn.disabled = false;
+        return;
+      }
+
+      const dIn = new Date(inVal);
+      const dOut = new Date(outVal);
+
+      if (dOut <= dIn) {
+        indBox.className = 'p-3 rounded-2xl border transition-all duration-200 flex items-center gap-2.5 bg-amber-50 border-amber-200 text-amber-900';
+        indIcon.className = 'fa-solid fa-triangle-exclamation text-amber-600 text-base';
+        indTitle.innerText = 'Tarikh Check-Out Tidak Sah';
+        indDesc.innerText = 'Tarikh keluar mestilah sekurang-kurangnya 1 hari selepas check-in.';
+        nightsLabel.innerText = 'Tidak sah';
+        totalLabel.innerText = 'RM 0.00';
+        submitBtn.disabled = true;
+        return;
+      }
+
+      const diffTime = Math.abs(dOut - dIn);
+      const nights = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      const pricePerNight = Number(activeBookingHomestay.price) || 0;
+      const totalAmount = nights * pricePerNight;
+
+      nightsLabel.innerText = `${nights} Malam Penginapan`;
+      totalLabel.innerText = `RM ${totalAmount.toFixed(2)}`;
+
+      // Semak ketersediaan dalam blockedDates
+      const isAvailable = isDateRangeAvailable(activeBookingHomestay, inVal, outVal);
+
+      if (isAvailable) {
+        indBox.className = 'p-3 rounded-2xl border transition-all duration-200 flex items-center gap-2.5 bg-emerald-50 border-emerald-300 text-emerald-950';
+        indIcon.className = 'fa-solid fa-circle-check text-emerald-600 text-lg';
+        indTitle.innerText = 'TARIKH AVAILABLE (MASIH KOSONG)';
+        indDesc.innerText = `Slot ${nights} malam ini masih dibuka untuk tempahan anda.`;
+        submitBtn.disabled = false;
+        submitBtn.className = 'btn-tactile w-full py-3 bg-gradient-to-r from-tealOcean-700 via-tealOcean-800 to-tealOcean-900 hover:from-tealOcean-800 text-white font-extrabold rounded-2xl shadow-md flex items-center justify-center gap-2 border border-tealOcean-600';
+      } else {
+        indBox.className = 'p-3 rounded-2xl border transition-all duration-200 flex items-center gap-2.5 bg-rose-50 border-rose-300 text-rose-950';
+        indIcon.className = 'fa-solid fa-circle-xmark text-rose-600 text-lg';
+        indTitle.innerText = 'TARIKH SUDAH PENUH (BOOKED)';
+        indDesc.innerText = 'Maaf, sebahagian atau seluruh tarikh pilihan ini telah ditempah tetamu lain.';
+        submitBtn.disabled = true;
+        submitBtn.className = 'w-full py-3 bg-slate-300 text-slate-500 font-extrabold rounded-2xl cursor-not-allowed flex items-center justify-center gap-2';
+      }
+    }
+
+    // Hantar tempahan terus ke WhatsApp Tuan Rumah
+    function handleSendWhatsAppBooking(e) {
+      e.preventDefault();
+      if (!activeBookingHomestay) return;
+
+      const item = activeBookingHomestay;
+      const inVal = document.getElementById('bookCheckInDate').value;
+      const outVal = document.getElementById('bookCheckOutDate').value;
+      const name = document.getElementById('bookCustomerName').value.trim();
+      let phone = document.getElementById('bookCustomerPhone').value.trim();
+      const guests = document.getElementById('bookGuestsCount').value;
+      const remarks = document.getElementById('bookRemarks').value.trim();
+
+      if (!isDateRangeAvailable(item, inVal, outVal)) {
+        showToast('⚠️ Tarikh ini telah penuh. Sila pilih tarikh lain.');
+        return;
+      }
+
+      phone = phone.replace(/[^0-9]/g, '');
+      if (phone.startsWith('0')) phone = '6' + phone;
+      else if (phone && !phone.startsWith('6')) phone = '60' + phone;
+
+      if (name) localStorage.setItem('homestaykita_cust_name', name);
+      if (phone) localStorage.setItem('homestaykita_cust_phone', phone.replace(/^60/, ''));
+
+      const dIn = new Date(inVal);
+      const dOut = new Date(outVal);
+      const nights = Math.ceil(Math.abs(dOut - dIn) / (1000 * 60 * 60 * 24));
+      const totalAmount = nights * (Number(item.price) || 0);
+
+      let msg = `*TEMPAHAN HOMESTAY (PORTAL HOMESTAY KITA)* 🏡\n`;
+      msg += `------------------------------------\n`;
+      msg += `Salam Tuan/Puan ${item.hostName}, saya ingin menempah penginapan di:\n\n`;
+      msg += `🏨 *HOMESTAY:* ${item.title}\n`;
+      msg += `📍 *Kawasan:* ${item.zone}\n`;
+      msg += `📅 *Check-In:* ${inVal} (Selepas 3:00 PM)\n`;
+      msg += `📅 *Check-Out:* ${outVal} (Sebelum 12:00 PM)\n`;
+      msg += `🌙 *Tempoh:* ${nights} Malam\n`;
+      msg += `👥 *Bilangan Tetamu:* ${guests} Orang\n`;
+      msg += `💰 *Anggaran Sewaan:* RM ${totalAmount.toFixed(2)} (RM${item.price}/malam)\n\n`;
+      msg += `👤 *MAKLUMAT TETAMU:*\n`;
+      msg += `• Nama: ${name}\n`;
+      msg += `• Telefon: +${phone}\n`;
+      if (remarks) {
+        msg += `• Catatan / Permintaan: ${remarks}\n`;
+      }
+      msg += `\nMohon pengesahan slot & nombor akaun untuk bayaran deposit tempahan. Terima kasih! 🙏`;
+
+      const hostPhoneDigits = String(item.phone || '').replace(/[^0-9]/g, '');
+      if (!hostPhoneDigits) {
+        showToast('Nombor WhatsApp pengusaha tidak sah.');
+        return;
+      }
+
+      const waUrl = `https://wa.me/${hostPhoneDigits}?text=${encodeURIComponent(msg)}`;
+      closeBookingModal();
+      showToast('Menghubungkan ke WhatsApp Pengusaha Homestay...');
+      window.open(waUrl, '_blank');
+    }
+
+    // ==========================================
+    // DAFTAR & EDIT HOMESTAY
+    // ==========================================
+    function openRegisterModal() {
+      editingHomestayId = null;
+      document.getElementById('registerModalTitle').innerText = 'Daftar Homestay Anda (Bebas Komisen)';
+      document.getElementById('registerSubmitBtn').innerText = 'Terbitkan Homestay Ke Direktori';
+      document.getElementById('homestayForm').reset();
+      resetImageUpload();
+      openModalWithAnimation('registerModal');
+    }
+
+    function closeRegisterModal() {
+      closeModalWithAnimation('registerModal');
+      resetImageUpload();
+      editingHomestayId = null;
+    }
+
+    function openEditModal(id) {
+      const item = homestays.find(h => h.id === id);
+      if (!item) return;
+
+      editingHomestayId = id;
+      document.getElementById('registerModalTitle').innerText = 'Edit Maklumat Homestay';
+      document.getElementById('registerSubmitBtn').innerText = 'Simpan Perubahan';
+
+      document.getElementById('regTitle').value = item.title || '';
+      document.getElementById('regHostName').value = item.hostName || '';
+      document.getElementById('regPrice').value = item.price || '';
+      
+      let p = item.phone || '';
+      if (p.startsWith('60')) p = p.substring(2);
+      document.getElementById('regPhone').value = p;
+
+      document.getElementById('regBedrooms').value = item.bedrooms || 3;
+      document.getElementById('regBathrooms').value = item.bathrooms || 2;
+      document.getElementById('regMaxGuests').value = item.maxGuests || 8;
+      document.getElementById('regZone').value = item.zone || '';
+
+      // Set kategori checkbox
+      const catArray = (item.category || '').split(',').map(s => s.trim());
+      document.querySelectorAll('input[name="regCategoryCheck"]').forEach(cb => {
+        cb.checked = catArray.includes(cb.value);
+      });
+
+      // Set amenities checkbox
+      const amenityArray = (item.amenities || '').split(',').map(s => s.trim());
+      const knownAmenities = ['Aircond', 'Peti Ais', 'Dapur Memasak', 'Wifi Percuma', 'Kawasan BBQ', 'Mesin Basuh', 'Penapis Air (Coway/Cuckoo)', 'Pemanas Air Mandi (Water Heater)'];
+      let extraAmenities = [];
+
+      document.querySelectorAll('input[name="regAmenityCheck"]').forEach(cb => {
+        const isMatched = amenityArray.some(a => a.toLowerCase().includes(cb.value.toLowerCase()));
+        cb.checked = isMatched;
+      });
+
+      amenityArray.forEach(a => {
+        if (!knownAmenities.some(k => a.toLowerCase().includes(k.toLowerCase()))) {
+          extraAmenities.push(a);
+        }
+      });
+      document.getElementById('regAmenitiesExtra').value = extraAmenities.join(', ');
+
+      document.getElementById('regDesc').value = item.desc || '';
+
+      if (item.images && Array.isArray(item.images) && item.images.length > 0) {
+        uploadedImagesList = [...item.images];
+        currentSlideIndex = 0;
+        updateSlidePreviewUI();
+      } else if (item.image) {
+        uploadedImagesList = [item.image];
+        currentSlideIndex = 0;
+        updateSlidePreviewUI();
+      } else {
+        resetImageUpload();
+      }
+
+      openModalWithAnimation('registerModal');
+    }
+
+    async function deleteHomestay(id) {
+      if (!confirm('Adakah anda pasti ingin memadamkan homestay ini?')) return;
+      try {
+        await remove(ref(db, `homestays/${id}`));
+        closeDetailModal();
+        triggerHaptic();
+        showToast('🗑️ Homestay berjaya dipadam.');
+        renderHomestays();
+        renderHostHub();
+      } catch (err) {
+        showToast('Ralat memadam homestay.');
+      }
+    }
+
+    async function handleHomestaySubmit(e) {
+      e.preventDefault();
+      triggerHaptic();
+
+      let p = document.getElementById('regPhone').value.trim();
+      p = p.replace(/[^0-9]/g, '');
+      if (p.startsWith('0')) p = '6' + p;
+      else if (p && !p.startsWith('6')) p = '60' + p;
+
+      const fallbackImg = 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=700&auto=format&fit=crop&q=80';
+      const finalImgList = uploadedImagesList.length > 0 ? uploadedImagesList : (uploadedImageBase64 ? [uploadedImageBase64] : [fallbackImg]);
+      const finalMainImg = finalImgList[0];
+
+      // Kumpul kategori dari checkbox
+      const selectedCats = Array.from(document.querySelectorAll('input[name="regCategoryCheck"]:checked')).map(cb => cb.value);
+      if (selectedCats.length === 0) {
+        showToast('⚠️ Sila pilih sekurang-kurangnya satu kategori rumah.');
+        return;
+      }
+
+      // Kumpul kemudahan (amenities) dari checkbox dan teks tambahan
+      const selectedAmenities = Array.from(document.querySelectorAll('input[name="regAmenityCheck"]:checked')).map(cb => cb.value);
+      const extraAmenity = document.getElementById('regAmenitiesExtra').value.trim();
+      if (extraAmenity) {
+        selectedAmenities.push(extraAmenity);
+      }
+
+      const homestayData = {
+        title: document.getElementById('regTitle').value.trim(),
+        hostName: document.getElementById('regHostName').value.trim(),
+        price: parseFloat(document.getElementById('regPrice').value) || 200,
+        phone: p,
+        bedrooms: parseInt(document.getElementById('regBedrooms').value) || 3,
+        bathrooms: parseInt(document.getElementById('regBathrooms').value) || 2,
+        maxGuests: parseInt(document.getElementById('regMaxGuests').value) || 8,
+        zone: document.getElementById('regZone').value,
+        category: selectedCats.join(', '),
+        amenities: selectedAmenities.join(', '),
+        desc: document.getElementById('regDesc').value.trim(),
+        image: finalMainImg,
+        images: finalImgList,
+        blockedDates: [],
+        ownerUid: currentUid || 'user_local'
+      };
+
+      try {
+        if (editingHomestayId) {
+          await update(ref(db, `homestays/${editingHomestayId}`), homestayData);
+          showToast('✅ Maklumat homestay dikemaskini!');
+        } else {
+          await push(ref(db, 'homestays'), homestayData);
+          showToast('🎉 Homestay berjaya didaftarkan!');
+        }
+
+        closeRegisterModal();
+        renderHomestays();
+        renderHostHub();
+      } catch (err) {
+        showToast('Ralat menyimpan maklumat.');
+      }
+    }
+
+    // ==========================================
+    // GAMBAR UPLOAD & SLIDE MODE PREVIEW (MAX 5)
+    // ==========================================
+    function handleImageUpload(e) {
+      const files = Array.from(e.target.files || []);
+      if (!files.length) return;
+
+      const remainingSlots = 5 - uploadedImagesList.length;
+      if (remainingSlots <= 0) {
+        showToast('⚠️ Maksimum 5 gambar sahaja dibenarkan.');
+        return;
+      }
+
+      const filesToProcess = files.slice(0, remainingSlots);
+      let processedCount = 0;
+
+      filesToProcess.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          const img = new Image();
+          img.onload = function() {
+            const canvas = document.createElement('canvas');
+            const maxDim = 800;
+            let w = img.width, h = img.height;
+            if (w > h && w > maxDim) {
+              h = Math.round((h * maxDim) / w);
+              w = maxDim;
+            } else if (h > maxDim) {
+              w = Math.round((w * maxDim) / h);
+              h = maxDim;
+            }
+            canvas.width = w;
+            canvas.height = h;
+            canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+            const base64 = canvas.toDataURL('image/jpeg', 0.8);
+            
+            if (uploadedImagesList.length < 5) {
+              uploadedImagesList.push(base64);
+            }
+            
+            processedCount++;
+            if (processedCount === filesToProcess.length) {
+              currentSlideIndex = uploadedImagesList.length - 1;
+              updateSlidePreviewUI();
+              showToast(`✅ ${processedCount} gambar berjaya dimuat naik.`);
+            }
+          };
+          img.src = evt.target.result;
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function updateSlidePreviewUI() {
+      const previewContainer = document.getElementById('imagePreviewContainer');
+      const uploadPrompt = document.getElementById('uploadPrompt');
+      const imgPreview = document.getElementById('imagePreview');
+      const countText = document.getElementById('imageCountText');
+      const indicator = document.getElementById('slideIndicator');
+      const strip = document.getElementById('slideThumbnailStrip');
+
+      if (!uploadedImagesList.length) {
+        resetImageUpload();
+        return;
+      }
+
+      if (currentSlideIndex >= uploadedImagesList.length) {
+        currentSlideIndex = uploadedImagesList.length - 1;
+      }
+      if (currentSlideIndex < 0) currentSlideIndex = 0;
+
+      uploadPrompt.classList.add('hidden');
+      previewContainer.classList.remove('hidden');
+
+      imgPreview.src = uploadedImagesList[currentSlideIndex];
+      uploadedImageBase64 = uploadedImagesList[0]; // Set main cover image
+
+      if (countText) countText.innerText = `${uploadedImagesList.length} / 5 Gambar`;
+      if (indicator) indicator.innerText = `${currentSlideIndex + 1} / ${uploadedImagesList.length}`;
+
+      if (strip) {
+        strip.innerHTML = uploadedImagesList.map((src, idx) => `
+          <button type="button" onclick="setSlideImage(${idx})" class="w-12 h-10 rounded-lg overflow-hidden border-2 flex-shrink-0 transition-all ${idx === currentSlideIndex ? 'border-amberGold-400 scale-105 shadow' : 'border-slate-300 opacity-60'}">
+            <img src="${src}" class="w-full h-full object-cover">
+          </button>
+        `).join('');
+      }
+    }
+
+    function prevSlideImage() {
+      if (uploadedImagesList.length <= 1) return;
+      currentSlideIndex = (currentSlideIndex - 1 + uploadedImagesList.length) % uploadedImagesList.length;
+      updateSlidePreviewUI();
+      triggerHaptic();
+    }
+
+    function nextSlideImage() {
+      if (uploadedImagesList.length <= 1) return;
+      currentSlideIndex = (currentSlideIndex + 1) % uploadedImagesList.length;
+      updateSlidePreviewUI();
+      triggerHaptic();
+    }
+
+    function setSlideImage(index) {
+      currentSlideIndex = index;
+      updateSlidePreviewUI();
+      triggerHaptic();
+    }
+
+    function removeCurrentSlideImage() {
+      if (!uploadedImagesList.length) return;
+      uploadedImagesList.splice(currentSlideIndex, 1);
+      if (currentSlideIndex >= uploadedImagesList.length) {
+        currentSlideIndex = Math.max(0, uploadedImagesList.length - 1);
+      }
+      updateSlidePreviewUI();
+      triggerHaptic();
+      showToast('Gambar dipadam');
+    }
+
+    function removeAllUploadedImages() {
+      resetImageUpload();
+      showToast('Semua gambar dipadam');
+    }
+
+    function removeUploadedImage() {
+      resetImageUpload();
+    }
+
+    function resetImageUpload() {
+      uploadedImageBase64 = '';
+      uploadedImagesList = [];
+      currentSlideIndex = 0;
+      const input = document.getElementById('regImageInput');
+      if (input) input.value = '';
+      const previewContainer = document.getElementById('imagePreviewContainer');
+      const uploadPrompt = document.getElementById('uploadPrompt');
+      const countText = document.getElementById('imageCountText');
+      if (previewContainer) previewContainer.classList.add('hidden');
+      if (uploadPrompt) uploadPrompt.classList.remove('hidden');
+      if (countText) countText.innerText = '0 / 5 Gambar';
+      const imgPreview = document.getElementById('imagePreview');
+      if (imgPreview) imgPreview.src = '';
+    }
+
+    // ==========================================
+    // KAWASAN & FILTER UTILS
+    // ==========================================
+    function openRegionModal() { openModalWithAnimation('regionModal'); }
+    function closeRegionModal() { closeModalWithAnimation('regionModal'); }
+
+    function updateRegionUI() {
+      const isBK = (currentRegion === 'Batu Kurau');
+      const txt = document.getElementById('currentHeaderRegionText');
+      if (txt) txt.innerText = currentRegion;
+
+      const fBK = document.getElementById('filterBatuKurauGroup');
+      const fKamunting = document.getElementById('filterKamuntingGroup');
+      const fTaiping = document.getElementById('filterTaipingGroup');
+
+      if (fBK) fBK.classList.toggle('hidden', !isBK);
+      if (fKamunting) fKamunting.classList.toggle('hidden', isBK);
+      if (fTaiping) fTaiping.classList.toggle('hidden', isBK);
+
+      const rBK = document.getElementById('regOptBatuKurau');
+      const rKamunting = document.getElementById('regOptKamunting');
+      const rTaiping = document.getElementById('regOptTaiping');
+
+      if (rBK) rBK.classList.toggle('hidden', !isBK);
+      if (rKamunting) rKamunting.classList.toggle('hidden', isBK);
+      if (rTaiping) rTaiping.classList.toggle('hidden', isBK);
+
+      const regZoneSelect = document.getElementById('regZone');
+      if (regZoneSelect) {
+        regZoneSelect.value = isBK ? 'Pekan Batu Kurau' : 'Bukit Jana / Golf Resort';
+      }
+
+      const bTaiping = document.getElementById('regionBtnTaiping');
+      const bBK = document.getElementById('regionBtnBatuKurau');
+      const bdTaiping = document.getElementById('regionBadgeTaiping');
+      const bdBK = document.getElementById('regionBadgeBatuKurau');
+
+      if (isBK) {
+        if (bdBK) bdBK.classList.remove('hidden');
+        if (bdTaiping) bdTaiping.classList.add('hidden');
+      } else {
+        if (bdBK) bdBK.classList.add('hidden');
+        if (bdTaiping) bdTaiping.classList.remove('hidden');
+      }
+    }
+
+    function selectRegion(name) {
+      triggerHaptic();
+      currentRegion = name;
+      localStorage.setItem('homestaykita_region', name);
+      updateRegionUI();
+      resetFilters();
+      closeRegionModal();
+      showToast(`📍 Kawasan: ${name}`);
+    }
+
+    function setZoneFilter(zone, element) {
+      triggerHaptic();
+      selectedZone = zone;
+      document.querySelectorAll('.zone-btn').forEach(btn => {
+        btn.classList.remove('bg-tealOcean-700','text-amberGold-100','shadow-sm','active');
+        btn.classList.add('bg-slate-50','text-slate-700');
+      });
+      if (element && element.classList.contains('zone-btn')) {
+        element.classList.remove('bg-slate-50','text-slate-700');
+        element.classList.add('bg-tealOcean-700','text-amberGold-100','shadow-sm','active');
+      }
+      renderHomestays();
+    }
+
+    function setCategoryFilter(cat, element) {
+      triggerHaptic();
+      selectedCategory = cat;
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        btn.classList.remove('bg-tealOcean-800','text-amberGold-100','active');
+        btn.classList.add('bg-white','text-slate-700');
+      });
+      element.classList.remove('bg-white','text-slate-700');
+      element.classList.add('bg-tealOcean-800','text-amberGold-100','active');
+      renderHomestays();
+    }
+
+    function handleSearchDebounced(event) {
+      clearTimeout(searchDebounceTimeout);
+      searchDebounceTimeout = setTimeout(() => {
+        searchQuery = event.target.value;
+        const btn = document.getElementById('clearSearchBtn');
+        if (searchQuery.length > 0) btn.classList.remove('hidden');
+        else btn.classList.add('hidden');
+        renderHomestays();
+      }, 120);
+    }
+
+    function clearSearch() {
+      const input = document.getElementById('searchInput');
+      if (input) input.value = '';
+      searchQuery = '';
+      document.getElementById('clearSearchBtn').classList.add('hidden');
+      renderHomestays();
+    }
+
+    function resetFilters() {
+      selectedZone = 'all';
+      selectedCategory = 'all';
+      searchQuery = '';
+      showBookmarksOnly = false;
+      const input = document.getElementById('searchInput');
+      if (input) input.value = '';
+      document.getElementById('clearSearchBtn').classList.add('hidden');
+
+      document.querySelectorAll('.zone-btn').forEach(b => {
+        b.classList.remove('bg-tealOcean-700','text-amberGold-100','active');
+        b.classList.add('bg-slate-50','text-slate-700');
+      });
+      const firstCat = document.querySelector('.cat-btn');
+      if (firstCat) setCategoryFilter('all', firstCat);
+
+      renderHomestays();
+    }
+
+    function toggleBookmark(id) {
+      const idx = bookmarks.indexOf(id);
+      if (idx > -1) {
+        bookmarks.splice(idx, 1);
+        showToast('Dikeluarkan dari simpanan');
+      } else {
+        bookmarks.push(id);
+        triggerHaptic();
+        showToast('Disimpan ke pilihan');
+      }
+      localStorage.setItem('homestaykita_bookmarks', JSON.stringify(bookmarks));
+      renderHomestays();
+    }
+
+    function toggleBookmarkView() {
+      triggerHaptic();
+      showBookmarksOnly = !showBookmarksOnly;
+      const icon = document.getElementById('bookmarkNavIcon');
+      if (showBookmarksOnly) {
+        updateActiveNavText('bookmark');
+        if (icon) icon.className = 'fa-solid fa-bookmark';
+        showToast('Memaparkan homestay pilihan tersimpan');
+      } else {
+        updateActiveNavText('catalog');
+        if (icon) icon.className = 'fa-regular fa-bookmark';
+      }
+      renderHomestays();
+    }
+
+    function shareHomestayDirect(id) {
+      triggerHaptic();
+      const item = homestays.find(h => h.id === id);
+      if (!item) return;
+
+      const shareText = `Tempah "${item.title}" di Homestay kita (RM${item.price}/malam). Hubungi terus ${item.hostName}: ${window.location.href}`;
+
+      if (navigator.share) {
+        navigator.share({
+          title: item.title,
+          text: shareText,
+          url: window.location.href
+        }).catch(() => {});
+      } else {
+        try {
+          const dummy = document.createElement('input');
+          document.body.appendChild(dummy);
+          dummy.value = window.location.href;
+          dummy.select();
+          document.execCommand('copy');
+          document.body.removeChild(dummy);
+          showToast('📋 Pautan homestay disalin!');
+        } catch (e) {
+          showToast('Pautan sedia dikongsi.');
+        }
+      }
+    }
+
+    // Modal Helpers
+    function openModalWithAnimation(id) { 
+      const m = document.getElementById(id); 
+      if (m) { 
+        m.classList.add('active'); 
+        document.body.style.overflow = 'hidden'; 
+      } 
+    }
+    function closeModalWithAnimation(id) { 
+      const m = document.getElementById(id); 
+      if (m) { 
+        m.classList.remove('active'); 
+        document.body.style.overflow = ''; 
+      } 
+    }
+
+    function openInfoModal() { openModalWithAnimation('infoModal'); }
+    function closeInfoModal() { closeModalWithAnimation('infoModal'); }
+
+    // Toast
+    let toastTimeout = null;
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const msg = document.getElementById('toastMessage');
+      if (!toast || !msg) return;
+      clearTimeout(toastTimeout);
+      msg.innerText = message;
+      toast.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-4');
+      toast.classList.add('opacity-100', 'translate-y-0');
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', 'pointer-events-none', '-translate-y-4');
+      }, 3000);
+    }
+
+    // Window bindings
+    Object.assign(window, {
+      switchMainTab, resetFilters, setCategoryFilter, setZoneFilter, clearSearch,
+      handleSearchDebounced, openDetailModal, closeDetailModal, openRegisterModal, 
+      closeRegisterModal, openInfoModal, closeInfoModal, openRegionModal, closeRegionModal,
+      selectRegion, toggleBookmark, toggleBookmarkView, handleImageUpload, removeUploadedImage,
+      prevSlideImage, nextSlideImage, setSlideImage, removeCurrentSlideImage, removeAllUploadedImages,
+      handleHomestaySubmit, openEditModal, deleteHomestay, shareHomestayDirect,
+      openBookingFormModal, closeBookingModal, calculateBookingDurationAndCheck,
+      handleSendWhatsAppBooking, openBlockDatesModal, closeBlockDatesModal, addBlockedDate,
+      removeBlockedDate, saveBlockedDatesToDatabase, openQuickCheckModal, closeQuickCheckModal,
+      applyQuickDateFilter, resetDateFilter, handleFilterDatesChange, renderHomestays
+    });
+
+    window.onclick = function(event) {
+      ['detailModal','bookingModal','registerModal','blockDatesModal','infoModal','regionModal','quickCheckModal'].forEach(id => {
+        const el = document.getElementById(id);
+        if (event.target === el) {
+          const fnMap = {
+            detailModal: closeDetailModal,
+            bookingModal: closeBookingModal,
+            registerModal: closeRegisterModal,
+            blockDatesModal: closeBlockDatesModal,
+            infoModal: closeInfoModal,
+            regionModal: closeRegionModal,
+            quickCheckModal: closeQuickCheckModal
+          };
+          if (fnMap[id]) fnMap[id]();
+        }
+      });
+    };
+
+    // Init
+    const savedBm = localStorage.getItem('homestaykita_bookmarks');
+    if (savedBm) {
+      try { bookmarks = JSON.parse(savedBm); } catch(e) {}
+    }
+
+    updateRegionUI();
+    initRealtimeSync();
+  </script>
+</body>
+</html>
