@@ -36,6 +36,11 @@
           fontFamily: {
             sans: ['"Plus Jakarta Sans"', 'sans-serif'],
           },
+          screens: {
+            'xs': '420px',
+            'tablet': '768px',
+            'desktop': '1024px',
+          },
           colors: {
             amberGold: {
               50: '#fffbeb',
@@ -73,15 +78,15 @@
     .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     
     .glass-nav { 
-      background: rgba(255, 255, 255, 0.95); 
-      backdrop-filter: blur(18px) saturate(180%); 
-      -webkit-backdrop-filter: blur(18px) saturate(180%); 
+      background: rgba(255, 255, 255, 0.96); 
+      backdrop-filter: blur(20px) saturate(180%); 
+      -webkit-backdrop-filter: blur(20px) saturate(180%); 
     }
     
     .glass-header-teal {
       background: rgba(15, 118, 110, 0.96);
-      backdrop-filter: blur(16px) saturate(190%);
-      -webkit-backdrop-filter: blur(16px) saturate(190%);
+      backdrop-filter: blur(18px) saturate(190%);
+      -webkit-backdrop-filter: blur(18px) saturate(190%);
       border-bottom: 1px solid rgba(94, 234, 212, 0.25);
       box-shadow: 0 4px 22px -3px rgba(15, 118, 110, 0.35);
     }
@@ -143,7 +148,7 @@
       align-items: center;
       justify-content: center;
       gap: 0px;
-      padding: 0.5rem 0.75rem;
+      padding: 0.5rem 0.65rem;
       border-radius: 9999px;
       transition: all 0.35s var(--spring-easing);
       color: #64748b;
@@ -173,7 +178,7 @@
       background: rgba(204, 251, 241, 0.92);
       backdrop-filter: blur(14px);
       color: #0f766e;
-      padding: 0.5rem 1rem;
+      padding: 0.5rem 0.9rem;
       border: 1px solid rgba(45, 212, 191, 0.5);
       box-shadow: 0 4px 16px -2px rgba(15, 118, 110, 0.2);
     }
@@ -182,7 +187,7 @@
       color: #0f766e;
     }
     .nav-btn.active .nav-text {
-      max-width: 95px;
+      max-width: 130px;
       opacity: 1;
       transform: translateX(0);
       margin-left: 6px;
@@ -203,16 +208,35 @@
     @keyframes pulse-subtle { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.12); } }
     .pulse-badge { animation: pulse-subtle 2s infinite ease-in-out; }
 
-    /* SAFE AREA UTILITIES */
+    /* ========================================================
+       SAFE AREA & RESPONSIVE VIEW ENGINE (MOBILE & TABLET)
+    ======================================================== */
     body { 
-      padding-top: env(safe-area-inset-top); 
-      padding-bottom: calc(max(5.8rem, env(safe-area-inset-bottom) + 4.8rem)); 
+      padding-top: env(safe-area-inset-top, 0px); 
+      padding-bottom: calc(max(5.8rem, env(safe-area-inset-bottom, 0px) + 4.8rem)); 
+      padding-left: env(safe-area-inset-left, 0px);
+      padding-right: env(safe-area-inset-right, 0px);
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
     }
-    .safe-pt { padding-top: max(0.5rem, env(safe-area-inset-top)); }
-    .safe-pb { padding-bottom: max(0.5rem, env(safe-area-inset-bottom)); }
+    html {
+      height: -webkit-fill-available;
+    }
+
+    .safe-pt { 
+      padding-top: max(0.6rem, env(safe-area-inset-top, 0.6rem)); 
+    }
+    .safe-pb { 
+      padding-bottom: max(0.65rem, env(safe-area-inset-bottom, 0.65rem)); 
+    }
+    .safe-px {
+      padding-left: max(0.75rem, env(safe-area-inset-left, 0.75rem));
+      padding-right: max(0.75rem, env(safe-area-inset-right, 0.75rem));
+    }
+
     .modal-scroll-area { 
       max-height: calc(88vh - 4.5rem);
-      padding-bottom: max(1.25rem, env(safe-area-inset-bottom)); 
+      padding-bottom: max(1.25rem, env(safe-area-inset-bottom, 1.25rem)); 
       -webkit-overflow-scrolling: touch;
     }
 
@@ -225,29 +249,39 @@
       background-attachment: fixed;
     }
 
-    /* Mobile Sheet & Safe Area Optimizations */
-    @media (max-width: 640px) {
+    /* Modal Mobile Bottom Sheet vs Tablet Centered Dialog */
+    @media (max-width: 639px) {
+      .modal-backdrop {
+        align-items: flex-end !important;
+        padding: 0 !important;
+      }
       .modal-sheet {
         width: 100% !important;
         max-width: 100% !important;
         border-bottom-left-radius: 0px !important;
         border-bottom-right-radius: 0px !important;
         margin-bottom: 0px !important;
-        align-self: flex-end !important;
       }
+    }
+    @media (min-width: 640px) {
       .modal-backdrop {
-        align-items: flex-end !important;
-        padding: 0 !important;
+        align-items: center !important;
+        padding: 1.5rem !important;
       }
-    }
-    .modal-fixed-header {
-      padding-top: max(0.85rem, env(safe-area-inset-top));
-    }
-    .modal-sticky-footer {
-      padding-bottom: max(1.1rem, env(safe-area-inset-bottom));
+      .modal-sheet {
+        border-radius: 1.75rem !important;
+        max-height: 85vh !important;
+      }
     }
 
-    /* DATE INPUT STYLING (Kemaskan paparan tarikh pada telefon) */
+    .modal-fixed-header {
+      padding-top: max(0.85rem, env(safe-area-inset-top, 0.85rem));
+    }
+    .modal-sticky-footer {
+      padding-bottom: max(1.1rem, env(safe-area-inset-bottom, 1.1rem));
+    }
+
+    /* DATE INPUT STYLING */
     .date-input-field {
       -webkit-appearance: none;
       -moz-appearance: none;
@@ -275,39 +309,15 @@
       text-align: left;
       min-height: 1.25rem;
     }
-
-    /* ================= GUIDE TOUR STYLES (OPTIMISED) ================= */
-    .tour-spotlight-active {
-      position: relative !important;
-      z-index: 120 !important;
-      pointer-events: auto !important;
-      box-shadow: 0 0 0 9999px rgba(15, 23, 42, 0.82), 0 0 0 3px #f59e0b, 0 10px 30px rgba(0,0,0,0.5) !important;
-      transition: box-shadow 0.3s ease, transform 0.3s ease;
-      border-radius: inherit;
-    }
-    #guideTourOverlay {
-      transition: opacity 0.3s ease;
-    }
-    #guideTourCard {
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
-      will-change: transform, top, left;
-    }
-    @keyframes pulse-tour-dot {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.35); opacity: 0.7; }
-    }
-    .tour-pulsing-badge {
-      animation: pulse-tour-dot 1.8s infinite ease-in-out;
-    }
   </style>
 </head>
 <body class="custom-page-bg text-slate-800 font-sans antialiased selection:bg-tealOcean-600 selection:text-white min-h-screen">
 
   <!-- ================= SPLASH SCREEN ================= -->
   <div id="splashScreen" class="fixed inset-0 z-[100] bg-slate-900 flex flex-col items-center justify-center p-6 text-white select-none">
-    <div class="flex flex-col items-center max-w-xs w-full text-center">
+    <div class="flex flex-col items-center max-w-xs sm:max-w-sm w-full text-center">
       <!-- House Logo SVG on Splash Screen -->
-      <div class="w-28 h-28 rounded-3xl bg-gradient-to-tr from-tealOcean-800 via-tealOcean-600 to-amberGold-400 p-3 shadow-2xl shadow-tealOcean-700/50 border border-tealOcean-400/30 mb-5 relative flex items-center justify-center">
+      <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-gradient-to-tr from-tealOcean-800 via-tealOcean-600 to-amberGold-400 p-3 shadow-2xl shadow-tealOcean-700/50 border border-tealOcean-400/30 mb-5 relative flex items-center justify-center">
         <svg class="w-full h-full drop-shadow-lg" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M256 72 L72 232 H128 V424 C128 437.25 138.75 448 152 448 H360 C373.25 448 384 437.25 384 424 V232 H440 L256 72 Z" fill="#ffffff"/>
           <rect x="330" y="110" width="36" height="70" rx="4" fill="#fbbf24"/>
@@ -324,15 +334,15 @@
         <div class="absolute -inset-1 rounded-3xl bg-tealOcean-500/25 blur-lg -z-10 animate-pulse"></div>
       </div>
 
-      <h1 class="text-2xl font-black tracking-tight text-white flex items-center justify-center gap-2">
+      <h1 class="text-2xl sm:text-3xl font-black tracking-tight text-white flex items-center justify-center gap-2">
         <span>Homestay kita</span>
         <span class="text-xs bg-tealOcean-500/20 text-amberGold-300 border border-amberGold-400/30 px-2.5 py-0.5 rounded-full font-bold">Direct Host</span>
       </h1>
-      <p class="text-xs text-tealOcean-100/80 font-medium mt-1 mb-8">Tempahan Terus Pengusaha Homestay Taiping & Sekitar</p>
+      <p class="text-xs sm:text-sm text-tealOcean-100/80 font-medium mt-1 mb-8">Tempahan Terus Pengusaha Homestay Taiping & Sekitar</p>
       <div class="w-full bg-slate-800 rounded-full h-2 p-0.5 border border-slate-700 overflow-hidden shadow-inner mb-2.5">
         <div id="splashProgressBar" class="h-full bg-gradient-to-r from-amberGold-400 via-tealOcean-400 to-tealOcean-600 rounded-full transition-all duration-150 ease-out" style="width: 0%;"></div>
       </div>
-      <div class="w-full flex items-center justify-between text-[11px] text-slate-400 font-medium">
+      <div class="w-full flex items-center justify-between text-[11px] sm:text-xs text-slate-400 font-medium">
         <span id="splashStatusText" class="truncate">Menyediakan senarai homestay...</span>
         <span id="splashPercentText" class="font-bold text-amberGold-300">0%</span>
       </div>
@@ -340,13 +350,13 @@
   </div>
 
   <!-- ================= TOP HEADER ================= -->
-  <header class="glass-header-teal sticky top-0 z-40 px-3.5 sm:px-4 safe-pt pb-2.5 transition-all duration-300">
-    <div class="max-w-4xl mx-auto flex items-center justify-between gap-2">
+  <header class="glass-header-teal sticky top-0 z-40 safe-px safe-pt pb-2.5 transition-all duration-300">
+    <div class="max-w-4xl tablet:max-w-5xl mx-auto flex items-center justify-between gap-2">
       
       <!-- Brand & Kawasan -->
       <div class="flex items-center gap-2.5 min-w-0">
         <!-- Brand Logo Icon Rumah PNG/SVG -->
-        <div onclick="switchMainTab('catalog'); resetFilters();" class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-tr from-slate-900 via-tealOcean-800 to-amberGold-500 p-1.5 flex items-center justify-center shadow-md shadow-slate-950/40 transform transition active:scale-95 duration-200 border border-amberGold-300/30 flex-shrink-0 cursor-pointer">
+        <div onclick="switchMainTab('catalog'); resetFilters();" class="w-10 h-10 tablet:w-11 tablet:h-11 rounded-2xl bg-gradient-to-tr from-slate-900 via-tealOcean-800 to-amberGold-500 p-1.5 flex items-center justify-center shadow-md shadow-slate-950/40 transform transition active:scale-95 duration-200 border border-amberGold-300/30 flex-shrink-0 cursor-pointer">
           <svg class="w-full h-full drop-shadow-sm" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M256 72 L72 232 H128 V424 C128 437.25 138.75 448 152 448 H360 C373.25 448 384 437.25 384 424 V232 H440 L256 72 Z" fill="#ffffff"/>
             <rect x="330" y="110" width="36" height="70" rx="4" fill="#fbbf24"/>
@@ -359,33 +369,27 @@
         </div>
         <div class="min-w-0">
           <div class="flex items-center gap-1.5 flex-wrap">
-            <h1 onclick="switchMainTab('catalog'); resetFilters();" class="text-base sm:text-lg font-black tracking-tight text-white leading-tight cursor-pointer truncate">Homestay kita</h1>
+            <h1 onclick="switchMainTab('catalog'); resetFilters();" class="text-base tablet:text-xl font-black tracking-tight text-white leading-tight cursor-pointer truncate">Homestay kita</h1>
             
             <!-- Pilih Kawasan Liputan -->
-            <button onclick="openRegionModal()" id="headerRegionBtn" class="btn-tactile inline-flex items-center gap-1 text-[10px] sm:text-[11px] font-bold bg-tealOcean-950/80 hover:bg-tealOcean-900 text-tealOcean-100 hover:text-white px-2 py-0.5 rounded-full border border-tealOcean-400/30 shadow-sm backdrop-blur-sm cursor-pointer transition">
+            <button onclick="openRegionModal()" id="headerRegionBtn" class="btn-tactile inline-flex items-center gap-1 text-[10px] tablet:text-xs font-bold bg-tealOcean-950/80 hover:bg-tealOcean-900 text-tealOcean-100 hover:text-white px-2.5 py-0.5 rounded-full border border-tealOcean-400/30 shadow-sm backdrop-blur-sm cursor-pointer transition">
               <i class="fa-solid fa-location-dot text-amberGold-400 text-[10px]"></i>
-              <span id="currentHeaderRegionText" class="truncate max-w-[120px] sm:max-w-none">Taiping & Kamunting</span>
+              <span id="currentHeaderRegionText" class="truncate max-w-[120px] tablet:max-w-none">Taiping & Kamunting</span>
               <i class="fa-solid fa-chevron-down text-[8px] text-tealOcean-300 ml-0.5"></i>
             </button>
           </div>
-          <p class="text-[11px] text-tealOcean-100/80 font-medium truncate hidden sm:block">Tempah Terus Pengusaha • Bebas Komisen Orang Tengah</p>
+          <p class="text-[11px] tablet:text-xs text-tealOcean-100/80 font-medium truncate hidden sm:block">Tempah Terus Pengusaha • Bebas Komisen Orang Tengah</p>
         </div>
       </div>
 
       <!-- Action Buttons Header -->
-      <div class="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
-        <!-- PWA Install Direct Button Header -->
-        <button id="headerPwaInstallBtn" onclick="openPwaInstallModal()" class="btn-tactile hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-tealOcean-950/70 hover:bg-tealOcean-900 text-amberGold-300 border border-tealOcean-400/40 text-[11px] font-extrabold shadow-sm">
-          <i class="fa-solid fa-download text-xs text-amberGold-400"></i>
-          <span>Pasang App</span>
-        </button>
-
-        <button id="tourBtnSemakTarikh" onclick="openQuickCheckModal()" class="btn-tactile flex items-center gap-1 px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-xl sm:rounded-2xl bg-amberGold-400 hover:bg-amberGold-300 text-slate-950 font-extrabold text-[11px] sm:text-xs shadow-md border border-amberGold-300">
+      <div class="flex items-center gap-1.5 tablet:gap-2.5 flex-shrink-0">
+        <button onclick="openQuickCheckModal()" class="btn-tactile flex items-center gap-1 px-2.5 py-1.5 tablet:px-3.5 tablet:py-2 rounded-xl tablet:rounded-2xl bg-amberGold-400 hover:bg-amberGold-300 text-slate-950 font-extrabold text-[11px] tablet:text-xs shadow-md border border-amberGold-300">
           <i class="fa-solid fa-calendar-check text-tealOcean-900"></i>
           <span>Semak Tarikh</span>
         </button>
 
-        <button id="tourBtnDaftarHeader" onclick="openRegisterModal()" class="btn-tactile inline-flex items-center gap-1.5 bg-gradient-to-r from-tealOcean-600 to-tealOcean-800 hover:from-tealOcean-500 hover:to-tealOcean-700 text-white text-xs font-black px-3 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl shadow-sm border border-tealOcean-400/30">
+        <button onclick="openRegisterModal()" class="btn-tactile inline-flex items-center gap-1.5 bg-gradient-to-r from-tealOcean-600 to-tealOcean-800 hover:from-tealOcean-500 hover:to-tealOcean-700 text-white text-xs tablet:text-sm font-black px-3 py-1.5 tablet:px-4 tablet:py-2 rounded-xl tablet:rounded-2xl shadow-sm border border-tealOcean-400/30">
           <i class="fa-solid fa-plus-circle text-amberGold-300"></i>
           <span class="hidden sm:inline">Daftar Homestay</span>
           <span class="sm:hidden">Daftar</span>
@@ -395,8 +399,8 @@
   </header>
 
   <!-- ================= TAB SWITCHER ================= -->
-  <section class="max-w-4xl mx-auto px-4 pt-3 pb-1">
-    <div id="tourTabSwitcherBox" class="bg-slate-200/80 border border-slate-300/80 p-1 rounded-2xl flex items-center text-xs font-bold shadow-inner relative">
+  <section class="max-w-4xl tablet:max-w-5xl mx-auto safe-px pt-3 pb-1">
+    <div class="bg-slate-200/80 border border-slate-300/80 p-1 rounded-2xl flex items-center text-xs tablet:text-sm font-bold shadow-inner relative">
       <button id="tabBtnCatalog" onclick="switchMainTab('catalog')" class="btn-tactile flex-1 py-2.5 rounded-xl flex items-center justify-center gap-2 bg-white text-tealOcean-900 shadow-sm font-extrabold z-10 border border-slate-200">
         <i class="fa-solid fa-house-chimney text-tealOcean-700"></i>
         <span>Katalog Homestay</span>
@@ -408,9 +412,9 @@
     </div>
   </section>
 
-  <!-- ================= DATE CHECKER QUICK BAR (DIPERKEMAS SEPERTI GAMBAR) ================= -->
-  <section class="max-w-4xl mx-auto px-3.5 sm:px-4 pt-2.5">
-    <div id="dateCheckerBoxContainer" class="bg-white rounded-3xl p-4 sm:p-5 shadow-sm border border-tealOcean-100 transition-all">
+  <!-- ================= DATE CHECKER QUICK BAR ================= -->
+  <section class="max-w-4xl tablet:max-w-5xl mx-auto safe-px pt-2.5">
+    <div id="dateCheckerBoxContainer" class="bg-white rounded-3xl p-4 tablet:p-5 shadow-sm border border-tealOcean-100 transition-all">
       
       <!-- Header Kad Semakan -->
       <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
@@ -418,18 +422,18 @@
           <div class="w-7 h-7 rounded-xl bg-tealOcean-50 text-tealOcean-700 flex items-center justify-center text-xs font-bold border border-tealOcean-100">
             <i class="fa-solid fa-calendar-check"></i>
           </div>
-          <span class="text-xs sm:text-sm font-black text-slate-900 tracking-tight">Semakan Tarikh & Slot Kosong</span>
+          <span class="text-xs tablet:text-sm font-black text-slate-900 tracking-tight">Semakan Tarikh & Slot Kosong</span>
         </div>
-        <span class="text-[11px] font-bold text-tealOcean-800 bg-tealOcean-50 border border-tealOcean-200/80 px-2.5 py-0.5 rounded-full">
+        <span class="text-[11px] tablet:text-xs font-bold text-tealOcean-800 bg-tealOcean-50 border border-tealOcean-200/80 px-2.5 py-0.5 rounded-full">
           Masa Nyata
         </span>
       </div>
 
-      <!-- Ruang Tarikh Check-in & Check-out -->
-      <div class="grid grid-cols-2 gap-2.5 mb-3">
+      <!-- Ruang Tarikh Check-in & Check-out (Responsif Tablet: 3 kolum) -->
+      <div class="grid grid-cols-2 tablet:grid-cols-3 gap-2.5 tablet:gap-3 mb-3">
         <!-- Check In -->
         <div>
-          <label class="block text-[10px] sm:text-[11px] font-extrabold uppercase text-slate-600 mb-1.5 flex items-center gap-1.5">
+          <label class="block text-[10px] tablet:text-xs font-extrabold uppercase text-slate-600 mb-1.5 flex items-center gap-1.5">
             <i class="fa-solid fa-calendar-plus text-tealOcean-600 text-xs"></i>
             <span>CHECK-IN</span>
           </label>
@@ -440,7 +444,7 @@
 
         <!-- Check Out -->
         <div>
-          <label class="block text-[10px] sm:text-[11px] font-extrabold uppercase text-slate-600 mb-1.5 flex items-center gap-1.5">
+          <label class="block text-[10px] tablet:text-xs font-extrabold uppercase text-slate-600 mb-1.5 flex items-center gap-1.5">
             <i class="fa-solid fa-calendar-minus text-rose-500 text-xs"></i>
             <span>CHECK-OUT</span>
           </label>
@@ -448,32 +452,32 @@
             <input type="date" id="filterCheckOut" onchange="handleFilterDatesChange()" class="date-input-field">
           </div>
         </div>
-      </div>
 
-      <!-- Kapasiti Tetamu -->
-      <div class="mb-3">
-        <label class="block text-[10px] sm:text-[11px] font-extrabold uppercase text-slate-600 mb-1.5 flex items-center gap-1.5">
-          <i class="fa-solid fa-users text-amberGold-600 text-xs"></i>
-          <span>KAPASITI TETAMU</span>
-        </label>
-        <div class="relative">
-          <select id="filterGuests" onchange="renderHomestays()" class="w-full text-xs font-bold py-2.5 px-3.5 rounded-2xl border-1.5 border-slate-200 bg-slate-50 text-slate-800 focus:bg-white focus:border-tealOcean-600 focus:ring-2 focus:ring-tealOcean-100 outline-none transition cursor-pointer min-h-[44px]">
-            <option value="0">Semua Kapasiti</option>
-            <option value="4">4+ Tetamu (Selesa)</option>
-            <option value="8">8+ Tetamu (Sederhana)</option>
-            <option value="12">12+ Tetamu (Keluarga Besar)</option>
-          </select>
+        <!-- Kapasiti Tetamu (Pada tablet duduk sebaris) -->
+        <div class="col-span-2 tablet:col-span-1">
+          <label class="block text-[10px] tablet:text-xs font-extrabold uppercase text-slate-600 mb-1.5 flex items-center gap-1.5">
+            <i class="fa-solid fa-users text-amberGold-600 text-xs"></i>
+            <span>KAPASITI TETAMU</span>
+          </label>
+          <div class="relative">
+            <select id="filterGuests" onchange="renderHomestays()" class="w-full text-xs tablet:text-sm font-bold py-2.5 px-3.5 rounded-2xl border-1.5 border-slate-200 bg-slate-50 text-slate-800 focus:bg-white focus:border-tealOcean-600 focus:ring-2 focus:ring-tealOcean-100 outline-none transition cursor-pointer min-h-[44px]">
+              <option value="0">Semua Kapasiti</option>
+              <option value="4">4+ Tetamu (Selesa)</option>
+              <option value="8">8+ Tetamu (Sederhana)</option>
+              <option value="12">12+ Tetamu (Keluarga Besar)</option>
+            </select>
+          </div>
         </div>
       </div>
 
       <!-- Butang Reset & Cari Slot -->
       <div class="flex items-center gap-2 pt-0.5">
-        <button onclick="resetDateFilter()" title="Set Semula Tarikh & Tetamu" class="btn-tactile w-12 h-11 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center border border-slate-200/90 shadow-sm flex-shrink-0">
-          <i class="fa-solid fa-rotate-left text-sm"></i>
+        <button onclick="resetDateFilter()" title="Set Semula Tarikh & Tetamu" class="btn-tactile w-12 h-11 tablet:w-14 tablet:h-12 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center border border-slate-200/90 shadow-sm flex-shrink-0">
+          <i class="fa-solid fa-rotate-left text-sm tablet:text-base"></i>
         </button>
-        <button onclick="renderHomestays()" class="btn-tactile flex-1 h-11 bg-tealOcean-800 hover:bg-tealOcean-900 text-white font-black text-xs sm:text-sm rounded-2xl shadow-sm flex items-center justify-center gap-2 border border-tealOcean-700/60 tracking-wide">
-          <i class="fa-solid fa-magnifying-glass text-xs"></i>
-          <span>Cari Slot</span>
+        <button onclick="renderHomestays()" class="btn-tactile flex-1 h-11 tablet:h-12 bg-tealOcean-800 hover:bg-tealOcean-900 text-white font-black text-xs tablet:text-sm rounded-2xl shadow-sm flex items-center justify-center gap-2 border border-tealOcean-700/60 tracking-wide">
+          <i class="fa-solid fa-magnifying-glass text-xs tablet:text-sm"></i>
+          <span>Cari Slot Kosong</span>
         </button>
       </div>
 
@@ -482,18 +486,18 @@
 
   <!-- ================= CATALOG VIEW ================= -->
   <div id="catalogView" class="transition-opacity duration-300">
-    <section class="max-w-4xl mx-auto px-4 pt-3 pb-3">
+    <section class="max-w-4xl tablet:max-w-5xl mx-auto safe-px pt-3 pb-3">
       <!-- Search Box -->
       <div class="relative mb-3">
         <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-        <input type="text" id="searchInput" oninput="handleSearchDebounced(event)" placeholder="Cari nama homestay, kolam renang, bilik tidur, atau kawasan..." class="w-full pl-10 pr-10 py-3 rounded-2xl bg-white border border-slate-200 focus:border-tealOcean-600 focus:ring-4 focus:ring-tealOcean-100 outline-none text-xs font-medium transition shadow-sm">
+        <input type="text" id="searchInput" oninput="handleSearchDebounced(event)" placeholder="Cari nama homestay, kolam renang, bilik tidur, atau kawasan..." class="w-full pl-10 pr-10 py-3 rounded-2xl bg-white border border-slate-200 focus:border-tealOcean-600 focus:ring-4 focus:ring-tealOcean-100 outline-none text-xs tablet:text-sm font-medium transition shadow-sm">
         <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1">
           <i class="fa-solid fa-circle-xmark"></i>
         </button>
       </div>
 
       <!-- Quick Category / Feature Chips -->
-      <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar pb-1 mb-3 text-xs">
+      <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar pb-1 mb-3 text-xs tablet:text-sm">
         <button onclick="setCategoryFilter('all', this)" class="cat-btn filter-pill active px-3.5 py-2 rounded-xl bg-tealOcean-800 text-amberGold-100 font-bold whitespace-nowrap shadow-sm">Semua Jenis</button>
         <button onclick="setCategoryFilter('Kolam Renang', this)" class="cat-btn filter-pill px-3 py-2 rounded-xl bg-white text-slate-700 border border-slate-200 hover:bg-slate-50 font-bold whitespace-nowrap flex items-center gap-1.5">
           <i class="fa-solid fa-water-ladder text-tealOcean-600"></i> Ada Private Pool
@@ -507,20 +511,20 @@
       </div>
 
       <!-- Zon / Kawasan Selection -->
-      <div class="bg-white/90 border border-slate-200 rounded-3xl p-3.5 shadow-sm mb-3">
+      <div class="bg-white/90 border border-slate-200 rounded-3xl p-3.5 tablet:p-4 shadow-sm mb-3">
         <div class="flex items-center justify-between mb-2">
-          <span class="text-[11px] font-extrabold text-tealOcean-900 uppercase tracking-wider flex items-center gap-1.5">
+          <span class="text-[11px] tablet:text-xs font-extrabold text-tealOcean-900 uppercase tracking-wider flex items-center gap-1.5">
             <i class="fa-solid fa-location-dot text-amberGold-500"></i> Zon Kawasan Homestay
           </span>
-          <button onclick="setZoneFilter('all', this)" class="zone-btn filter-pill text-[11px] font-bold text-tealOcean-700 hover:underline">Tunjuk Semua</button>
+          <button onclick="setZoneFilter('all', this)" class="zone-btn filter-pill text-[11px] tablet:text-xs font-bold text-tealOcean-700 hover:underline">Tunjuk Semua</button>
         </div>
 
         <!-- Zon Batu Kurau -->
         <div id="filterBatuKurauGroup" class="mb-2.5 hidden">
-          <span class="text-[10px] font-bold text-emerald-900 uppercase bg-emerald-100 px-2 py-0.5 rounded-md border border-emerald-300 flex items-center gap-1 w-max">
+          <span class="text-[10px] tablet:text-xs font-bold text-emerald-900 uppercase bg-emerald-100 px-2 py-0.5 rounded-md border border-emerald-300 flex items-center gap-1 w-max">
             <i class="fa-solid fa-mountain-sun text-[10px] text-emerald-700"></i> Homestay Dusun & Kampung Batu Kurau
           </span>
-          <div class="flex gap-1.5 overflow-x-auto hide-scrollbar pt-1.5 text-xs">
+          <div class="flex gap-1.5 tablet:gap-2 overflow-x-auto hide-scrollbar pt-1.5 text-xs tablet:text-sm">
             <button onclick="setZoneFilter('Pekan Batu Kurau', this)" class="zone-btn filter-pill px-2.5 py-1 rounded-xl bg-emerald-50/70 border border-emerald-200 text-emerald-900 whitespace-nowrap font-medium">Pekan Batu Kurau</button>
             <button onclick="setZoneFilter('Kampung Perak', this)" class="zone-btn filter-pill px-2.5 py-1 rounded-xl bg-emerald-50/70 border border-emerald-200 text-emerald-900 whitespace-nowrap font-medium">Kg Perak</button>
             <button onclick="setZoneFilter('Pantai Besar', this)" class="zone-btn filter-pill px-2.5 py-1 rounded-xl bg-emerald-50/70 border border-emerald-200 text-emerald-900 whitespace-nowrap font-medium">Pantai Besar</button>
@@ -532,8 +536,8 @@
 
         <!-- Zon Kamunting -->
         <div id="filterKamuntingGroup" class="mb-2.5">
-          <span class="text-[10px] font-bold text-tealOcean-800 uppercase bg-tealOcean-100/90 px-2 py-0.5 rounded-md border border-tealOcean-200">Zon Kamunting & Bukit Jana</span>
-          <div class="flex gap-1.5 overflow-x-auto hide-scrollbar pt-1.5 text-xs">
+          <span class="text-[10px] tablet:text-xs font-bold text-tealOcean-800 uppercase bg-tealOcean-100/90 px-2 py-0.5 rounded-md border border-tealOcean-200">Zon Kamunting & Bukit Jana</span>
+          <div class="flex gap-1.5 tablet:gap-2 overflow-x-auto hide-scrollbar pt-1.5 text-xs tablet:text-sm">
             <button onclick="setZoneFilter('Bukit Jana / Golf Resort', this)" class="zone-btn filter-pill px-2.5 py-1 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 whitespace-nowrap">Bukit Jana / Golf Resort</button>
             <button onclick="setZoneFilter('Taman Jana Utama', this)" class="zone-btn filter-pill px-2.5 py-1 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 whitespace-nowrap">Taman Jana Utama</button>
             <button onclick="setZoneFilter('Taman Kamunting Mutiara', this)" class="zone-btn filter-pill px-2.5 py-1 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 whitespace-nowrap">Kamunting Mutiara</button>
@@ -544,8 +548,8 @@
 
         <!-- Zon Taiping -->
         <div id="filterTaipingGroup">
-          <span class="text-[10px] font-bold text-amberGold-800 uppercase bg-amberGold-100 px-2 py-0.5 rounded-md border border-amberGold-200">Zon Taiping & Lake Gardens</span>
-          <div class="flex gap-1.5 overflow-x-auto hide-scrollbar pt-1.5 text-xs">
+          <span class="text-[10px] tablet:text-xs font-bold text-amberGold-800 uppercase bg-amberGold-100 px-2 py-0.5 rounded-md border border-amberGold-200">Zon Taiping & Lake Gardens</span>
+          <div class="flex gap-1.5 tablet:gap-2 overflow-x-auto hide-scrollbar pt-1.5 text-xs tablet:text-sm">
             <button onclick="setZoneFilter('Bandar Taiping / Lake Gardens', this)" class="zone-btn filter-pill px-2.5 py-1 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 whitespace-nowrap">Bandar Taiping / Lake Gardens</button>
             <button onclick="setZoneFilter('Taman Lake View', this)" class="zone-btn filter-pill px-2.5 py-1 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 whitespace-nowrap">Taman Lake View</button>
             <button onclick="setZoneFilter('Aulong Lama & Baru', this)" class="zone-btn filter-pill px-2.5 py-1 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 whitespace-nowrap">Aulong</button>
@@ -555,18 +559,18 @@
         </div>
       </div>
 
-      <div class="flex items-center justify-between text-xs text-slate-500 font-semibold px-1">
+      <div class="flex items-center justify-between text-xs tablet:text-sm text-slate-500 font-semibold px-1">
         <div class="flex items-center gap-2">
           <span id="homestayCountBadge" class="text-tealOcean-950 font-bold">0 Homestay Tersedia</span>
           <span class="text-slate-300">|</span>
-          <button onclick="resetFilters()" class="text-tealOcean-700 hover:underline text-[11px] btn-tactile">Set Semula</button>
+          <button onclick="resetFilters()" class="text-tealOcean-700 hover:underline text-[11px] tablet:text-xs btn-tactile">Set Semula</button>
         </div>
       </div>
     </section>
 
-    <!-- Main Grid -->
-    <main class="max-w-4xl mx-auto px-4">
-      <div id="homestayGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 transition-all duration-300"></div>
+    <!-- Main Grid: 1 Kolum (Mobile), 2 Kolum (Tablet), 3 Kolum (Desktop) -->
+    <main class="max-w-4xl tablet:max-w-5xl mx-auto safe-px">
+      <div id="homestayGrid" class="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 gap-4 tablet:gap-5 transition-all duration-300"></div>
 
       <div id="emptyState" class="hidden text-center py-16 px-4 animate-grid-item">
         <div class="w-16 h-16 mx-auto mb-3 rounded-3xl bg-amberGold-100 flex items-center justify-center text-tealOcean-800 text-2xl shadow-sm border border-amberGold-200">
@@ -583,18 +587,18 @@
 
   <!-- ================= HOST MANAGEMENT HUB ================= -->
   <div id="hostHubView" class="hidden transition-opacity duration-300">
-    <section class="max-w-4xl mx-auto px-4 pt-3 pb-4">
+    <section class="max-w-4xl tablet:max-w-5xl mx-auto safe-px pt-3 pb-4">
       <!-- Pengusaha Hero Banner -->
-      <div class="bg-gradient-to-r from-tealOcean-900 via-tealOcean-800 to-slate-900 text-white rounded-3xl p-5 shadow-sm mb-4 relative overflow-hidden border border-tealOcean-700/50">
-        <div class="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <div class="bg-gradient-to-r from-tealOcean-900 via-tealOcean-800 to-slate-900 text-white rounded-3xl p-5 tablet:p-6 shadow-sm mb-4 relative overflow-hidden border border-tealOcean-700/50">
+        <div class="relative z-10 flex flex-col tablet:flex-row tablet:items-center justify-between gap-3">
           <div>
-            <span class="bg-tealOcean-700/70 text-amberGold-300 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full border border-amberGold-400/30">Portal Pengusaha Homestay kita</span>
-            <h2 class="text-lg font-black tracking-tight text-white mt-1">Urus Tempahan & Sekat Tarikh Penuh</h2>
-            <p class="text-xs text-tealOcean-100/90 mt-0.5 max-w-md">
+            <span class="bg-tealOcean-700/70 text-amberGold-300 text-[10px] tablet:text-xs font-extrabold px-2.5 py-0.5 rounded-full border border-amberGold-400/30">Portal Pengusaha Homestay kita</span>
+            <h2 class="text-lg tablet:text-2xl font-black tracking-tight text-white mt-1">Urus Tempahan & Sekat Tarikh Penuh</h2>
+            <p class="text-xs tablet:text-sm text-tealOcean-100/90 mt-0.5 max-w-md">
               Kemas kini ketersediaan tarikh bilik supaya tetamu tahu tarikh mana yang masih kosong atau telah penuh.
             </p>
           </div>
-          <button onclick="openRegisterModal()" class="btn-tactile inline-flex items-center justify-center gap-2 bg-amberGold-400 text-slate-950 hover:bg-amberGold-300 font-black text-xs px-4 py-2.5 rounded-2xl shadow whitespace-nowrap">
+          <button onclick="openRegisterModal()" class="btn-tactile inline-flex items-center justify-center gap-2 bg-amberGold-400 text-slate-950 hover:bg-amberGold-300 font-black text-xs tablet:text-sm px-4 py-2.5 tablet:py-3 rounded-2xl shadow whitespace-nowrap">
             <i class="fa-solid fa-plus-circle"></i>
             <span>Daftar Homestay Baharu</span>
           </button>
@@ -606,10 +610,10 @@
 
       <!-- Senarai Homestay Pengusaha yang Boleh Diurus -->
       <div class="mb-3 flex items-center justify-between">
-        <h3 class="text-xs font-extrabold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
+        <h3 class="text-xs tablet:text-sm font-extrabold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
           <i class="fa-solid fa-sliders text-tealOcean-700"></i> Homestay Anda Untuk Urus Kalendar
         </h3>
-        <span class="text-[11px] text-tealOcean-800 bg-tealOcean-100 font-bold px-2 py-0.5 rounded-full" id="hostListingBadge">0 Homestay Anda</span>
+        <span class="text-[11px] tablet:text-xs text-tealOcean-800 bg-tealOcean-100 font-bold px-2 py-0.5 rounded-full" id="hostListingBadge">0 Homestay Anda</span>
       </div>
 
       <div id="hostHomestayList" class="space-y-3"></div>
@@ -627,157 +631,159 @@
     </section>
   </div>
 
-  <!-- ================= BOTTOM NAVIGATION ================= -->
-  <nav class="fixed bottom-0 inset-x-0 glass-nav border-t border-slate-200/90 px-4 pt-2 z-40 safe-pb shadow-2xl">
-    <div class="max-w-md mx-auto flex items-center justify-between relative px-2">
+  <!-- ================= BOTTOM NAVIGATION (HANYA 5 ITEM) ================= -->
+  <nav class="fixed bottom-0 inset-x-0 glass-nav border-t border-slate-200/90 safe-px pt-2 z-40 safe-pb shadow-2xl">
+    <div class="max-w-md tablet:max-w-xl mx-auto flex items-center justify-between relative px-1 sm:px-2">
       
-      <!-- Nav Katalog -->
+      <!-- 1. Nav Katalog -->
       <button onclick="switchMainTab('catalog'); resetFilters(); window.scrollTo({top: 0, behavior: 'smooth'});" id="navCatalogBtn" class="nav-btn active focus:outline-none">
         <i class="fa-solid fa-house-chimney"></i>
         <span class="nav-text">Katalog</span>
       </button>
 
-      <!-- Nav Pengurusan Host -->
+      <!-- 2. Nav Kalendar Host -->
       <button onclick="switchMainTab('hosthub'); window.scrollTo({top: 0, behavior: 'smooth'});" id="navHostBtn" class="nav-btn focus:outline-none relative">
         <i class="fa-solid fa-calendar-days"></i>
         <span class="nav-text">Kalendar Host</span>
       </button>
 
-      <!-- Central Add Homestay Button -->
-      <button id="tourBtnCenterAdd" onclick="openRegisterModal()" class="btn-tactile flex flex-col items-center justify-center text-slate-900 focus:outline-none -mt-5 mx-0.5 group" title="Daftar Homestay">
-        <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-tealOcean-700 via-tealOcean-600 to-amberGold-400 text-white flex items-center justify-center shadow-lg shadow-tealOcean-800/30 border-2 border-white group-hover:scale-105 transition-transform">
-          <i class="fa-solid fa-plus text-lg"></i>
+      <!-- 3. Central Add Homestay Button (Tambah Homestay) -->
+      <button onclick="openRegisterModal()" class="btn-tactile flex flex-col items-center justify-center text-slate-900 focus:outline-none -mt-5 mx-0.5 group" title="Tambah Homestay">
+        <div class="w-12 h-12 tablet:w-14 tablet:h-14 rounded-full bg-gradient-to-tr from-tealOcean-700 via-tealOcean-600 to-amberGold-400 text-white flex items-center justify-center shadow-lg shadow-tealOcean-800/30 border-2 border-white group-hover:scale-105 transition-transform">
+          <i class="fa-solid fa-plus text-lg tablet:text-xl"></i>
         </div>
       </button>
 
-      <!-- Nav Disimpan (Bookmarks) -->
+      <!-- 4. Nav Disimpan (Bookmarks) -->
       <button onclick="switchMainTab('catalog'); toggleBookmarkView();" id="bookmarkNavBtn" class="nav-btn focus:outline-none">
         <i class="fa-regular fa-bookmark" id="bookmarkNavIcon"></i>
         <span class="nav-text">Disimpan</span>
       </button>
 
-      <!-- Nav Pasang PWA (Mobile Access) -->
-      <button onclick="openPwaInstallModal()" id="navInstallPwaBtn" class="nav-btn focus:outline-none text-tealOcean-700">
-        <i class="fa-solid fa-mobile-screen-button"></i>
-        <span class="nav-text">Pasang App</span>
-      </button>
-
-      <!-- Nav Info & Bantuan -->
-      <button onclick="openInfoModal()" id="navHelpBtn" class="nav-btn focus:outline-none">
+      <!-- 5. Nav Tentang Homestay kita (Tentang & Panduan Termasuk PWA) -->
+      <button onclick="openInfoModal()" id="navHelpBtn" class="nav-btn focus:outline-none" title="Tentang Homestay kita">
         <i class="fa-solid fa-circle-question"></i>
-        <span class="nav-text">Info</span>
+        <span class="nav-text">Tentang</span>
       </button>
       
     </div>
   </nav>
 
-  <!-- ================= POINT-TO-POINT GUIDE TOUR OVERLAY (OPTIMISED) ================= -->
-  <div id="guideTourOverlay" class="fixed inset-0 z-[105] pointer-events-none opacity-0 select-none transition-opacity duration-300 hidden">
-    <!-- Semi-transparent Dimmed Backdrop -->
-    <div class="absolute inset-0 bg-slate-950/75 backdrop-blur-[2px] pointer-events-auto" onclick="skipGuideTour()"></div>
-
-    <!-- Floating Tooltip Card -->
-    <div id="guideTourCard" class="fixed z-[130] w-[calc(100vw-28px)] max-w-sm bg-white rounded-3xl p-4.5 shadow-2xl border-2 border-amberGold-400 pointer-events-auto transform transition-all duration-300">
-      <div class="flex items-center justify-between pb-2 mb-2 border-b border-slate-100">
-        <div class="flex items-center gap-2">
-          <div class="w-7 h-7 rounded-xl bg-tealOcean-100 text-tealOcean-800 flex items-center justify-center text-xs font-bold shadow-sm">
-            <i class="fa-solid fa-compass text-amberGold-600" id="tourCardIcon"></i>
-          </div>
-          <span class="text-[11px] font-black uppercase text-tealOcean-900 tracking-wider">Panduan Mula</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <span id="tourStepBadge" class="text-[10px] font-black px-2.5 py-0.5 rounded-full bg-amberGold-100 text-amberGold-900 border border-amberGold-300 shadow-sm">1 / 6</span>
-          <button onclick="skipGuideTour()" class="text-slate-400 hover:text-slate-600 text-xs p-1" title="Langkau Panduan">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-        </div>
-      </div>
-
-      <h4 id="tourStepTitle" class="text-xs sm:text-sm font-black text-slate-900 leading-snug">Pilih Kawasan Pilihan Anda</h4>
-      <p id="tourStepDesc" class="text-[11px] text-slate-600 mt-1.5 leading-relaxed">
-        Pilih kawasan homestay antara Taiping & Kamunting atau suasana santai dusun Batu Kurau.
-      </p>
-
-      <div class="flex items-center justify-between pt-3 mt-3 border-t border-slate-100">
-        <button id="tourPrevBtn" onclick="prevGuideStep()" class="btn-tactile text-xs font-bold text-slate-500 hover:text-slate-800 px-2.5 py-1.5 rounded-lg">
-          Undur
-        </button>
-        <div class="flex items-center gap-2">
-          <button onclick="skipGuideTour()" class="btn-tactile text-[11px] font-bold text-slate-400 hover:text-slate-600 px-2 py-1">
-            Langkau
-          </button>
-          <button id="tourNextBtn" onclick="nextGuideStep()" class="btn-tactile bg-gradient-to-r from-tealOcean-700 to-tealOcean-800 hover:from-tealOcean-600 hover:to-tealOcean-700 text-white font-black text-xs px-4 py-2 rounded-xl shadow-md flex items-center gap-1.5">
-            <span>Seterusnya</span>
-            <i class="fa-solid fa-chevron-right text-[10px]"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ================= MODAL PANDUAN PASANG PWA (ADD TO HOME SCREEN) ================= -->
-  <div id="pwaInstallModal" class="modal-backdrop fixed inset-0 bg-slate-900/60 z-50 flex items-center justify-center p-4">
-    <div class="modal-sheet bg-white rounded-3xl max-w-sm w-full p-5 shadow-2xl relative border border-slate-100 modal-scroll-area">
-      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+  <!-- ================= MODAL PANDUAN INSTALL APLIKASI (CHROME & IOS SAFARI) ================= -->
+  <div id="installGuideModal" class="modal-backdrop fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="modal-sheet bg-white rounded-3xl max-w-sm tablet:max-w-md w-full p-5 shadow-2xl relative border border-slate-100 modal-scroll-area">
+      
+      <!-- Header -->
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-3">
         <div class="flex items-center gap-2.5">
-          <div class="w-8 h-8 rounded-xl bg-tealOcean-100 text-tealOcean-800 flex items-center justify-center text-sm font-bold shadow-sm">
-            <i class="fa-solid fa-mobile-screen-button"></i>
+          <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-tealOcean-700 to-amberGold-500 p-1 flex items-center justify-center shadow-md text-white flex-shrink-0">
+            <svg class="w-full h-full" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M256 72 L72 232 H128 V424 C128 437.25 138.75 448 152 448 H360 C373.25 448 384 437.25 384 424 V232 H440 L256 72 Z" fill="#ffffff"/>
+              <rect x="220" y="300" width="72" height="148" rx="10" fill="#0f766e"/>
+              <circle cx="278" cy="370" r="7" fill="#fbbf24"/>
+            </svg>
           </div>
           <div>
-            <h3 class="font-extrabold text-slate-900 text-sm">Pasang Homestay kita</h3>
-            <p class="text-[10px] text-slate-500">Akses pantas terus di skrin utama</p>
+            <h3 class="font-black text-slate-900 text-sm tablet:text-base leading-tight">Pasang Aplikasi Homestay kita</h3>
+            <p class="text-[10px] tablet:text-xs text-tealOcean-800 font-bold">Gunakan seperti App tanpa muat turun dari Store</p>
           </div>
         </div>
-        <button onclick="closePwaInstallModal()" class="btn-tactile w-7 h-7 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center">
+        <button onclick="closeInstallGuideModal()" class="btn-tactile w-8 h-8 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center hover:bg-slate-200">
           <i class="fa-solid fa-xmark text-xs"></i>
         </button>
       </div>
 
-      <div class="py-3 text-xs space-y-3">
-        <!-- Native Install Button jika disokong -->
-        <div id="nativeInstallPromptBox" class="p-3 rounded-2xl bg-tealOcean-50 border border-tealOcean-200 text-center">
-          <p class="text-[11px] font-bold text-tealOcean-900 mb-2">Pasang aplikasi ini ke peranti anda seperti aplikasi native:</p>
-          <button id="btnTriggerNativeInstall" onclick="triggerPwaPrompt()" class="btn-tactile w-full py-2.5 bg-tealOcean-700 hover:bg-tealOcean-800 text-white font-extrabold rounded-xl shadow flex items-center justify-center gap-2 text-xs">
-            <i class="fa-solid fa-download text-amberGold-300"></i>
-            <span>Pasang Sekarang (Install App)</span>
-          </button>
+      <!-- Butang Native Install (Auto-Prompt jika disokong Chrome) -->
+      <div id="modalNativeInstallRow" class="hidden mb-3">
+        <button onclick="triggerPwaPrompt()" class="btn-tactile w-full py-3 bg-gradient-to-r from-tealOcean-700 to-tealOcean-900 hover:from-tealOcean-800 text-white font-extrabold text-xs tablet:text-sm rounded-2xl shadow-md flex items-center justify-center gap-2 border border-tealOcean-600">
+          <i class="fa-solid fa-download text-amberGold-300"></i>
+          <span>Pasang Terus Ke Skrin Utama (Install Now)</span>
+        </button>
+      </div>
+
+      <!-- Tab Switcher (Chrome vs iOS Safari) -->
+      <div class="bg-slate-100 p-1 rounded-2xl flex items-center text-xs font-bold mb-3 border border-slate-200">
+        <button id="tabBtnChrome" onclick="switchInstallTab('chrome')" class="btn-tactile flex-1 py-2 rounded-xl flex items-center justify-center gap-1.5 bg-white text-tealOcean-900 font-extrabold shadow-sm border border-slate-200">
+          <i class="fa-brands fa-chrome text-emerald-600 text-sm"></i>
+          <span>Google Chrome (Android)</span>
+        </button>
+        <button id="tabBtnIos" onclick="switchInstallTab('ios')" class="btn-tactile flex-1 py-2 rounded-xl flex items-center justify-center gap-1.5 text-slate-600 font-bold">
+          <i class="fa-brands fa-apple text-slate-900 text-sm"></i>
+          <span>Safari (iPhone / iPad)</span>
+        </button>
+      </div>
+
+      <!-- Panduan Chrome Android -->
+      <div id="guideChromeContent" class="space-y-2 text-xs tablet:text-sm text-slate-700">
+        <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-3">
+          <div class="w-7 h-7 rounded-full bg-tealOcean-100 text-tealOcean-800 font-black text-xs flex items-center justify-center flex-shrink-0 mt-0.5">1</div>
+          <div>
+            <div class="font-extrabold text-slate-900">Tekan Menu Titik Tiga (⋮)</div>
+            <div class="text-[11px] tablet:text-xs text-slate-500 mt-0.5">Cari ikon menu titik tiga di bahagian atas sebelah kanan pelayar Google Chrome anda.</div>
+          </div>
         </div>
 
-        <!-- Panduan Manual Mengikut Peranti -->
-        <div class="space-y-2.5">
-          <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200">
-            <div class="font-bold text-slate-800 flex items-center gap-1.5 mb-1 text-xs">
-              <i class="fa-brands fa-android text-emerald-600"></i> Android (Google Chrome):
-            </div>
-            <ol class="list-decimal list-inside text-[11px] text-slate-600 space-y-1">
-              <li>Tekan butang menu titik tiga <strong>(⋮)</strong> di sudut atas kanan browser.</li>
-              <li>Pilih <strong>"Add to Home screen"</strong> atau <strong>"Install app"</strong>.</li>
-              <li>Sahkan untuk memasang ikon pada skrin telefon anda.</li>
-            </ol>
+        <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-3">
+          <div class="w-7 h-7 rounded-full bg-tealOcean-100 text-tealOcean-800 font-black text-xs flex items-center justify-center flex-shrink-0 mt-0.5">2</div>
+          <div>
+            <div class="font-extrabold text-slate-900">Pilih "Install app" atau "Add to Home screen"</div>
+            <div class="text-[11px] tablet:text-xs text-slate-500 mt-0.5">Skrol ke bawah pada senarai menu dan pilih <strong>Pasang Aplikasi / Tambah ke Skrin Utama</strong>.</div>
           </div>
+        </div>
 
-          <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200">
-            <div class="font-bold text-slate-800 flex items-center gap-1.5 mb-1 text-xs">
-              <i class="fa-brands fa-apple text-slate-900"></i> iPhone / iPad (Safari):
-            </div>
-            <ol class="list-decimal list-inside text-[11px] text-slate-600 space-y-1">
-              <li>Tekan butang <strong>Kongsi (Share <i class="fa-solid fa-arrow-up-from-bracket text-[10px]"></i>)</strong> di bahagian bawah skrin.</li>
-              <li>Skrol ke bawah dan pilih <strong>"Add to Home Screen"</strong> (<i class="fa-regular fa-square-plus text-[10px]"></i>).</li>
-              <li>Tekan <strong>"Add"</strong> di bucu atas kanan.</li>
-            </ol>
+        <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-3">
+          <div class="w-7 h-7 rounded-full bg-tealOcean-100 text-tealOcean-800 font-black text-xs flex items-center justify-center flex-shrink-0 mt-0.5">3</div>
+          <div>
+            <div class="font-extrabold text-slate-900">Tekan "Install / Tambah"</div>
+            <div class="text-[11px] tablet:text-xs text-slate-500 mt-0.5">Ikon Homestay kita akan muncul pada skrin telefon anda seperti aplikasi biasa.</div>
           </div>
         </div>
       </div>
 
-      <button onclick="closePwaInstallModal()" class="btn-tactile w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-2xl text-xs mt-1">
-        Faham & Tutup
-      </button>
+      <!-- Panduan iOS Safari -->
+      <div id="guideIosContent" class="space-y-2 text-xs tablet:text-sm text-slate-700 hidden">
+        <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-3">
+          <div class="w-7 h-7 rounded-full bg-amberGold-100 text-amberGold-900 font-black text-xs flex items-center justify-center flex-shrink-0 mt-0.5">1</div>
+          <div>
+            <div class="font-extrabold text-slate-900">Buka di Pelayar Safari</div>
+            <div class="text-[11px] tablet:text-xs text-slate-500 mt-0.5">Pastikan laman ini dibuka melalui pelayar <strong>Safari</strong> rasmi Apple pada iPhone atau iPad anda.</div>
+          </div>
+        </div>
+
+        <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-3">
+          <div class="w-7 h-7 rounded-full bg-amberGold-100 text-amberGold-900 font-black text-xs flex items-center justify-center flex-shrink-0 mt-0.5">2</div>
+          <div>
+            <div class="font-extrabold text-slate-900">Tekan Butang Kongsi (Share)</div>
+            <div class="text-[11px] tablet:text-xs text-slate-500 mt-0.5">Tekan ikon petak beranak panah ke atas <strong class="inline-flex items-center gap-1 bg-slate-200 px-1.5 py-0.5 rounded text-[10px]"><i class="fa-solid fa-arrow-up-from-bracket"></i> Share</strong> di bahagian bawah skrin.</div>
+          </div>
+        </div>
+
+        <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-3">
+          <div class="w-7 h-7 rounded-full bg-amberGold-100 text-amberGold-900 font-black text-xs flex items-center justify-center flex-shrink-0 mt-0.5">3</div>
+          <div>
+            <div class="font-extrabold text-slate-900">Pilih "Add to Home Screen" (+)</div>
+            <div class="text-[11px] tablet:text-xs text-slate-500 mt-0.5">Skrol menu ke bawah dan tekan pilihan <strong>Add to Home Screen</strong>, kemudian tekan <strong>Add</strong> di bucu atas kanan.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Button -->
+      <div class="pt-3 mt-3 border-t border-slate-100 flex items-center justify-between gap-2">
+        <label class="flex items-center gap-1.5 cursor-pointer text-[11px] text-slate-500 font-semibold select-none">
+          <input type="checkbox" id="dontShowInstallAgain" onchange="toggleDontShowInstallAgain(event)" class="rounded text-tealOcean-600 focus:ring-tealOcean-500">
+          <span>Jangan tunjuk lagi</span>
+        </label>
+        <button onclick="closeInstallGuideModal()" class="btn-tactile px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white font-extrabold rounded-xl text-xs tablet:text-sm">
+          Faham
+        </button>
+      </div>
+
     </div>
   </div>
 
   <!-- ================= MODAL SEMAK TARIKH CEPAT ================= -->
   <div id="quickCheckModal" class="modal-backdrop fixed inset-0 bg-slate-900/60 z-50 flex items-center justify-center p-4">
-    <div class="modal-sheet bg-white rounded-3xl max-w-sm w-full p-5 shadow-2xl relative border border-slate-100">
+    <div class="modal-sheet bg-white rounded-3xl max-w-sm tablet:max-w-md w-full p-5 shadow-2xl relative border border-slate-100">
       <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-3">
         <div class="flex items-center gap-2">
           <div class="w-8 h-8 rounded-xl bg-tealOcean-100 text-tealOcean-800 flex items-center justify-center text-sm font-bold">
@@ -793,14 +799,14 @@
         </button>
       </div>
 
-      <div class="space-y-3 text-xs">
+      <div class="space-y-3 text-xs tablet:text-sm">
         <div>
           <label class="block font-bold text-slate-700 mb-1">Tarikh Masuk (Check-in)</label>
-          <input type="date" id="modalQuickCheckIn" class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none">
+          <input type="date" id="modalQuickCheckIn" class="date-input-field">
         </div>
         <div>
           <label class="block font-bold text-slate-700 mb-1">Tarikh Keluar (Check-out)</label>
-          <input type="date" id="modalQuickCheckOut" class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none">
+          <input type="date" id="modalQuickCheckOut" class="date-input-field">
         </div>
         <button onclick="applyQuickDateFilter()" class="btn-tactile w-full py-3 bg-tealOcean-700 hover:bg-tealOcean-800 text-white font-extrabold rounded-2xl shadow-md flex items-center justify-center gap-1.5 mt-2">
           <i class="fa-solid fa-magnifying-glass"></i>
@@ -812,10 +818,10 @@
 
   <!-- ================= MODAL DETAIL HOMESTAY ================= -->
   <div id="detailModal" class="modal-backdrop fixed inset-0 bg-slate-900/60 z-50 flex items-center justify-center p-0 sm:p-4">
-    <div class="modal-sheet bg-white rounded-t-3xl sm:rounded-3xl max-w-sm sm:max-w-md w-full overflow-hidden shadow-2xl relative max-h-[92vh] flex flex-col border border-slate-100">
+    <div class="modal-sheet bg-white rounded-t-3xl sm:rounded-3xl max-w-sm sm:max-w-md tablet:max-lg w-full overflow-hidden shadow-2xl relative max-h-[92vh] flex flex-col border border-slate-100">
       
       <!-- Slide Gambar Homestay -->
-      <div id="detailSlideWrapper" class="relative h-56 sm:h-64 w-full bg-slate-900 flex-shrink-0 select-none overflow-hidden group">
+      <div id="detailSlideWrapper" class="relative h-56 sm:h-64 tablet:h-72 w-full bg-slate-900 flex-shrink-0 select-none overflow-hidden group">
         <img id="modalImg" src="" alt="Homestay" class="w-full h-full object-cover transition-opacity duration-300 cursor-pointer" onclick="openAllPhotosGallery(window.__currentDetailId)">
         <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 pointer-events-none"></div>
 
@@ -852,17 +858,17 @@
       <div class="p-5 overflow-y-auto modal-scroll-area flex-1">
         <div class="flex items-start justify-between gap-2">
           <div>
-            <h3 id="modalTitle" class="text-lg font-black text-slate-900 leading-snug"></h3>
-            <p id="modalHost" class="text-xs font-bold text-tealOcean-800 mt-0.5"></p>
+            <h3 id="modalTitle" class="text-lg tablet:text-xl font-black text-slate-900 leading-snug"></h3>
+            <p id="modalHost" class="text-xs tablet:text-sm font-bold text-tealOcean-800 mt-0.5"></p>
           </div>
           <div class="text-right flex-shrink-0">
-            <span id="modalPrice" class="text-base font-black text-tealOcean-900 block"></span>
-            <span class="text-[10px] text-slate-500 font-semibold">/ malam</span>
+            <span id="modalPrice" class="text-base tablet:text-lg font-black text-tealOcean-900 block"></span>
+            <span class="text-[10px] tablet:text-xs text-slate-500 font-semibold">/ malam</span>
           </div>
         </div>
 
         <!-- Spesifikasi Bilik & Kemudahan -->
-        <div class="my-3 py-2.5 border-y border-slate-100 grid grid-cols-3 gap-2 text-center text-xs text-slate-700">
+        <div class="my-3 py-2.5 border-y border-slate-100 grid grid-cols-3 gap-2 text-center text-xs tablet:text-sm text-slate-700">
           <div class="bg-slate-50 p-2 rounded-xl border border-slate-100">
             <i class="fa-solid fa-bed text-tealOcean-600 block mb-0.5 text-sm"></i>
             <span id="modalBedrooms" class="font-bold">3 Bilik</span>
@@ -877,20 +883,20 @@
           </div>
         </div>
 
-        <div class="flex items-center gap-1.5 text-xs text-slate-600 mb-3">
+        <div class="flex items-center gap-1.5 text-xs tablet:text-sm text-slate-600 mb-3">
           <i class="fa-solid fa-map-location-dot text-amberGold-600"></i>
           <span id="modalZone" class="font-medium"></span>
         </div>
 
         <div class="mb-3">
-          <h4 class="font-extrabold text-xs text-slate-800 mb-1">Kemudahan & Fasiliti:</h4>
-          <div id="modalAmenitiesList" class="flex flex-wrap gap-1 text-[11px]"></div>
+          <h4 class="font-extrabold text-xs tablet:text-sm text-slate-800 mb-1">Kemudahan & Fasiliti:</h4>
+          <div id="modalAmenitiesList" class="flex flex-wrap gap-1 text-[11px] tablet:text-xs"></div>
         </div>
 
-        <p id="modalDesc" class="text-xs text-slate-600 leading-relaxed mb-4 whitespace-pre-line"></p>
+        <p id="modalDesc" class="text-xs tablet:text-sm text-slate-600 leading-relaxed mb-4 whitespace-pre-line"></p>
 
         <!-- Kotak Maklumat Direct Host -->
-        <div class="bg-tealOcean-50 border border-tealOcean-200 rounded-2xl p-3 text-xs text-tealOcean-950 mb-4">
+        <div class="bg-tealOcean-50 border border-tealOcean-200 rounded-2xl p-3 tablet:p-3.5 text-xs tablet:text-sm text-tealOcean-950 mb-4">
           <div class="font-bold mb-0.5 flex items-center gap-1 text-tealOcean-900">
             <i class="fa-brands fa-whatsapp text-tealOcean-600 text-sm"></i> Tempahan Terus Kepada Pengusaha
           </div>
@@ -913,7 +919,7 @@
           <i class="fa-solid fa-share-nodes text-slate-600"></i>
           <span>Kongsi</span>
         </button>
-        <button id="modalBookBtn" onclick="openBookingFormModal(window.__currentDetailId)" class="btn-tactile flex-1 py-3 px-4 rounded-2xl bg-tealOcean-700 hover:bg-tealOcean-800 text-white font-black text-sm flex items-center justify-center gap-2 shadow-md shadow-tealOcean-700/25">
+        <button id="modalBookBtn" onclick="openBookingFormModal(window.__currentDetailId)" class="btn-tactile flex-1 py-3 px-4 rounded-2xl bg-tealOcean-700 hover:bg-tealOcean-800 text-white font-black text-sm tablet:text-base flex items-center justify-center gap-2 shadow-md shadow-tealOcean-700/25">
           <i class="fa-solid fa-calendar-check text-amberGold-300"></i>
           <span>Borang Tempahan & Cek Tarikh</span>
         </button>
@@ -924,10 +930,10 @@
   <!-- ================= POPUP VIEW ALL PICTURES GALLERY ================= -->
   <div id="galleryModal" class="modal-backdrop fixed inset-0 bg-black/90 backdrop-blur-md z-[60] flex flex-col justify-between p-0">
     <!-- Header Popup Galeri -->
-    <div class="w-full max-w-xl mx-auto flex items-center justify-between px-4 py-3 modal-fixed-header z-20 text-white border-b border-white/10">
+    <div class="w-full max-w-xl tablet:max-w-3xl mx-auto flex items-center justify-between px-4 py-3 modal-fixed-header z-20 text-white border-b border-white/10">
       <div>
-        <h4 id="galleryModalTitle" class="font-extrabold text-xs sm:text-sm text-white line-clamp-1">Galeri Gambar Homestay</h4>
-        <span id="galleryCounterText" class="text-[10px] text-amberGold-300 font-bold">1 / 1</span>
+        <h4 id="galleryModalTitle" class="font-extrabold text-xs sm:text-sm tablet:text-base text-white line-clamp-1">Galeri Gambar Homestay</h4>
+        <span id="galleryCounterText" class="text-[10px] tablet:text-xs text-amberGold-300 font-bold">1 / 1</span>
       </div>
       <button onclick="closeAllPhotosGallery()" class="btn-tactile w-8 h-8 rounded-full bg-white/20 text-white flex items-center justify-center hover:bg-white/30">
         <i class="fa-solid fa-xmark"></i>
@@ -935,35 +941,35 @@
     </div>
 
     <!-- Paparan Utama Gambar Skrin Penuh -->
-    <div class="relative flex-1 flex items-center justify-center p-2 select-none overflow-hidden max-w-xl mx-auto w-full">
-      <img id="galleryMainImg" src="" alt="Homestay" class="max-h-[60vh] sm:max-h-[70vh] w-auto max-w-full object-contain rounded-xl shadow-2xl transition-all duration-200">
+    <div class="relative flex-1 flex items-center justify-center p-2 select-none overflow-hidden max-w-xl tablet:max-w-3xl mx-auto w-full">
+      <img id="galleryMainImg" src="" alt="Homestay" class="max-h-[60vh] sm:max-h-[70vh] tablet:max-h-[75vh] w-auto max-w-full object-contain rounded-xl shadow-2xl transition-all duration-200">
       
       <!-- Navigasi Kiri / Kanan -->
-      <button onclick="galleryPrevPhoto()" class="btn-tactile absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/90 shadow border border-white/10">
-        <i class="fa-solid fa-chevron-left text-sm"></i>
+      <button onclick="galleryPrevPhoto()" class="btn-tactile absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 tablet:w-12 tablet:h-12 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/90 shadow border border-white/10">
+        <i class="fa-solid fa-chevron-left text-sm tablet:text-base"></i>
       </button>
-      <button onclick="galleryNextPhoto()" class="btn-tactile absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/90 shadow border border-white/10">
-        <i class="fa-solid fa-chevron-right text-sm"></i>
+      <button onclick="galleryNextPhoto()" class="btn-tactile absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 tablet:w-12 tablet:h-12 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/90 shadow border border-white/10">
+        <i class="fa-solid fa-chevron-right text-sm tablet:text-base"></i>
       </button>
     </div>
 
     <!-- Strip Thumbnail di Bahagian Bawah -->
-    <div class="w-full max-w-xl mx-auto px-4 py-3 modal-sticky-footer bg-black/60 backdrop-blur-md border-t border-white/10">
+    <div class="w-full max-w-xl tablet:max-w-3xl mx-auto px-4 py-3 modal-sticky-footer bg-black/60 backdrop-blur-md border-t border-white/10">
       <div id="galleryThumbnailsStrip" class="flex items-center gap-2 overflow-x-auto hide-scrollbar py-1"></div>
     </div>
   </div>
 
   <!-- ================= MODAL BORANG BOOKING & CHECK TARIKH ================= -->
   <div id="bookingModal" class="modal-backdrop fixed inset-0 bg-slate-900/60 z-50 flex items-center justify-center p-0 sm:p-4">
-    <div class="modal-sheet bg-white rounded-t-3xl sm:rounded-3xl max-w-sm sm:max-w-md w-full overflow-hidden shadow-2xl relative max-h-[92vh] flex flex-col border border-slate-100">
+    <div class="modal-sheet bg-white rounded-t-3xl sm:rounded-3xl max-w-sm sm:max-w-md tablet:max-w-lg w-full overflow-hidden shadow-2xl relative max-h-[92vh] flex flex-col border border-slate-100">
       <div class="px-5 py-4 border-b border-tealOcean-100 flex items-center justify-between bg-tealOcean-50 flex-shrink-0 modal-fixed-header">
         <div class="flex items-center gap-2.5">
           <div class="w-8 h-8 rounded-xl bg-tealOcean-700 text-amberGold-300 flex items-center justify-center text-sm font-bold shadow-sm">
             <i class="fa-solid fa-calendar-check"></i>
           </div>
           <div>
-            <h3 class="text-sm font-black text-slate-900">Borang Tempahan Homestay kita</h3>
-            <p class="text-[10px] text-slate-500" id="bookingModalSubtitle">Semak tarikh & hubungi pengusaha</p>
+            <h3 class="text-sm tablet:text-base font-black text-slate-900">Borang Tempahan Homestay kita</h3>
+            <p class="text-[10px] tablet:text-xs text-slate-500" id="bookingModalSubtitle">Semak tarikh & hubungi pengusaha</p>
           </div>
         </div>
         <button onclick="closeBookingModal()" class="btn-tactile w-8 h-8 rounded-full bg-slate-200/70 text-slate-600 flex items-center justify-center hover:bg-slate-300">
@@ -972,16 +978,16 @@
       </div>
 
       <form id="bookingForm" onsubmit="handleSendWhatsAppBooking(event)" class="flex flex-col flex-1 overflow-hidden">
-        <div class="p-5 overflow-y-auto space-y-3.5 text-xs modal-scroll-area flex-1">
+        <div class="p-5 overflow-y-auto space-y-3.5 text-xs tablet:text-sm modal-scroll-area flex-1">
           <!-- Info Ringkas Homestay Pilihan -->
           <div class="bg-slate-50 border border-slate-200 p-3 rounded-2xl flex items-start gap-3">
-            <img id="bookMenuImg" src="" alt="Homestay" class="w-14 h-14 rounded-xl object-cover border border-slate-200 flex-shrink-0" onerror="this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?w=700&auto=format&fit=crop&q=80'">
+            <img id="bookMenuImg" src="" alt="Homestay" class="w-14 h-14 tablet:w-16 tablet:h-16 rounded-xl object-cover border border-slate-200 flex-shrink-0" onerror="this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?w=700&auto=format&fit=crop&q=80'">
             <div class="min-w-0 flex-1">
-              <span class="text-[10px] font-bold text-tealOcean-800 uppercase tracking-wide truncate block" id="bookHostName"></span>
-              <h4 class="font-black text-xs text-slate-900 leading-snug truncate" id="bookHomestayTitle"></h4>
+              <span class="text-[10px] tablet:text-xs font-bold text-tealOcean-800 uppercase tracking-wide truncate block" id="bookHostName"></span>
+              <h4 class="font-black text-xs tablet:text-sm text-slate-900 leading-snug truncate" id="bookHomestayTitle"></h4>
               <div class="flex items-center justify-between mt-1">
-                <span class="text-xs font-black text-tealOcean-900" id="bookPriceRate"></span>
-                <span class="text-[9px] font-bold bg-white text-slate-700 px-2 py-0.5 rounded-full border border-slate-200" id="bookGuestLimit"></span>
+                <span class="text-xs tablet:text-sm font-black text-tealOcean-900" id="bookPriceRate"></span>
+                <span class="text-[9px] tablet:text-xs font-bold bg-white text-slate-700 px-2 py-0.5 rounded-full border border-slate-200" id="bookGuestLimit"></span>
               </div>
             </div>
           </div>
@@ -990,11 +996,11 @@
           <div class="grid grid-cols-2 gap-3">
             <div>
               <label class="block font-bold text-slate-700 mb-1">Tarikh Masuk (Check-In) *</label>
-              <input type="date" id="bookCheckInDate" required onchange="calculateBookingDurationAndCheck()" class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none transition text-xs">
+              <input type="date" id="bookCheckInDate" required onchange="calculateBookingDurationAndCheck()" class="date-input-field">
             </div>
             <div>
               <label class="block font-bold text-slate-700 mb-1">Tarikh Keluar (Check-Out) *</label>
-              <input type="date" id="bookCheckOutDate" required onchange="calculateBookingDurationAndCheck()" class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none transition text-xs">
+              <input type="date" id="bookCheckOutDate" required onchange="calculateBookingDurationAndCheck()" class="date-input-field">
             </div>
           </div>
 
@@ -1002,27 +1008,27 @@
           <div id="availabilityIndicatorBox" class="p-3 rounded-2xl border transition-all duration-200 flex items-center gap-2.5 bg-slate-100 border-slate-200 text-slate-600">
             <i class="fa-solid fa-circle-info text-slate-500 text-base" id="availIcon"></i>
             <div>
-              <div class="font-extrabold text-xs" id="availStatusTitle">Pilih Tarikh Check-in & Check-out</div>
-              <div class="text-[10px]" id="availStatusDesc">Sistem akan memeriksa sama ada tarikh pilihan masih kosong atau sudah ditempah.</div>
+              <div class="font-extrabold text-xs tablet:text-sm" id="availStatusTitle">Pilih Tarikh Check-in & Check-out</div>
+              <div class="text-[10px] tablet:text-xs" id="availStatusDesc">Sistem akan memeriksa sama ada tarikh pilihan masih kosong atau sudah ditempah.</div>
             </div>
           </div>
 
           <div>
             <label class="block font-bold text-slate-700 mb-1">Nama Penuh Tempahan *</label>
-            <input type="text" id="bookCustomerName" required placeholder="Cth: Encik Faizal / Puan Nurul" class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none transition">
+            <input type="text" id="bookCustomerName" required placeholder="Cth: Encik Faizal / Puan Nurul" class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none transition min-h-[44px]">
           </div>
 
           <div class="grid grid-cols-2 gap-3">
             <div>
               <label class="block font-bold text-slate-700 mb-1">No. Telefon WhatsApp *</label>
               <div class="flex shadow-sm rounded-xl">
-                <span class="inline-flex items-center justify-center px-2.5 bg-slate-100 border border-r-0 border-slate-200 text-slate-700 font-bold rounded-l-xl text-xs">+60</span>
-                <input type="tel" id="bookCustomerPhone" required placeholder="123456789" class="w-full p-2.5 border border-slate-200 rounded-r-xl focus:ring-2 focus:ring-tealOcean-600 outline-none transition">
+                <span class="inline-flex items-center justify-center px-2.5 bg-slate-100 border border-r-0 border-slate-200 text-slate-700 font-bold rounded-l-xl text-xs tablet:text-sm">+60</span>
+                <input type="tel" id="bookCustomerPhone" required placeholder="123456789" class="w-full p-2.5 border border-slate-200 rounded-r-xl focus:ring-2 focus:ring-tealOcean-600 outline-none transition min-h-[44px]">
               </div>
             </div>
             <div>
               <label class="block font-bold text-slate-700 mb-1">Jumlah Tetamu *</label>
-              <input type="number" id="bookGuestsCount" min="1" max="50" value="4" required class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none transition">
+              <input type="number" id="bookGuestsCount" min="1" max="50" value="4" required class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none transition min-h-[44px]">
             </div>
           </div>
 
@@ -1034,16 +1040,16 @@
           <!-- Ringkasan Anggaran Penginapan -->
           <div class="bg-tealOcean-50 border border-tealOcean-200 rounded-2xl p-3 flex items-center justify-between">
             <div>
-              <span class="text-[10px] text-slate-500 font-bold uppercase block" id="bookNightsCount">0 Malam Penginapan</span>
-              <span class="text-[10px] text-tealOcean-800 font-medium">Bayaran terus kepada pengusaha</span>
+              <span class="text-[10px] tablet:text-xs text-slate-500 font-bold uppercase block" id="bookNightsCount">0 Malam Penginapan</span>
+              <span class="text-[10px] tablet:text-xs text-tealOcean-800 font-medium">Bayaran terus kepada pengusaha</span>
             </div>
-            <span class="text-base font-black text-tealOcean-950" id="bookTotalRate">RM 0.00</span>
+            <span class="text-base tablet:text-lg font-black text-tealOcean-950" id="bookTotalRate">RM 0.00</span>
           </div>
         </div>
 
-        <!-- Sticky Footer untuk Borang Mobile -->
+        <!-- Sticky Footer untuk Borang Mobile & Tablet -->
         <div class="p-3.5 bg-white/95 backdrop-blur-md border-t border-slate-100 modal-sticky-footer flex-shrink-0">
-          <button type="submit" id="bookSubmitBtn" class="btn-tactile w-full py-3 bg-gradient-to-r from-tealOcean-700 via-tealOcean-800 to-tealOcean-900 hover:from-tealOcean-800 hover:to-tealOcean-950 text-white font-extrabold rounded-2xl shadow-md flex items-center justify-center gap-2 border border-tealOcean-600">
+          <button type="submit" id="bookSubmitBtn" class="btn-tactile w-full py-3 bg-gradient-to-r from-tealOcean-700 via-tealOcean-800 to-tealOcean-900 hover:from-tealOcean-800 hover:to-tealOcean-950 text-white font-extrabold rounded-2xl shadow-md flex items-center justify-center gap-2 border border-tealOcean-600 text-xs tablet:text-sm min-h-[44px]">
             <i class="fa-brands fa-whatsapp text-lg text-amberGold-300"></i>
             <span>Hantar Tempahan Terus ke WhatsApp Tuan Rumah</span>
           </button>
@@ -1054,11 +1060,11 @@
 
   <!-- ================= MODAL DAFTAR HOMESTAY (PENGUSAHA) ================= -->
   <div id="registerModal" class="modal-backdrop fixed inset-0 bg-slate-900/60 z-50 flex items-center justify-center p-0 sm:p-4">
-    <div class="modal-sheet bg-white rounded-t-3xl sm:rounded-3xl max-w-md w-full overflow-hidden shadow-2xl relative max-h-[92vh] flex flex-col border border-slate-100">
+    <div class="modal-sheet bg-white rounded-t-3xl sm:rounded-3xl max-w-md tablet:max-w-xl w-full overflow-hidden shadow-2xl relative max-h-[92vh] flex flex-col border border-slate-100">
       <div class="px-5 py-4 border-b border-tealOcean-100 flex items-center justify-between bg-tealOcean-50 flex-shrink-0 modal-fixed-header">
         <div>
-          <h3 id="registerModalTitle" class="text-base font-black text-slate-900">Daftar Homestay Anda (Bebas Komisen)</h3>
-          <p class="text-[11px] text-slate-500">Iklan terus untuk pengusaha Homestay kita (Taiping, Kamunting & Batu Kurau)</p>
+          <h3 id="registerModalTitle" class="text-base tablet:text-lg font-black text-slate-900">Daftar Homestay Anda (Bebas Komisen)</h3>
+          <p class="text-[11px] tablet:text-xs text-slate-500">Iklan terus untuk pengusaha Homestay kita (Taiping, Kamunting & Batu Kurau)</p>
         </div>
         <button onclick="closeRegisterModal()" class="btn-tactile w-8 h-8 rounded-full bg-slate-200/70 text-slate-600 flex items-center justify-center hover:bg-slate-300">
           <i class="fa-solid fa-xmark"></i>
@@ -1066,22 +1072,22 @@
       </div>
 
       <form id="homestayForm" onsubmit="handleHomestaySubmit(event)" class="flex flex-col flex-1 overflow-hidden">
-        <div class="p-5 overflow-y-auto space-y-3.5 text-xs modal-scroll-area flex-1">
+        <div class="p-5 overflow-y-auto space-y-3.5 text-xs tablet:text-sm modal-scroll-area flex-1">
           <div>
             <label class="block font-bold text-slate-700 mb-1">Nama Homestay *</label>
-            <input type="text" id="regTitle" required placeholder="Cth: Homestay Seri Saujana Taiping with Private Pool" class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none transition">
+            <input type="text" id="regTitle" required placeholder="Cth: Homestay Seri Saujana Taiping with Private Pool" class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none transition min-h-[44px]">
           </div>
 
           <div>
             <label class="block font-bold text-slate-700 mb-1">Nama Pengusaha / Syarikat Homestay *</label>
-            <input type="text" id="regHostName" required placeholder="Cth: Tuan Haji Osman / Homestay Taiping Heritage" class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none transition">
+            <input type="text" id="regHostName" required placeholder="Cth: Tuan Haji Osman / Homestay Taiping Heritage" class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none transition min-h-[44px]">
           </div>
 
           <!-- Gambar Homestay (Sehingga 5 Gambar dengan Slide Mode) -->
           <div>
             <div class="flex items-center justify-between mb-1">
               <label class="block font-bold text-slate-700">Gambar Homestay (Hingga 5 Gambar) *</label>
-              <span id="imageCountText" class="text-[10px] text-tealOcean-700 font-extrabold bg-tealOcean-50 border border-tealOcean-200 px-2 py-0.5 rounded-full">0 / 5 Gambar</span>
+              <span id="imageCountText" class="text-[10px] tablet:text-xs text-tealOcean-700 font-extrabold bg-tealOcean-50 border border-tealOcean-200 px-2 py-0.5 rounded-full">0 / 5 Gambar</span>
             </div>
             <input type="file" id="regImageInput" accept="image/*" multiple class="hidden" onchange="handleImageUpload(event)">
             <div id="imageDropzone" onclick="document.getElementById('regImageInput').click()" class="relative border-2 border-dashed border-tealOcean-300 hover:border-tealOcean-600 bg-tealOcean-50/50 hover:bg-tealOcean-50 rounded-2xl p-3 text-center cursor-pointer transition-all flex flex-col items-center justify-center min-h-[140px]">
@@ -1095,7 +1101,7 @@
               
               <!-- Slide Mode Preview Container -->
               <div id="imagePreviewContainer" class="hidden w-full relative" onclick="event.stopPropagation()">
-                <div class="relative w-full h-44 rounded-2xl overflow-hidden bg-black/90 shadow-sm border border-slate-200 flex items-center justify-center">
+                <div class="relative w-full h-44 tablet:h-52 rounded-2xl overflow-hidden bg-black/90 shadow-sm border border-slate-200 flex items-center justify-center">
                   <img id="imagePreview" src="" alt="Pratonton" class="w-full h-full object-cover transition-opacity duration-200">
                   
                   <!-- Slide Controls -->
@@ -1122,10 +1128,10 @@
                 <div id="slideThumbnailStrip" class="flex items-center gap-1.5 overflow-x-auto hide-scrollbar pt-2"></div>
 
                 <div class="flex items-center justify-between pt-2">
-                  <button type="button" onclick="document.getElementById('regImageInput').click()" class="btn-tactile text-[11px] font-bold text-tealOcean-700 hover:underline flex items-center gap-1">
+                  <button type="button" onclick="document.getElementById('regImageInput').click()" class="btn-tactile text-[11px] tablet:text-xs font-bold text-tealOcean-700 hover:underline flex items-center gap-1">
                     <i class="fa-solid fa-plus-circle"></i> Tambah / Ganti Gambar
                   </button>
-                  <button type="button" onclick="removeAllUploadedImages()" class="btn-tactile text-[11px] font-bold text-rose-600 hover:underline flex items-center gap-1">
+                  <button type="button" onclick="removeAllUploadedImages()" class="btn-tactile text-[11px] tablet:text-xs font-bold text-rose-600 hover:underline flex items-center gap-1">
                     <i class="fa-solid fa-trash"></i> Kosongkan Semua
                   </button>
                 </div>
@@ -1136,13 +1142,13 @@
           <div class="grid grid-cols-2 gap-3">
             <div>
               <label class="block font-bold text-slate-700 mb-1">Kadar Semalam (RM) *</label>
-              <input type="number" step="10" id="regPrice" required placeholder="Cth: 250" class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none transition">
+              <input type="number" step="10" id="regPrice" required placeholder="Cth: 250" class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none transition min-h-[44px]">
             </div>
             <div>
               <label class="block font-bold text-slate-700 mb-1">No. WhatsApp Pengusaha *</label>
               <div class="flex shadow-sm rounded-xl">
-                <span class="inline-flex items-center justify-center px-2.5 bg-slate-100 border border-r-0 border-slate-200 text-slate-700 font-bold rounded-l-xl text-xs">+60</span>
-                <input type="tel" id="regPhone" required placeholder="123456789" class="w-full p-2.5 border border-slate-200 rounded-r-xl focus:ring-2 focus:ring-tealOcean-600 outline-none transition">
+                <span class="inline-flex items-center justify-center px-2.5 bg-slate-100 border border-r-0 border-slate-200 text-slate-700 font-bold rounded-l-xl text-xs tablet:text-sm">+60</span>
+                <input type="tel" id="regPhone" required placeholder="123456789" class="w-full p-2.5 border border-slate-200 rounded-r-xl focus:ring-2 focus:ring-tealOcean-600 outline-none transition min-h-[44px]">
               </div>
             </div>
           </div>
@@ -1150,22 +1156,22 @@
           <div class="grid grid-cols-3 gap-2">
             <div>
               <label class="block font-bold text-slate-700 mb-1">Bilik Tidur *</label>
-              <input type="number" id="regBedrooms" min="1" max="20" value="3" required class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none">
+              <input type="number" id="regBedrooms" min="1" max="20" value="3" required class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none min-h-[44px]">
             </div>
             <div>
               <label class="block font-bold text-slate-700 mb-1">Bilik Air *</label>
-              <input type="number" id="regBathrooms" min="1" max="20" value="2" required class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none">
+              <input type="number" id="regBathrooms" min="1" max="20" value="2" required class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none min-h-[44px]">
             </div>
             <div>
               <label class="block font-bold text-slate-700 mb-1">Max Tetamu *</label>
-              <input type="number" id="regMaxGuests" min="1" max="50" value="8" required class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none">
+              <input type="number" id="regMaxGuests" min="1" max="50" value="8" required class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none min-h-[44px]">
             </div>
           </div>
 
           <div class="grid grid-cols-2 gap-3">
             <div>
               <label class="block font-bold text-slate-700 mb-1">Zon Kawasan *</label>
-              <select id="regZone" required class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none bg-white">
+              <select id="regZone" required class="w-full p-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none bg-white min-h-[44px]">
                 <optgroup id="regOptKamunting" label="Zon Kamunting">
                   <option value="Bukit Jana / Golf Resort">Bukit Jana / Golf Resort</option>
                   <option value="Taman Jana Utama">Taman Jana Utama</option>
@@ -1253,7 +1259,7 @@
                 <span>🚿 Water Heater</span>
               </label>
             </div>
-            <input type="text" id="regAmenitiesExtra" placeholder="Kemudahan tambahan lain (cth: Iron, sejadah, Netflix dsb)" class="w-full p-2 mt-1.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none transition text-xs">
+            <input type="text" id="regAmenitiesExtra" placeholder="Kemudahan tambahan lain (cth: Iron, sejadah, Netflix dsb)" class="w-full p-2 mt-1.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-tealOcean-600 outline-none transition text-xs tablet:text-sm min-h-[44px]">
           </div>
 
           <div>
@@ -1262,9 +1268,9 @@
           </div>
         </div>
 
-        <!-- Sticky Footer untuk Register Mobile View -->
+        <!-- Sticky Footer untuk Register Mobile & Tablet View -->
         <div class="p-3.5 bg-white/95 backdrop-blur-md border-t border-slate-100 modal-sticky-footer flex-shrink-0">
-          <button type="submit" id="registerSubmitBtn" class="btn-tactile w-full py-3 bg-gradient-to-r from-tealOcean-700 to-tealOcean-900 hover:from-tealOcean-800 hover:to-tealOcean-950 text-white font-extrabold rounded-2xl shadow-md border border-tealOcean-600">
+          <button type="submit" id="registerSubmitBtn" class="btn-tactile w-full py-3 bg-gradient-to-r from-tealOcean-700 to-tealOcean-900 hover:from-tealOcean-800 hover:to-tealOcean-950 text-white font-extrabold rounded-2xl shadow-md border border-tealOcean-600 text-xs tablet:text-sm min-h-[44px]">
             Terbitkan Homestay Ke Direktori
           </button>
         </div>
@@ -1274,7 +1280,7 @@
 
   <!-- ================= MODAL URUS TARIKH PENUH (HOST SLOT) ================= -->
   <div id="blockDatesModal" class="modal-backdrop fixed inset-0 bg-slate-900/60 z-50 flex items-center justify-center p-4">
-    <div class="modal-sheet bg-white rounded-3xl max-w-sm w-full p-5 shadow-2xl relative border border-slate-100">
+    <div class="modal-sheet bg-white rounded-3xl max-w-sm tablet:max-w-md w-full p-5 shadow-2xl relative border border-slate-100">
       <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-3">
         <div>
           <h3 class="font-extrabold text-slate-900 text-sm">Urus Tarikh Penuh (Booked)</h3>
@@ -1285,12 +1291,12 @@
         </button>
       </div>
 
-      <div class="space-y-3 text-xs">
+      <div class="space-y-3 text-xs tablet:text-sm">
         <div>
           <label class="block font-bold text-slate-700 mb-1">Tambah Tarikh Telah Penuh / Diambil</label>
           <div class="flex gap-2">
-            <input type="date" id="newBlockedDateInput" class="flex-1 p-2 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-tealOcean-600">
-            <button onclick="addBlockedDate()" class="btn-tactile px-3 py-2 bg-rose-600 text-white rounded-xl font-bold flex items-center gap-1 shadow-sm">
+            <input type="date" id="newBlockedDateInput" class="date-input-field flex-1">
+            <button onclick="addBlockedDate()" class="btn-tactile px-3.5 py-2 bg-rose-600 text-white rounded-xl font-bold flex items-center gap-1 shadow-sm min-h-[44px]">
               <i class="fa-solid fa-lock"></i>
               <span>Kunci</span>
             </button>
@@ -1302,7 +1308,7 @@
           <div id="blockedDatesChips" class="min-h-[70px] max-h-40 overflow-y-auto p-2 bg-slate-50 rounded-xl border border-slate-200 flex flex-wrap gap-1.5"></div>
         </div>
 
-        <button onclick="saveBlockedDatesToDatabase()" class="btn-tactile w-full py-2.5 bg-tealOcean-700 hover:bg-tealOcean-800 text-white font-extrabold rounded-xl shadow mt-2">
+        <button onclick="saveBlockedDatesToDatabase()" class="btn-tactile w-full py-2.5 tablet:py-3 bg-tealOcean-700 hover:bg-tealOcean-800 text-white font-extrabold rounded-xl shadow mt-2 text-xs tablet:text-sm">
           Simpan Kemas Kini Tarikh
         </button>
       </div>
@@ -1311,7 +1317,7 @@
 
   <!-- ================= MODAL PILIH KAWASAN ================= -->
   <div id="regionModal" class="modal-backdrop fixed inset-0 bg-slate-900/60 z-50 flex items-center justify-center p-4">
-    <div class="modal-sheet bg-white rounded-3xl max-w-sm w-full p-5 shadow-2xl relative border border-slate-100">
+    <div class="modal-sheet bg-white rounded-3xl max-w-sm tablet:max-w-md w-full p-5 shadow-2xl relative border border-slate-100">
       <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-3">
         <div class="flex items-center gap-2">
           <div class="w-8 h-8 rounded-xl bg-tealOcean-100 text-tealOcean-800 flex items-center justify-center text-sm font-bold">
@@ -1328,46 +1334,52 @@
       </div>
 
       <div class="space-y-2.5">
-        <button id="regionBtnTaiping" onclick="selectRegion('Taiping & Kamunting')" class="btn-tactile w-full p-3 rounded-2xl bg-tealOcean-50 hover:bg-tealOcean-100/80 border-2 border-tealOcean-600 text-left flex items-center justify-between shadow-sm">
+        <button id="regionBtnTaiping" onclick="selectRegion('Taiping & Kamunting')" class="btn-tactile w-full p-3 tablet:p-3.5 rounded-2xl bg-tealOcean-50 hover:bg-tealOcean-100/80 border-2 border-tealOcean-600 text-left flex items-center justify-between shadow-sm min-h-[44px]">
           <div class="flex items-center gap-3">
             <div class="w-9 h-9 rounded-xl bg-tealOcean-700 text-amberGold-200 flex items-center justify-center text-sm font-bold">
               <i class="fa-solid fa-city"></i>
             </div>
             <div>
-              <div class="text-xs font-black text-tealOcean-950">Taiping & Kamunting</div>
-              <div class="text-[10px] text-tealOcean-700 font-medium">Lake Gardens, Zoo Taiping & Bukit Jana</div>
+              <div class="text-xs tablet:text-sm font-black text-tealOcean-950">Taiping & Kamunting</div>
+              <div class="text-[10px] tablet:text-xs text-tealOcean-700 font-medium">Lake Gardens, Zoo Taiping & Bukit Jana</div>
             </div>
           </div>
-          <span id="regionBadgeTaiping" class="text-[10px] font-black bg-tealOcean-600 text-white px-2 py-0.5 rounded-full shadow-sm">DIPILIH</span>
+          <span id="regionBadgeTaiping" class="text-[10px] tablet:text-xs font-black bg-tealOcean-600 text-white px-2 py-0.5 rounded-full shadow-sm">DIPILIH</span>
         </button>
 
-        <button id="regionBtnBatuKurau" onclick="selectRegion('Batu Kurau')" class="btn-tactile w-full p-3 rounded-2xl bg-slate-50 hover:bg-emerald-50 border border-slate-200 text-left flex items-center justify-between shadow-sm">
+        <button id="regionBtnBatuKurau" onclick="selectRegion('Batu Kurau')" class="btn-tactile w-full p-3 tablet:p-3.5 rounded-2xl bg-slate-50 hover:bg-emerald-50 border border-slate-200 text-left flex items-center justify-between shadow-sm min-h-[44px]">
           <div class="flex items-center gap-3">
             <div class="w-9 h-9 rounded-xl bg-slate-200 text-slate-600 flex items-center justify-center text-sm font-bold">
               <i class="fa-solid fa-mountain-sun"></i>
             </div>
             <div>
-              <div class="text-xs font-bold text-slate-800">Batu Kurau</div>
-              <div class="text-[10px] text-slate-500 font-medium">Homestay suasana dusun, sungai & bukit</div>
+              <div class="text-xs tablet:text-sm font-bold text-slate-800">Batu Kurau</div>
+              <div class="text-[10px] tablet:text-xs text-slate-500 font-medium">Homestay suasana dusun, sungai & bukit</div>
             </div>
           </div>
-          <span id="regionBadgeBatuKurau" class="hidden text-[10px] font-black bg-emerald-600 text-white px-2 py-0.5 rounded-full shadow-sm">DIPILIH</span>
+          <span id="regionBadgeBatuKurau" class="hidden text-[10px] tablet:text-xs font-black bg-emerald-600 text-white px-2 py-0.5 rounded-full shadow-sm">DIPILIH</span>
         </button>
       </div>
     </div>
   </div>
 
-  <!-- ================= MODAL INFO & BANTUAN ================= -->
+  <!-- ================= MODAL TENTANG HOMESTAY KITA ================= -->
   <div id="infoModal" class="modal-backdrop fixed inset-0 bg-slate-900/60 z-50 flex items-center justify-center p-4">
-    <div class="modal-sheet bg-white rounded-3xl max-w-sm w-full p-5 shadow-2xl relative border border-slate-100 modal-scroll-area">
+    <div class="modal-sheet bg-white rounded-3xl max-w-sm tablet:max-w-md w-full p-5 shadow-2xl relative border border-slate-100 modal-scroll-area">
       <div class="flex items-center justify-between pb-3 border-b border-slate-100">
-        <h3 class="font-extrabold text-slate-900 text-sm">Tentang Homestay kita</h3>
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-xl bg-tealOcean-100 text-tealOcean-800 flex items-center justify-center text-sm font-bold shadow-sm">
+            <i class="fa-solid fa-circle-question text-tealOcean-700"></i>
+          </div>
+          <h3 class="font-extrabold text-slate-900 text-sm tablet:text-base">Tentang Homestay kita</h3>
+        </div>
         <button onclick="closeInfoModal()" class="btn-tactile w-7 h-7 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center">
           <i class="fa-solid fa-xmark text-xs"></i>
         </button>
       </div>
-      <div class="py-3 text-xs text-slate-600 space-y-2.5">
-        <p><strong>Homestay kita</strong> menghubungkan pelancong dan pengunjung terus kepada pengusaha homestay tempatan tanpa sebarang potongan komisen platform luar.</p>
+
+      <div class="py-3 text-xs tablet:text-sm text-slate-600 space-y-3">
+        <p><strong>Homestay kita</strong> menghubungkan pelancong dan pengunjung terus kepada pengusaha homestay tempatan tanpa sebarang komisen perantara.</p>
         
         <div class="bg-tealOcean-50 p-3 rounded-2xl border border-tealOcean-200">
           <strong class="text-tealOcean-900">Kelebihan Homestay kita:</strong>
@@ -1379,24 +1391,21 @@
           </ul>
         </div>
 
-        <button onclick="openPwaInstallModal(); closeInfoModal();" class="btn-tactile w-full py-2.5 bg-tealOcean-100 hover:bg-tealOcean-200 text-tealOcean-900 font-black rounded-2xl text-xs flex items-center justify-center gap-2 border border-tealOcean-300 shadow-sm mt-2">
-          <i class="fa-solid fa-mobile-screen-button text-tealOcean-700"></i>
-          <span>Panduan Pasang Aplikasi (PWA Install)</span>
-        </button>
-
-        <button onclick="restartGuideTour()" class="btn-tactile w-full py-2.5 bg-amberGold-400 hover:bg-amberGold-500 text-slate-950 font-black rounded-2xl text-xs flex items-center justify-center gap-2 border border-amberGold-500 shadow-sm mt-1">
-          <i class="fa-solid fa-compass text-tealOcean-900"></i>
-          <span>Ulang Panduan Pengguna (Guide Tour)</span>
+        <!-- Butang Buka Panduan Pasang Aplikasi (Chrome & iOS) -->
+        <button onclick="closeInfoModal(); openInstallGuideModal();" class="btn-tactile w-full py-3 bg-amberGold-400 hover:bg-amberGold-500 text-slate-950 font-black rounded-2xl text-xs tablet:text-sm flex items-center justify-center gap-2 border border-amberGold-500 shadow-sm min-h-[44px]">
+          <i class="fa-solid fa-mobile-screen-button text-tealOcean-900 text-base"></i>
+          <span>Panduan Pasang Aplikasi (Chrome & iOS)</span>
         </button>
       </div>
-      <button onclick="closeInfoModal()" class="btn-tactile w-full py-2.5 bg-tealOcean-800 text-white font-bold rounded-2xl text-xs mt-2 shadow">
+
+      <button onclick="closeInfoModal()" class="btn-tactile w-full py-2.5 tablet:py-3 bg-tealOcean-800 text-white font-bold rounded-2xl text-xs tablet:text-sm mt-2 shadow min-h-[44px]">
         Tutup
       </button>
     </div>
   </div>
 
   <!-- ================= TOAST ================= -->
-  <div id="toast" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-slate-900/95 backdrop-blur-md text-white text-xs font-semibold px-4 py-3 rounded-2xl shadow-2xl transition-all duration-300 opacity-0 pointer-events-none -translate-y-4 flex items-center gap-2.5 border border-slate-700 max-w-xs safe-pt mt-2">
+  <div id="toast" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-slate-900/95 backdrop-blur-md text-white text-xs tablet:text-sm font-semibold px-4 py-3 rounded-2xl shadow-2xl transition-all duration-300 opacity-0 pointer-events-none -translate-y-4 flex items-center gap-2.5 border border-slate-700 max-w-xs tablet:max-w-md safe-pt mt-2">
     <i class="fa-solid fa-circle-check text-amberGold-400 text-sm flex-shrink-0" id="toastIcon"></i>
     <span id="toastMessage" class="truncate">Tindakan berjaya</span>
   </div>
@@ -1465,54 +1474,6 @@
     // State PWA Install Prompt
     let deferredPwaPrompt = null;
 
-    // State Guide Tour (Diperkemas & Dioptimumkan)
-    let currentTourStep = 0;
-    let tourActive = false;
-    const tourSteps = [
-      {
-        elementId: 'headerRegionBtn',
-        title: 'Langkah 1: Pilih Kawasan Anda',
-        desc: 'Sentuh di sini untuk menukar antara kawasan Taiping & Kamunting atau suasana santai dusun Batu Kurau.',
-        icon: 'fa-location-dot',
-        position: 'bottom'
-      },
-      {
-        elementId: 'tourBtnSemakTarikh',
-        title: 'Langkah 2: Semak Tarikh Pantas',
-        desc: 'Buka pop-up semakan tarikh segera untuk melihat slot kosong secara sepintas lalu.',
-        icon: 'fa-calendar-check',
-        position: 'bottom'
-      },
-      {
-        elementId: 'dateCheckerBoxContainer',
-        title: 'Langkah 3: Kotak Semakan Tarikh & Slot',
-        desc: 'Pilih Check-In, Check-Out serta bilangan tetamu di sini untuk menapis homestay yang betul-betul available secara live.',
-        icon: 'fa-calendar-days',
-        position: 'bottom'
-      },
-      {
-        elementId: 'tourBtnDaftarHeader',
-        title: 'Langkah 4: Daftar Homestay Percuma',
-        desc: 'Tuan rumah atau pengusaha boleh mendaftarkan unit homestay terus ke direktori tanpa sebarang caj komisen.',
-        icon: 'fa-plus-circle',
-        position: 'bottom'
-      },
-      {
-        elementId: 'tourTabSwitcherBox',
-        title: 'Langkah 5: Tab Katalog & Kalendar Host',
-        desc: 'Beralih antara melihat Katalog Pilihan Tetamu dan Portal Kalendar untuk tuan rumah menyekat tarikh yang telah ditempah.',
-        icon: 'fa-sliders',
-        position: 'bottom'
-      },
-      {
-        elementId: 'navInstallPwaBtn',
-        title: 'Langkah 6: Pasang Aplikasi ke Telefon (PWA)',
-        desc: 'Tekan butang ini bila-bila masa untuk panduan memasang Homestay kita terus ke skrin utama telefon anda!',
-        icon: 'fa-mobile-screen-button',
-        position: 'top'
-      }
-    ];
-
     // Helper Escape HTML
     function escapeHTML(str) {
       if (str === null || str === undefined) return '';
@@ -1536,10 +1497,8 @@
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
       deferredPwaPrompt = e;
-      const btn = document.getElementById('headerPwaInstallBtn');
-      const nativeBox = document.getElementById('nativeInstallPromptBox');
-      if (btn) btn.classList.remove('hidden');
-      if (nativeBox) nativeBox.classList.remove('hidden');
+      const row = document.getElementById('modalNativeInstallRow');
+      if (row) row.classList.remove('hidden');
     });
 
     function triggerPwaPrompt() {
@@ -1549,22 +1508,74 @@
         deferredPwaPrompt.userChoice.then((choiceResult) => {
           if (choiceResult.outcome === 'accepted') {
             showToast('🎉 Aplikasi Homestay kita berjaya dipasang!');
-            closePwaInstallModal();
+            closeInstallGuideModal();
           }
           deferredPwaPrompt = null;
         });
       } else {
-        showToast('Ikuti panduan ringkas di bawah untuk memasang ke skrin utama.');
+        showToast('Sila ikuti panduan manual di bawah.');
       }
     }
 
-    function openPwaInstallModal() {
+    // ==========================================
+    // PANDUAN INSTALL APLIKASI (CHROME & IOS)
+    // ==========================================
+    function openInstallGuideModal() {
       triggerHaptic();
-      openModalWithAnimation('pwaInstallModal');
+      
+      // Auto-detect OS untuk set tab lalai (iOS vs Android/Chrome)
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      if (isIOS) {
+        switchInstallTab('ios');
+      } else {
+        switchInstallTab('chrome');
+      }
+
+      openModalWithAnimation('installGuideModal');
     }
 
-    function closePwaInstallModal() {
-      closeModalWithAnimation('pwaInstallModal');
+    function closeInstallGuideModal() {
+      closeModalWithAnimation('installGuideModal');
+    }
+
+    function switchInstallTab(type) {
+      triggerHaptic();
+      const tabChrome = document.getElementById('tabBtnChrome');
+      const tabIos = document.getElementById('tabBtnIos');
+      const contentChrome = document.getElementById('guideChromeContent');
+      const contentIos = document.getElementById('guideIosContent');
+
+      if (type === 'ios') {
+        tabIos.className = 'btn-tactile flex-1 py-2 rounded-xl flex items-center justify-center gap-1.5 bg-white text-tealOcean-900 font-extrabold shadow-sm border border-slate-200';
+        tabChrome.className = 'btn-tactile flex-1 py-2 rounded-xl flex items-center justify-center gap-1.5 text-slate-600 font-bold';
+        contentChrome.classList.add('hidden');
+        contentIos.classList.remove('hidden');
+      } else {
+        tabChrome.className = 'btn-tactile flex-1 py-2 rounded-xl flex items-center justify-center gap-1.5 bg-white text-tealOcean-900 font-extrabold shadow-sm border border-slate-200';
+        tabIos.className = 'btn-tactile flex-1 py-2 rounded-xl flex items-center justify-center gap-1.5 text-slate-600 font-bold';
+        contentIos.classList.add('hidden');
+        contentChrome.classList.remove('hidden');
+      }
+    }
+
+    function toggleDontShowInstallAgain(e) {
+      if (e.target.checked) {
+        localStorage.setItem('homestaykita_hide_install_guide', 'true');
+      } else {
+        localStorage.removeItem('homestaykita_hide_install_guide');
+      }
+    }
+
+    function checkFirstTimeInstallPrompt() {
+      const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+      const hideGuide = localStorage.getItem('homestaykita_hide_install_guide');
+
+      // Hanya paparkan secara automatik jika belum dipasang dan pengguna belum menyekatnya
+      if (!isStandalone && !hideGuide) {
+        setTimeout(() => {
+          openInstallGuideModal();
+        }, 1200);
+      }
     }
 
     // ==========================================
@@ -1632,7 +1643,7 @@
         splash.classList.add('fade-out');
         setTimeout(() => {
           if (splash && splash.parentNode) splash.remove();
-          checkFirstTimeGuideTour();
+          checkFirstTimeInstallPrompt();
         }, 320);
       }
     }
@@ -1645,7 +1656,7 @@
     setTimeout(() => { finishSplash(); }, 1200);
 
     // ==========================================
-    // NAVIGATION & TAB SWITCHING
+    // NAVIGATION & TAB SWITCHING (5 BUTANG UTAMA)
     // ==========================================
     function switchMainTab(tab) {
       if (currentMainTab === tab && !showBookmarksOnly) return;
@@ -1679,7 +1690,6 @@
         { id: 'catalog', el: document.getElementById('navCatalogBtn') },
         { id: 'host', el: document.getElementById('navHostBtn') },
         { id: 'bookmark', el: document.getElementById('bookmarkNavBtn') },
-        { id: 'install', el: document.getElementById('navInstallPwaBtn') },
         { id: 'help', el: document.getElementById('navHelpBtn') }
       ];
 
@@ -1859,7 +1869,7 @@
         return `
           <div class="soft-card animate-grid-item bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm flex flex-col justify-between hover:border-tealOcean-500" style="animation-delay: ${delay}s">
             <div>
-              <div class="relative h-48 w-full bg-slate-100 cursor-pointer overflow-hidden group" onclick="window.openDetailModal('${item.id}')">
+              <div class="relative h-48 sm:h-52 tablet:h-48 w-full bg-slate-100 cursor-pointer overflow-hidden group" onclick="window.openDetailModal('${item.id}')">
                 <img src="${img}" alt="${escapeHTML(item.title)}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300 ease-out" onerror="this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?w=700&auto=format&fit=crop&q=80'">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                 <div class="absolute top-3 left-3">${dateStatusBadge}</div>
@@ -1873,9 +1883,9 @@
               </div>
               <div class="p-4 cursor-pointer" onclick="window.openDetailModal('${item.id}')">
                 <div class="text-[11px] font-bold text-tealOcean-800 uppercase tracking-wide truncate">${escapeHTML(item.hostName || 'Pengusaha')}</div>
-                <h3 class="text-sm font-extrabold text-slate-900 line-clamp-1 mt-0.5 leading-snug">${escapeHTML(item.title)}</h3>
+                <h3 class="text-sm tablet:text-base font-extrabold text-slate-900 line-clamp-1 mt-0.5 leading-snug">${escapeHTML(item.title)}</h3>
                 
-                <div class="flex items-center gap-3 my-2 text-[11px] text-slate-600">
+                <div class="flex items-center gap-3 my-2 text-[11px] tablet:text-xs text-slate-600">
                   <span class="flex items-center gap-1"><i class="fa-solid fa-bed text-tealOcean-600"></i> ${item.bedrooms || 3} Bilik</span>
                   <span class="flex items-center gap-1"><i class="fa-solid fa-bath text-tealOcean-600"></i> ${item.bathrooms || 2} Air</span>
                   <span class="flex items-center gap-1"><i class="fa-solid fa-users text-tealOcean-600"></i> Max ${item.maxGuests || 8}</span>
@@ -1883,7 +1893,7 @@
 
                 <div class="mt-2.5 flex items-baseline justify-between">
                   <div>
-                    <span class="text-base font-black text-tealOcean-900">RM ${Number(item.price || 0).toFixed(0)}</span>
+                    <span class="text-base tablet:text-lg font-black text-tealOcean-900">RM ${Number(item.price || 0).toFixed(0)}</span>
                     <span class="text-[11px] text-slate-500 font-semibold"> / malam</span>
                   </div>
                   <span class="text-[10px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">Bebas Komisen</span>
@@ -1892,7 +1902,7 @@
             </div>
             
             <div class="px-4 pb-4 pt-1 flex gap-2">
-              <button onclick="window.openBookingFormModal('${item.id}')" class="btn-tactile flex-1 py-2.5 rounded-2xl bg-tealOcean-700 hover:bg-tealOcean-800 text-white font-extrabold text-xs flex items-center justify-center gap-1.5 shadow-sm">
+              <button onclick="window.openBookingFormModal('${item.id}')" class="btn-tactile flex-1 py-2.5 rounded-2xl bg-tealOcean-700 hover:bg-tealOcean-800 text-white font-extrabold text-xs tablet:text-sm flex items-center justify-center gap-1.5 shadow-sm min-h-[44px]">
                 <i class="fa-solid fa-calendar-check text-amberGold-300"></i>
                 <span>Semak Tarikh & Tempah</span>
               </button>
@@ -1923,13 +1933,13 @@
       container.innerHTML = myHomestays.map(item => {
         const blocked = item.blockedDates || [];
         return `
-          <div class="bg-white rounded-3xl p-4 border border-slate-200 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="bg-white rounded-3xl p-4 tablet:p-5 border border-slate-200 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div class="flex items-center gap-3">
-              <img src="${item.image || 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=700&auto=format&fit=crop&q=80'}" class="w-16 h-16 rounded-2xl object-cover border border-slate-200 flex-shrink-0">
+              <img src="${item.image || 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=700&auto=format&fit=crop&q=80'}" class="w-16 h-16 tablet:w-20 tablet:h-20 rounded-2xl object-cover border border-slate-200 flex-shrink-0">
               <div>
-                <h4 class="font-black text-xs sm:text-sm text-slate-900">${escapeHTML(item.title)}</h4>
-                <div class="text-[11px] text-tealOcean-800 font-bold">${escapeHTML(item.zone)} • RM${item.price}/malam</div>
-                <div class="text-[10px] text-slate-500 mt-0.5">
+                <h4 class="font-black text-xs sm:text-sm tablet:text-base text-slate-900">${escapeHTML(item.title)}</h4>
+                <div class="text-[11px] tablet:text-xs text-tealOcean-800 font-bold">${escapeHTML(item.zone)} • RM${item.price}/malam</div>
+                <div class="text-[10px] tablet:text-xs text-slate-500 mt-0.5">
                   <i class="fa-solid fa-calendar-xmark text-rose-500 mr-1"></i>
                   ${blocked.length} tarikh telah disekat penuh
                 </div>
@@ -1937,11 +1947,11 @@
             </div>
 
             <div class="flex items-center gap-2 self-end sm:self-center">
-              <button onclick="window.openBlockDatesModal('${item.id}')" class="btn-tactile px-3 py-2 rounded-xl bg-tealOcean-50 hover:bg-tealOcean-100 text-tealOcean-900 border border-tealOcean-200 font-bold text-xs flex items-center gap-1.5">
+              <button onclick="window.openBlockDatesModal('${item.id}')" class="btn-tactile px-3.5 py-2.5 rounded-xl bg-tealOcean-50 hover:bg-tealOcean-100 text-tealOcean-900 border border-tealOcean-200 font-bold text-xs tablet:text-sm flex items-center gap-1.5 min-h-[44px]">
                 <i class="fa-solid fa-calendar-days text-tealOcean-700"></i>
                 <span>Urus Tarikh Penuh</span>
               </button>
-              <button onclick="window.openEditModal('${item.id}')" class="btn-tactile px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs" title="Edit Maklumat">
+              <button onclick="window.openEditModal('${item.id}')" class="btn-tactile px-3 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs tablet:text-sm min-h-[44px]" title="Edit Maklumat">
                 <i class="fa-solid fa-pen"></i>
               </button>
             </div>
@@ -1974,7 +1984,7 @@
         return;
       }
       box.innerHTML = tempBlockedDates.map(d => `
-        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-rose-100 text-rose-800 font-bold text-[10px] border border-rose-200">
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-rose-100 text-rose-800 font-bold text-[10px] tablet:text-xs border border-rose-200">
           <i class="fa-regular fa-calendar-xmark"></i>
           <span>${d}</span>
           <button type="button" onclick="removeBlockedDate('${d}')" class="text-rose-600 hover:text-rose-900 ml-1">
@@ -2819,138 +2829,13 @@
       } 
     }
 
-    function openInfoModal() { openModalWithAnimation('infoModal'); }
-    function closeInfoModal() { closeModalWithAnimation('infoModal'); }
-
-    // ==========================================
-    // POINT-TO-POINT GUIDE TOUR LOGIC (OPTIMISED)
-    // ==========================================
-    function checkFirstTimeGuideTour() {
-      const tourShown = localStorage.getItem('homestaykita_tour_completed');
-      if (!tourShown) {
-        setTimeout(() => {
-          startGuideTour();
-        }, 500);
-      }
+    function openInfoModal() { 
+      updateActiveNavText('help');
+      openModalWithAnimation('infoModal'); 
     }
-
-    function startGuideTour() {
-      currentTourStep = 0;
-      tourActive = true;
-      const overlay = document.getElementById('guideTourOverlay');
-      if (overlay) {
-        overlay.classList.remove('hidden');
-        setTimeout(() => overlay.classList.remove('opacity-0'), 40);
-      }
-      renderCurrentTourStep();
-    }
-
-    function skipGuideTour() {
-      tourActive = false;
-      const overlay = document.getElementById('guideTourOverlay');
-      clearTourHighlights();
-      if (overlay) {
-        overlay.classList.add('opacity-0');
-        setTimeout(() => overlay.classList.add('hidden'), 280);
-      }
-      localStorage.setItem('homestaykita_tour_completed', 'true');
-      showToast('🎉 Selamat menggunakan Homestay kita!');
-    }
-
-    function restartGuideTour() {
-      closeInfoModal();
-      localStorage.removeItem('homestaykita_tour_completed');
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        startGuideTour();
-      }, 300);
-    }
-
-    function clearTourHighlights() {
-      document.querySelectorAll('.tour-spotlight-active').forEach(el => {
-        el.classList.remove('tour-spotlight-active');
-      });
-    }
-
-    function renderCurrentTourStep() {
-      if (!tourActive) return;
-      clearTourHighlights();
-
-      const step = tourSteps[currentTourStep];
-      if (!step) return;
-
-      const targetEl = document.getElementById(step.elementId);
-      const card = document.getElementById('guideTourCard');
-      const badge = document.getElementById('tourStepBadge');
-      const title = document.getElementById('tourStepTitle');
-      const desc = document.getElementById('tourStepDesc');
-      const icon = document.getElementById('tourCardIcon');
-      const prevBtn = document.getElementById('tourPrevBtn');
-      const nextBtn = document.getElementById('tourNextBtn');
-
-      if (!targetEl || !card) return;
-
-      targetEl.classList.add('tour-spotlight-active');
-      
-      // Auto-scroll ke sasaran secara lancar
-      targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-      // Update data teks kad
-      if (badge) badge.innerText = `${currentTourStep + 1} / ${tourSteps.length}`;
-      if (title) title.innerText = step.title;
-      if (desc) desc.innerText = step.desc;
-      if (icon) icon.className = `fa-solid ${step.icon} text-amberGold-600`;
-
-      if (prevBtn) {
-        prevBtn.style.visibility = currentTourStep === 0 ? 'hidden' : 'visible';
-      }
-
-      if (nextBtn) {
-        if (currentTourStep === tourSteps.length - 1) {
-          nextBtn.innerHTML = `<span>Selesai</span> <i class="fa-solid fa-check text-[10px]"></i>`;
-        } else {
-          nextBtn.innerHTML = `<span>Seterusnya</span> <i class="fa-solid fa-chevron-right text-[10px]"></i>`;
-        }
-      }
-
-      // Hitung posisi kad tepat di bawah atau di atas sasaran
-      setTimeout(() => {
-        const rect = targetEl.getBoundingClientRect();
-        const cardRect = card.getBoundingClientRect();
-        const screenW = window.innerWidth;
-        const screenH = window.innerHeight;
-
-        let top = 0;
-        let left = Math.max(14, (screenW - cardRect.width) / 2);
-
-        // Jika ruang di bawah sempit atau ditetapkan 'top'
-        if (step.position === 'top' || (rect.bottom + cardRect.height + 25 > screenH && rect.top > cardRect.height + 25)) {
-          top = Math.max(16, rect.top - cardRect.height - 14);
-        } else {
-          top = Math.min(screenH - cardRect.height - 18, rect.bottom + 14);
-        }
-
-        card.style.top = `${top}px`;
-        card.style.left = `${left}px`;
-      }, 120);
-    }
-
-    function nextGuideStep() {
-      triggerHaptic();
-      if (currentTourStep < tourSteps.length - 1) {
-        currentTourStep++;
-        renderCurrentTourStep();
-      } else {
-        skipGuideTour();
-      }
-    }
-
-    function prevGuideStep() {
-      triggerHaptic();
-      if (currentTourStep > 0) {
-        currentTourStep--;
-        renderCurrentTourStep();
-      }
+    function closeInfoModal() { 
+      closeModalWithAnimation('infoModal'); 
+      updateActiveNavText(currentMainTab === 'hosthub' ? 'host' : 'catalog');
     }
 
     // Toast
@@ -2982,12 +2867,12 @@
       removeBlockedDate, saveBlockedDatesToDatabase, openQuickCheckModal, closeQuickCheckModal,
       applyQuickDateFilter, resetDateFilter, handleFilterDatesChange, renderHomestays,
       navigateDetailSlide, openAllPhotosGallery, closeAllPhotosGallery, galleryPrevPhoto, galleryNextPhoto, selectGalleryPhoto,
-      startGuideTour, skipGuideTour, restartGuideTour, nextGuideStep, prevGuideStep,
-      openPwaInstallModal, closePwaInstallModal, triggerPwaPrompt
+      openInstallGuideModal, closeInstallGuideModal, switchInstallTab, toggleDontShowInstallAgain,
+      triggerPwaPrompt
     });
 
     window.onclick = function(event) {
-      ['detailModal','bookingModal','registerModal','blockDatesModal','infoModal','regionModal','quickCheckModal','galleryModal','pwaInstallModal'].forEach(id => {
+      ['detailModal','bookingModal','registerModal','blockDatesModal','infoModal','regionModal','quickCheckModal','galleryModal','installGuideModal'].forEach(id => {
         const el = document.getElementById(id);
         if (event.target === el) {
           const fnMap = {
@@ -2999,7 +2884,7 @@
             regionModal: closeRegionModal,
             quickCheckModal: closeQuickCheckModal,
             galleryModal: closeAllPhotosGallery,
-            pwaInstallModal: closePwaInstallModal
+            installGuideModal: closeInstallGuideModal
           };
           if (fnMap[id]) fnMap[id]();
         }
