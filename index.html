@@ -247,21 +247,57 @@
       padding-bottom: max(1.1rem, env(safe-area-inset-bottom));
     }
 
-    /* ================= GUIDE TOUR STYLES ================= */
+    /* DATE INPUT STYLING (Kemaskan paparan tarikh pada telefon) */
+    .date-input-field {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background-color: #f8fafc;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 1rem;
+      padding: 0.65rem 0.85rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #1e293b;
+      width: 100%;
+      min-height: 44px;
+      line-height: 1.25rem;
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+      transition: all 0.2s ease;
+    }
+    .date-input-field:focus {
+      background-color: #ffffff;
+      border-color: #0f766e;
+      box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.15);
+      outline: none;
+    }
+    .date-input-field::-webkit-date-and-time-value {
+      text-align: left;
+      min-height: 1.25rem;
+    }
+
+    /* ================= GUIDE TOUR STYLES (OPTIMISED) ================= */
     .tour-spotlight-active {
       position: relative !important;
-      z-index: 110 !important;
+      z-index: 120 !important;
       pointer-events: auto !important;
-      box-shadow: 0 0 0 9999px rgba(15, 23, 42, 0.78), 0 0 24px rgba(245, 158, 11, 0.85) !important;
-      transition: all 0.35s var(--spring-easing);
+      box-shadow: 0 0 0 9999px rgba(15, 23, 42, 0.82), 0 0 0 3px #f59e0b, 0 10px 30px rgba(0,0,0,0.5) !important;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
       border-radius: inherit;
     }
     #guideTourOverlay {
       transition: opacity 0.3s ease;
     }
     #guideTourCard {
-      transition: all 0.35s var(--spring-easing);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
       will-change: transform, top, left;
+    }
+    @keyframes pulse-tour-dot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.35); opacity: 0.7; }
+    }
+    .tour-pulsing-badge {
+      animation: pulse-tour-dot 1.8s infinite ease-in-out;
     }
   </style>
 </head>
@@ -273,17 +309,11 @@
       <!-- House Logo SVG on Splash Screen -->
       <div class="w-28 h-28 rounded-3xl bg-gradient-to-tr from-tealOcean-800 via-tealOcean-600 to-amberGold-400 p-3 shadow-2xl shadow-tealOcean-700/50 border border-tealOcean-400/30 mb-5 relative flex items-center justify-center">
         <svg class="w-full h-full drop-shadow-lg" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- House Roof Silhouette & Structure -->
           <path d="M256 72 L72 232 H128 V424 C128 437.25 138.75 448 152 448 H360 C373.25 448 384 437.25 384 424 V232 H440 L256 72 Z" fill="#ffffff"/>
-          <!-- Chimney -->
           <rect x="330" y="110" width="36" height="70" rx="4" fill="#fbbf24"/>
-          <!-- Roof Ridge -->
           <path d="M256 46 L48 228 L72 254 L256 94 L440 254 L464 228 Z" fill="#fbbf24"/>
-          <!-- Door -->
           <rect x="220" y="300" width="72" height="148" rx="10" fill="#0f766e"/>
-          <!-- Doorknob -->
           <circle cx="278" cy="370" r="7" fill="#fbbf24"/>
-          <!-- Windows -->
           <rect x="162" y="260" width="48" height="48" rx="8" fill="#99f6e4"/>
           <rect x="302" y="260" width="48" height="48" rx="8" fill="#99f6e4"/>
           <line x1="186" y1="260" x2="186" y2="308" stroke="#0f766e" stroke-width="4"/>
@@ -378,61 +408,75 @@
     </div>
   </section>
 
-  <!-- ================= DATE CHECKER QUICK BAR (KEMAS & COMPACT) ================= -->
-  <section class="max-w-4xl mx-auto px-3.5 sm:px-4 pt-2">
-    <div id="dateCheckerBoxContainer" class="bg-white rounded-3xl p-3 sm:p-3.5 shadow-sm border border-tealOcean-100/90 transition-all">
-      <div class="flex items-center justify-between pb-2 mb-2 border-b border-slate-100">
-        <div class="flex items-center gap-1.5">
-          <div class="w-6 h-6 rounded-lg bg-tealOcean-50 text-tealOcean-700 flex items-center justify-center text-[11px] font-bold">
+  <!-- ================= DATE CHECKER QUICK BAR (DIPERKEMAS SEPERTI GAMBAR) ================= -->
+  <section class="max-w-4xl mx-auto px-3.5 sm:px-4 pt-2.5">
+    <div id="dateCheckerBoxContainer" class="bg-white rounded-3xl p-4 sm:p-5 shadow-sm border border-tealOcean-100 transition-all">
+      
+      <!-- Header Kad Semakan -->
+      <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+        <div class="flex items-center gap-2">
+          <div class="w-7 h-7 rounded-xl bg-tealOcean-50 text-tealOcean-700 flex items-center justify-center text-xs font-bold border border-tealOcean-100">
             <i class="fa-solid fa-calendar-check"></i>
           </div>
-          <span class="text-[11px] font-black text-slate-800 tracking-tight">Semakan Tarikh & Slot Kosong</span>
+          <span class="text-xs sm:text-sm font-black text-slate-900 tracking-tight">Semakan Tarikh & Slot Kosong</span>
         </div>
-        <span class="text-[10px] text-tealOcean-700 bg-tealOcean-50 font-bold px-2 py-0.5 rounded-full border border-tealOcean-200/60">Masa Nyata</span>
+        <span class="text-[11px] font-bold text-tealOcean-800 bg-tealOcean-50 border border-tealOcean-200/80 px-2.5 py-0.5 rounded-full">
+          Masa Nyata
+        </span>
       </div>
 
-      <div class="grid grid-cols-2 sm:grid-cols-12 gap-2 items-end">
+      <!-- Ruang Tarikh Check-in & Check-out -->
+      <div class="grid grid-cols-2 gap-2.5 mb-3">
         <!-- Check In -->
-        <div class="col-span-1 sm:col-span-3">
-          <label class="block text-[10px] font-extrabold uppercase text-slate-500 mb-1 flex items-center gap-1">
-            <i class="fa-regular fa-calendar-plus text-tealOcean-600"></i> Check-In
+        <div>
+          <label class="block text-[10px] sm:text-[11px] font-extrabold uppercase text-slate-600 mb-1.5 flex items-center gap-1.5">
+            <i class="fa-solid fa-calendar-plus text-tealOcean-600 text-xs"></i>
+            <span>CHECK-IN</span>
           </label>
-          <input type="date" id="filterCheckIn" onchange="handleFilterDatesChange()" class="w-full text-xs font-bold py-2 px-2.5 rounded-xl border border-slate-200 bg-slate-50/70 hover:bg-white focus:bg-white focus:ring-2 focus:ring-tealOcean-500 outline-none transition shadow-inner">
+          <div class="relative">
+            <input type="date" id="filterCheckIn" onchange="handleFilterDatesChange()" class="date-input-field">
+          </div>
         </div>
 
         <!-- Check Out -->
-        <div class="col-span-1 sm:col-span-3">
-          <label class="block text-[10px] font-extrabold uppercase text-slate-500 mb-1 flex items-center gap-1">
-            <i class="fa-regular fa-calendar-minus text-rose-500"></i> Check-Out
+        <div>
+          <label class="block text-[10px] sm:text-[11px] font-extrabold uppercase text-slate-600 mb-1.5 flex items-center gap-1.5">
+            <i class="fa-solid fa-calendar-minus text-rose-500 text-xs"></i>
+            <span>CHECK-OUT</span>
           </label>
-          <input type="date" id="filterCheckOut" onchange="handleFilterDatesChange()" class="w-full text-xs font-bold py-2 px-2.5 rounded-xl border border-slate-200 bg-slate-50/70 hover:bg-white focus:bg-white focus:ring-2 focus:ring-tealOcean-500 outline-none transition shadow-inner">
+          <div class="relative">
+            <input type="date" id="filterCheckOut" onchange="handleFilterDatesChange()" class="date-input-field">
+          </div>
         </div>
+      </div>
 
-        <!-- Tetamu -->
-        <div class="col-span-2 sm:col-span-3">
-          <label class="block text-[10px] font-extrabold uppercase text-slate-500 mb-1 flex items-center gap-1">
-            <i class="fa-solid fa-user-group text-amberGold-600"></i> Kapasiti Tetamu
-          </label>
-          <select id="filterGuests" onchange="renderHomestays()" class="w-full text-xs font-bold py-2 px-2.5 rounded-xl border border-slate-200 bg-slate-50/70 hover:bg-white focus:bg-white outline-none transition">
+      <!-- Kapasiti Tetamu -->
+      <div class="mb-3">
+        <label class="block text-[10px] sm:text-[11px] font-extrabold uppercase text-slate-600 mb-1.5 flex items-center gap-1.5">
+          <i class="fa-solid fa-users text-amberGold-600 text-xs"></i>
+          <span>KAPASITI TETAMU</span>
+        </label>
+        <div class="relative">
+          <select id="filterGuests" onchange="renderHomestays()" class="w-full text-xs font-bold py-2.5 px-3.5 rounded-2xl border-1.5 border-slate-200 bg-slate-50 text-slate-800 focus:bg-white focus:border-tealOcean-600 focus:ring-2 focus:ring-tealOcean-100 outline-none transition cursor-pointer min-h-[44px]">
             <option value="0">Semua Kapasiti</option>
             <option value="4">4+ Tetamu (Selesa)</option>
             <option value="8">8+ Tetamu (Sederhana)</option>
             <option value="12">12+ Tetamu (Keluarga Besar)</option>
           </select>
         </div>
-
-        <!-- Action Buttons Bar -->
-        <div class="col-span-2 sm:col-span-3 flex items-center gap-1.5">
-          <button onclick="resetDateFilter()" title="Set Semula Tarikh" class="btn-tactile py-2 px-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold text-xs flex items-center justify-center gap-1 border border-slate-200 flex-shrink-0">
-            <i class="fa-solid fa-rotate-left text-[11px]"></i>
-            <span class="hidden sm:inline">Reset</span>
-          </button>
-          <button onclick="renderHomestays()" class="btn-tactile flex-1 py-2 px-3 bg-gradient-to-r from-tealOcean-700 to-tealOcean-800 hover:from-tealOcean-800 hover:to-tealOcean-900 text-white font-extrabold text-xs rounded-xl shadow-sm flex items-center justify-center gap-1.5 border border-tealOcean-700">
-            <i class="fa-solid fa-magnifying-glass text-[11px]"></i>
-            <span>Cari Slot</span>
-          </button>
-        </div>
       </div>
+
+      <!-- Butang Reset & Cari Slot -->
+      <div class="flex items-center gap-2 pt-0.5">
+        <button onclick="resetDateFilter()" title="Set Semula Tarikh & Tetamu" class="btn-tactile w-12 h-11 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center border border-slate-200/90 shadow-sm flex-shrink-0">
+          <i class="fa-solid fa-rotate-left text-sm"></i>
+        </button>
+        <button onclick="renderHomestays()" class="btn-tactile flex-1 h-11 bg-tealOcean-800 hover:bg-tealOcean-900 text-white font-black text-xs sm:text-sm rounded-2xl shadow-sm flex items-center justify-center gap-2 border border-tealOcean-700/60 tracking-wide">
+          <i class="fa-solid fa-magnifying-glass text-xs"></i>
+          <span>Cari Slot</span>
+        </button>
+      </div>
+
     </div>
   </section>
 
@@ -627,22 +671,22 @@
     </div>
   </nav>
 
-  <!-- ================= POINT-TO-POINT GUIDE TOUR OVERLAY ================= -->
+  <!-- ================= POINT-TO-POINT GUIDE TOUR OVERLAY (OPTIMISED) ================= -->
   <div id="guideTourOverlay" class="fixed inset-0 z-[105] pointer-events-none opacity-0 select-none transition-opacity duration-300 hidden">
     <!-- Semi-transparent Dimmed Backdrop -->
-    <div class="absolute inset-0 bg-slate-950/70 backdrop-blur-[2px] pointer-events-auto" onclick="skipGuideTour()"></div>
+    <div class="absolute inset-0 bg-slate-950/75 backdrop-blur-[2px] pointer-events-auto" onclick="skipGuideTour()"></div>
 
     <!-- Floating Tooltip Card -->
-    <div id="guideTourCard" class="absolute z-[115] w-72 sm:w-80 bg-white rounded-3xl p-4 shadow-2xl border-2 border-amberGold-400 pointer-events-auto transform transition-all duration-300">
+    <div id="guideTourCard" class="fixed z-[130] w-[calc(100vw-28px)] max-w-sm bg-white rounded-3xl p-4.5 shadow-2xl border-2 border-amberGold-400 pointer-events-auto transform transition-all duration-300">
       <div class="flex items-center justify-between pb-2 mb-2 border-b border-slate-100">
-        <div class="flex items-center gap-1.5">
-          <div class="w-6 h-6 rounded-lg bg-tealOcean-100 text-tealOcean-800 flex items-center justify-center text-xs font-bold">
-            <i class="fa-solid fa-compass" id="tourCardIcon"></i>
+        <div class="flex items-center gap-2">
+          <div class="w-7 h-7 rounded-xl bg-tealOcean-100 text-tealOcean-800 flex items-center justify-center text-xs font-bold shadow-sm">
+            <i class="fa-solid fa-compass text-amberGold-600" id="tourCardIcon"></i>
           </div>
           <span class="text-[11px] font-black uppercase text-tealOcean-900 tracking-wider">Panduan Mula</span>
         </div>
         <div class="flex items-center gap-2">
-          <span id="tourStepBadge" class="text-[10px] font-black px-2 py-0.5 rounded-full bg-amberGold-100 text-amberGold-800 border border-amberGold-300">1 / 6</span>
+          <span id="tourStepBadge" class="text-[10px] font-black px-2.5 py-0.5 rounded-full bg-amberGold-100 text-amberGold-900 border border-amberGold-300 shadow-sm">1 / 6</span>
           <button onclick="skipGuideTour()" class="text-slate-400 hover:text-slate-600 text-xs p-1" title="Langkau Panduan">
             <i class="fa-solid fa-xmark"></i>
           </button>
@@ -650,19 +694,19 @@
       </div>
 
       <h4 id="tourStepTitle" class="text-xs sm:text-sm font-black text-slate-900 leading-snug">Pilih Kawasan Pilihan Anda</h4>
-      <p id="tourStepDesc" class="text-[11px] text-slate-600 mt-1 leading-relaxed">
+      <p id="tourStepDesc" class="text-[11px] text-slate-600 mt-1.5 leading-relaxed">
         Pilih kawasan homestay antara Taiping & Kamunting atau suasana santai dusun Batu Kurau.
       </p>
 
       <div class="flex items-center justify-between pt-3 mt-3 border-t border-slate-100">
-        <button id="tourPrevBtn" onclick="prevGuideStep()" class="btn-tactile text-xs font-bold text-slate-500 hover:text-slate-800 px-2 py-1 rounded-lg">
+        <button id="tourPrevBtn" onclick="prevGuideStep()" class="btn-tactile text-xs font-bold text-slate-500 hover:text-slate-800 px-2.5 py-1.5 rounded-lg">
           Undur
         </button>
         <div class="flex items-center gap-2">
           <button onclick="skipGuideTour()" class="btn-tactile text-[11px] font-bold text-slate-400 hover:text-slate-600 px-2 py-1">
             Langkau
           </button>
-          <button id="tourNextBtn" onclick="nextGuideStep()" class="btn-tactile bg-gradient-to-r from-tealOcean-700 to-tealOcean-800 hover:from-tealOcean-600 hover:to-tealOcean-700 text-white font-black text-xs px-3.5 py-1.5 rounded-xl shadow-md flex items-center gap-1">
+          <button id="tourNextBtn" onclick="nextGuideStep()" class="btn-tactile bg-gradient-to-r from-tealOcean-700 to-tealOcean-800 hover:from-tealOcean-600 hover:to-tealOcean-700 text-white font-black text-xs px-4 py-2 rounded-xl shadow-md flex items-center gap-1.5">
             <span>Seterusnya</span>
             <i class="fa-solid fa-chevron-right text-[10px]"></i>
           </button>
@@ -1421,49 +1465,49 @@
     // State PWA Install Prompt
     let deferredPwaPrompt = null;
 
-    // State Guide Tour (Merangkumi PWA Install Guide)
+    // State Guide Tour (Diperkemas & Dioptimumkan)
     let currentTourStep = 0;
     let tourActive = false;
     const tourSteps = [
       {
         elementId: 'headerRegionBtn',
         title: 'Langkah 1: Pilih Kawasan Anda',
-        desc: 'Sentuh di sini untuk menukar antara kawasan Taiping & Kamunting atau kawasan suasana dusun Batu Kurau.',
+        desc: 'Sentuh di sini untuk menukar antara kawasan Taiping & Kamunting atau suasana santai dusun Batu Kurau.',
         icon: 'fa-location-dot',
         position: 'bottom'
       },
       {
         elementId: 'tourBtnSemakTarikh',
-        title: 'Langkah 2: Semak Tarikh & Ketersediaan',
-        desc: 'Pilih tarikh check-in & check-out untuk menapis serta-merta homestay yang masih mempunyai kekosongan.',
+        title: 'Langkah 2: Semak Tarikh Pantas',
+        desc: 'Buka pop-up semakan tarikh segera untuk melihat slot kosong secara sepintas lalu.',
         icon: 'fa-calendar-check',
         position: 'bottom'
       },
       {
         elementId: 'dateCheckerBoxContainer',
-        title: 'Langkah 3: Kotak Semakan Pantas',
-        desc: 'Susun tarikh menginap dan bilangan tetamu dalam kotak ringkas ini untuk semakan ketersediaan secara masa nyata.',
-        icon: 'fa-sliders',
+        title: 'Langkah 3: Kotak Semakan Tarikh & Slot',
+        desc: 'Pilih Check-In, Check-Out serta bilangan tetamu di sini untuk menapis homestay yang betul-betul available secara live.',
+        icon: 'fa-calendar-days',
         position: 'bottom'
       },
       {
         elementId: 'tourBtnDaftarHeader',
-        title: 'Langkah 4: Daftar Homestay Bebas Komisen',
-        desc: 'Pengusaha homestay boleh mendaftarkan rumah sewaan terus ke direktori tanpa sebarang bayaran komisen perantara.',
+        title: 'Langkah 4: Daftar Homestay Percuma',
+        desc: 'Tuan rumah atau pengusaha boleh mendaftarkan unit homestay terus ke direktori tanpa sebarang caj komisen.',
         icon: 'fa-plus-circle',
         position: 'bottom'
       },
       {
         elementId: 'tourTabSwitcherBox',
-        title: 'Langkah 5: Pengurusan Kalendar Host',
-        desc: 'Beralih antara melihat Katalog Homestay dan menguruskan Kalendar Host untuk mengunci tarikh yang telah ditempah.',
-        icon: 'fa-calendar-days',
+        title: 'Langkah 5: Tab Katalog & Kalendar Host',
+        desc: 'Beralih antara melihat Katalog Pilihan Tetamu dan Portal Kalendar untuk tuan rumah menyekat tarikh yang telah ditempah.',
+        icon: 'fa-sliders',
         position: 'bottom'
       },
       {
         elementId: 'navInstallPwaBtn',
-        title: 'Langkah 6: Pasang PWA ke Skrin Telefon',
-        desc: 'Pasang Homestay kita terus ke skrin telefon anda (Add to Home Screen) untuk pengalaman pantas seperti aplikasi mudah alih!',
+        title: 'Langkah 6: Pasang Aplikasi ke Telefon (PWA)',
+        desc: 'Tekan butang ini bila-bila masa untuk panduan memasang Homestay kita terus ke skrin utama telefon anda!',
         icon: 'fa-mobile-screen-button',
         position: 'top'
       }
@@ -1658,7 +1702,6 @@
 
       if (endDate <= startDate) return false;
 
-      // Semak setiap hari dalam tempoh menginap
       let cur = new Date(startDate);
       while (cur < endDate) {
         const y = cur.getFullYear();
@@ -1667,7 +1710,7 @@
         const dateKey = `${y}-${m}-${d}`;
 
         if (blocked.includes(dateKey)) {
-          return false; // Ada tarikh bertembung yang telah penuh
+          return false;
         }
         cur.setDate(cur.getDate() + 1);
       }
@@ -1754,7 +1797,6 @@
         if (!isZoneInRegion(item.zone)) return false;
         if (selectedZone !== 'all' && item.zone !== selectedZone) return false;
         
-        // Category Filter
         if (selectedCategory !== 'all') {
           if (selectedCategory === 'Kolam Renang') {
             const hasPool = (item.category === 'Kolam Renang') || 
@@ -1769,7 +1811,6 @@
           }
         }
 
-        // Search Query
         const q = searchQuery.toLowerCase().trim();
         if (q) {
           const matchTitle = (item.title || '').toLowerCase().includes(q);
@@ -1779,19 +1820,16 @@
           if (!matchTitle && !matchHost && !matchZone && !matchAmenity) return false;
         }
 
-        // Kapasiti tetamu
         if (guestFilterVal > 0 && (Number(item.maxGuests) || 0) < guestFilterVal) {
           return false;
         }
 
-        // Semakan Tarikh Kosong
         if (filterCheckInDate && filterCheckOutDate) {
           if (!isDateRangeAvailable(item, filterCheckInDate, filterCheckOutDate)) {
-            return false; // Penuh untuk tarikh dipilih
+            return false;
           }
         }
 
-        // Bookmarks
         if (showBookmarksOnly && !bookmarks.includes(item.id)) return false;
 
         return true;
@@ -1811,7 +1849,6 @@
         const delay = (index * 0.04).toFixed(2);
         const img = item.image || 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=700&auto=format&fit=crop&q=80';
         
-        // Status Tarikh Badge jika filter dipilih
         let dateStatusBadge = '';
         if (filterCheckInDate && filterCheckOutDate) {
           dateStatusBadge = `<span class="bg-emerald-600 text-white text-[10px] font-black px-2 py-0.5 rounded-full shadow-sm flex items-center gap-1"><i class="fa-solid fa-check"></i> Kosong Pada Tarikh Anda</span>`;
@@ -1838,7 +1875,6 @@
                 <div class="text-[11px] font-bold text-tealOcean-800 uppercase tracking-wide truncate">${escapeHTML(item.hostName || 'Pengusaha')}</div>
                 <h3 class="text-sm font-extrabold text-slate-900 line-clamp-1 mt-0.5 leading-snug">${escapeHTML(item.title)}</h3>
                 
-                <!-- Room info icons -->
                 <div class="flex items-center gap-3 my-2 text-[11px] text-slate-600">
                   <span class="flex items-center gap-1"><i class="fa-solid fa-bed text-tealOcean-600"></i> ${item.bedrooms || 3} Bilik</span>
                   <span class="flex items-center gap-1"><i class="fa-solid fa-bath text-tealOcean-600"></i> ${item.bathrooms || 2} Air</span>
@@ -1996,7 +2032,6 @@
       if (!item) return;
       window.__currentDetailId = id;
       
-      // Susun senarai gambar untuk slide dan popup
       const fallbackImg = 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=700&auto=format&fit=crop&q=80';
       if (item.images && Array.isArray(item.images) && item.images.length > 0) {
         currentDetailPhotosList = [...item.images];
@@ -2044,7 +2079,6 @@
       closeModalWithAnimation('detailModal');
     }
 
-    // Navigasi Slide Gambar pada Detail Modal
     function updateDetailSlideUI() {
       const img = document.getElementById('modalImg');
       const counter = document.getElementById('detailSlideCounter');
@@ -2152,13 +2186,11 @@
       document.getElementById('bookPriceRate').innerText = `RM ${item.price} / malam`;
       document.getElementById('bookGuestLimit').innerText = `Max ${item.maxGuests} org`;
 
-      // Prefill saved user info
       const savedName = localStorage.getItem('homestaykita_cust_name') || '';
       const savedPhone = localStorage.getItem('homestaykita_cust_phone') || '';
       if (savedName) document.getElementById('bookCustomerName').value = savedName;
       if (savedPhone) document.getElementById('bookCustomerPhone').value = savedPhone;
 
-      // Prefill dates jika sudah ditapis
       document.getElementById('bookCheckInDate').value = filterCheckInDate || '';
       document.getElementById('bookCheckOutDate').value = filterCheckOutDate || '';
       document.getElementById('bookRemarks').value = '';
@@ -2173,7 +2205,6 @@
       closeModalWithAnimation('bookingModal');
     }
 
-    // Kira Tempoh Malam & Semak Status Tarikh (Available atau Penuh)
     function calculateBookingDurationAndCheck() {
       if (!activeBookingHomestay) return;
       const inVal = document.getElementById('bookCheckInDate').value;
@@ -2220,7 +2251,6 @@
       nightsLabel.innerText = `${nights} Malam Penginapan`;
       totalLabel.innerText = `RM ${totalAmount.toFixed(2)}`;
 
-      // Semak ketersediaan dalam blockedDates
       const isAvailable = isDateRangeAvailable(activeBookingHomestay, inVal, outVal);
 
       if (isAvailable) {
@@ -2339,13 +2369,11 @@
       document.getElementById('regMaxGuests').value = item.maxGuests || 8;
       document.getElementById('regZone').value = item.zone || '';
 
-      // Set kategori checkbox
       const catArray = (item.category || '').split(',').map(s => s.trim());
       document.querySelectorAll('input[name="regCategoryCheck"]').forEach(cb => {
         cb.checked = catArray.includes(cb.value);
       });
 
-      // Set amenities checkbox
       const amenityArray = (item.amenities || '').split(',').map(s => s.trim());
       const knownAmenities = ['Aircond', 'Peti Ais', 'Dapur Memasak', 'Wifi Percuma', 'Kawasan BBQ', 'Mesin Basuh', 'Penapis Air (Coway/Cuckoo)', 'Pemanas Air Mandi (Water Heater)'];
       let extraAmenities = [];
@@ -2406,14 +2434,12 @@
       const finalImgList = uploadedImagesList.length > 0 ? uploadedImagesList : (uploadedImageBase64 ? [uploadedImageBase64] : [fallbackImg]);
       const finalMainImg = finalImgList[0];
 
-      // Kumpul kategori dari checkbox
       const selectedCats = Array.from(document.querySelectorAll('input[name="regCategoryCheck"]:checked')).map(cb => cb.value);
       if (selectedCats.length === 0) {
         showToast('⚠️ Sila pilih sekurang-kurangnya satu kategori rumah.');
         return;
       }
 
-      // Kumpul kemudahan (amenities) dari checkbox dan teks tambahan
       const selectedAmenities = Array.from(document.querySelectorAll('input[name="regAmenityCheck"]:checked')).map(cb => cb.value);
       const extraAmenity = document.getElementById('regAmenitiesExtra').value.trim();
       if (extraAmenity) {
@@ -2530,7 +2556,7 @@
       previewContainer.classList.remove('hidden');
 
       imgPreview.src = uploadedImagesList[currentSlideIndex];
-      uploadedImageBase64 = uploadedImagesList[0]; // Set main cover image
+      uploadedImageBase64 = uploadedImagesList[0];
 
       if (countText) countText.innerText = `${uploadedImagesList.length} / 5 Gambar`;
       if (indicator) indicator.innerText = `${currentSlideIndex + 1} / ${uploadedImagesList.length}`;
@@ -2797,14 +2823,14 @@
     function closeInfoModal() { closeModalWithAnimation('infoModal'); }
 
     // ==========================================
-    // POINT-TO-POINT GUIDE TOUR LOGIC
+    // POINT-TO-POINT GUIDE TOUR LOGIC (OPTIMISED)
     // ==========================================
     function checkFirstTimeGuideTour() {
       const tourShown = localStorage.getItem('homestaykita_tour_completed');
       if (!tourShown) {
         setTimeout(() => {
           startGuideTour();
-        }, 600);
+        }, 500);
       }
     }
 
@@ -2814,7 +2840,7 @@
       const overlay = document.getElementById('guideTourOverlay');
       if (overlay) {
         overlay.classList.remove('hidden');
-        setTimeout(() => overlay.classList.remove('opacity-0'), 50);
+        setTimeout(() => overlay.classList.remove('opacity-0'), 40);
       }
       renderCurrentTourStep();
     }
@@ -2825,7 +2851,7 @@
       clearTourHighlights();
       if (overlay) {
         overlay.classList.add('opacity-0');
-        setTimeout(() => overlay.classList.add('hidden'), 300);
+        setTimeout(() => overlay.classList.add('hidden'), 280);
       }
       localStorage.setItem('homestaykita_tour_completed', 'true');
       showToast('🎉 Selamat menggunakan Homestay kita!');
@@ -2837,7 +2863,7 @@
       setTimeout(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
         startGuideTour();
-      }, 350);
+      }, 300);
     }
 
     function clearTourHighlights() {
@@ -2864,15 +2890,16 @@
 
       if (!targetEl || !card) return;
 
-      // Berikan fokus sorotan (spotlight)
       targetEl.classList.add('tour-spotlight-active');
+      
+      // Auto-scroll ke sasaran secara lancar
       targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-      // Kemas kini kandungan kad
+      // Update data teks kad
       if (badge) badge.innerText = `${currentTourStep + 1} / ${tourSteps.length}`;
       if (title) title.innerText = step.title;
       if (desc) desc.innerText = step.desc;
-      if (icon) icon.className = `fa-solid ${step.icon}`;
+      if (icon) icon.className = `fa-solid ${step.icon} text-amberGold-600`;
 
       if (prevBtn) {
         prevBtn.style.visibility = currentTourStep === 0 ? 'hidden' : 'visible';
@@ -2886,28 +2913,26 @@
         }
       }
 
-      // Posisi kad secara pintar dekat elemen sasaran
+      // Hitung posisi kad tepat di bawah atau di atas sasaran
       setTimeout(() => {
         const rect = targetEl.getBoundingClientRect();
-        const cardWidth = card.offsetWidth || 300;
-        const cardHeight = card.offsetHeight || 180;
+        const cardRect = card.getBoundingClientRect();
         const screenW = window.innerWidth;
         const screenH = window.innerHeight;
 
         let top = 0;
-        let left = Math.max(12, Math.min(screenW - cardWidth - 12, rect.left + (rect.width / 2) - (cardWidth / 2)));
+        let left = Math.max(14, (screenW - cardRect.width) / 2);
 
-        if (step.position === 'top' || (rect.bottom + cardHeight + 20 > screenH && rect.top > cardHeight + 20)) {
-          // Posisi di atas elemen
-          top = Math.max(15, rect.top - cardHeight - 14);
+        // Jika ruang di bawah sempit atau ditetapkan 'top'
+        if (step.position === 'top' || (rect.bottom + cardRect.height + 25 > screenH && rect.top > cardRect.height + 25)) {
+          top = Math.max(16, rect.top - cardRect.height - 14);
         } else {
-          // Posisi di bawah elemen
-          top = Math.min(screenH - cardHeight - 15, rect.bottom + 14);
+          top = Math.min(screenH - cardRect.height - 18, rect.bottom + 14);
         }
 
         card.style.top = `${top}px`;
         card.style.left = `${left}px`;
-      }, 100);
+      }, 120);
     }
 
     function nextGuideStep() {
