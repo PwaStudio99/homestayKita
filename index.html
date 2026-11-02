@@ -1425,11 +1425,14 @@
     import { getAuth, signInAnonymously, onAuthStateChanged } 
       from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
-    // Konfigurasi Firebase Homestay kita (Kemas kini projek: homestaykita-8e74d)
+    // URL Realtime Database projek homestaykita-8e74d
+    const REALTIME_DB_URL = "https://homestaykita-8e74d-default-rtdb.asia-southeast1.firebasedatabase.app/";
+
+    // Konfigurasi rasmi Firebase Homestay kita
     const firebaseConfig = {
       apiKey: "AIzaSyCVo6FD0Zl7u40_zcfIFkemgoxXu79TFkU",
       authDomain: "homestaykita-8e74d.firebaseapp.com",
-      databaseURL: "https://homestaykita-8e74d-default-rtdb.asia-southeast1.firebasedatabase.app",
+      databaseURL: REALTIME_DB_URL,
       projectId: "homestaykita-8e74d",
       storageBucket: "homestaykita-8e74d.firebasestorage.app",
       messagingSenderId: "698360043421",
@@ -1439,7 +1442,8 @@
 
     const app = initializeApp(firebaseConfig);
     try { getAnalytics(app); } catch (err) { /* Analytics optional */ }
-    const db = getDatabase(app);
+    // Pasang rujukan pangkalan data dengan URL eksplisit
+    const db = getDatabase(app, REALTIME_DB_URL);
     const auth = getAuth(app);
 
     // ==========================================
